@@ -1,0 +1,209 @@
+:root {
+    /* ---------- Secondary ---------- */
+    --secondary-110: #1C2346;
+    --secondary-100: #37437D;
+    --secondary-90: #5562A2;
+    --secondary-70: #707DBF;
+    --secondary-60: #ABB4DD;
+    --secondary-50: #D3DAF9;
+    /* ---------- Primary ---------- */
+    --primary-100: #F26CF9;
+    --primary-90: #F589FA;
+    --primary-50: #FCD3FE;
+    --primary-40: #FCE2FE;
+    --primary-30: #FDEDFE;
+    /* ---------- Yellow ---------- */
+    --yellow-100: #FFCA39;
+    --yellow-90: #FFEFC3;
+    /* ---------- Greys ---------- */
+    --grey-10: #FFFFFF;
+    --grey-20: #F7F7F7;
+    --grey-30: #EDEDED;
+    --grey-40: #E0E0E1;
+    --grey-50: #C3C3C4;
+    --grey-60: #9F9FA1;
+    --grey-70: #777779;
+    --grey-80: #636365;
+    --grey-90: #434345;
+    --grey-100: #1E1E20;
+    /* ---------- Cool Greys ---------- */
+    --cool-grey-10: #EEEFFF;
+    --cool-grey-20: #E4E5F5;
+    --cool-grey-30: #DDDEED;
+    --cool-grey-40: #D1D2E0;
+    --cool-grey-50: #B0B1BD;
+    --cool-grey-60: #8F8F99;
+    --cool-grey-70: #72737A;
+    --cool-grey-80: #56565C;
+    --cool-grey-90: #39393D;
+    --cool-grey-100: #131314;
+}
+
+
+html, body {
+    font-size: 0.875em;
+    font-family: Arial;
+}
+
+h1, h2, h3, ul, p {
+    margin: 0;
+    padding: 0;
+}
+
+.header-container {
+    align-items: center;
+    background: #F7F7F7;
+    border-radius: 10px;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    padding: 1em 2em;
+}
+
+.header-right {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+}
+
+.search-input {
+    background-color: var(--grey-10);
+    background-image: url('../images/icons/MagnifyingGlass.svg');
+    background-repeat: no-repeat;
+    background-position: right 0.75em center;
+    background-size: 1em;
+    border: none;
+    border-radius: 20px;
+    display:inline-block;
+    font-size: 1rem;
+    min-width: 20em;
+    padding: 0.5em 2.5em 0.5em 0.75em;
+}
+.search-input--btn{
+    display:none;
+}
+
+
+.avatar {
+    border-radius: 50%;
+    height: 40px;
+    object-fit: cover;
+    width: 40px;
+}
+
+.user-meta h3 {
+    font-size: 1rem;
+}
+
+.user-meta p {
+    color: #666;
+    font-size: 0.875rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    background-color: #F7F7F7;
+    border-radius: 10px;
+    padding: 1em 2em;
+}
+
+.page-grid {
+    column-gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background: var(--cool-grey-10);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2em;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 7em 1fr;
+    row-gap: 1rem;
+}
+.nav-link-logga {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem 2rem;
+}
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+    width: 100%;
+}
+
+.nav-link {
+    align-items: center;
+    border-left: 4px solid transparent;
+    color: var(--secondary-110);
+    display: flex;
+    padding: 1rem 2rem;
+}
+
+    .nav-link:hover {
+        border-left: 4px solid var(--primary-90);
+        font-weight: bold;
+        filter: brightness(0) saturate(100%) invert(81%) sepia(57%) saturate(1000%) hue-rotate(265deg) brightness(0.90) contrast(101%);
+    }
+
+nav-link span {
+    display: inline-block;
+}
+
+.nav-icon {
+    filter: brightness(0) saturate(100%);
+    height: 1.75em;
+    margin-right: 0.5em;
+    transition: filter .3s ease;
+    width: 1.75em;
+}
+
+.icon-withe {
+    filter: brightness(0) invert(1);
+    height: 1.5em;
+    width: 1.5em;
+}
+
+.round-btn {
+    align-items: center;
+    background-color: var(--secondary-100);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    padding: 0;
+    width: 40px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .nav-link span {
+        display: none;
+    }
+
+    .nav-link-logga h1 {
+        display: none;
+    }
+
+    .search-input {
+        display: none;
+    }
+
+    .search-input--btn {
+        display: inline-block;
+    }
+}
