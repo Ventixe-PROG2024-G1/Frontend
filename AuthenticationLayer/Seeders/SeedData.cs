@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Frontend.Data.Seeders
+namespace AuthenticationLayer.Seeders
 {
     public static class SeedData
     {
