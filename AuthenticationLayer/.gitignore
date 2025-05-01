@@ -1,0 +1,8 @@
+# Byggmappar och temporära filer
+bin
+obj
+.vs
+
+# SQL Server-databasfiler
+*.mdf
+*.ldf

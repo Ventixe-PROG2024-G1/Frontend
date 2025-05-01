@@ -1,6 +1,6 @@
-using Frontend.Data.Contexts;
-using Frontend.Data.Entities;
-using Frontend.Data.Seeders;
+using AuthenticationLayer.Contexts;
+using AuthenticationLayer.Entities;
+using AuthenticationLayer.Seeders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,10 +8,26 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<AppDbContext>(x =>
+builder.Services.AddDbContext<AuthenticationContext>(x =>
 x.UseSqlServer(builder.Configuration.GetConnectionString("ConnStringAuthentication")));
 
-builder.Services.AddIdentity<AppUserEntity, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddIdentity<AppUserEntity, IdentityRole>(x =>
+{
+    x.SignIn.RequireConfirmedAccount = true;
+    x.Password.RequiredLength = 8;
+    x.User.RequireUniqueEmail = true;
+}
+).AddEntityFrameworkStores<AuthenticationContext>();
+
+builder.Services.ConfigureApplicationCookie(x =>
+{
+    x.LoginPath = "/login";
+    x.AccessDeniedPath = "/accessdenied";
+    x.Cookie.IsEssential = true;
+    x.ExpireTimeSpan = TimeSpan.FromDays(30);
+    x.SlidingExpiration = true;
+    x.Cookie.SameSite = SameSiteMode.Lax;
+});
 
 var app = builder.Build();
 
