@@ -98,7 +98,6 @@
     --checkbox-checked-text-color: var(--gray-10);
 }
 
-
 html, body {
     font-size: 0.875em;
     font-family: var(--font);
@@ -108,6 +107,13 @@ html, body {
 h1, h2, h3, ul, p {
     margin: 0;
     padding: 0;
+}
+
+.center-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
 }
 
 .header-container {
@@ -134,15 +140,15 @@ h1, h2, h3, ul, p {
     background-size: 1em;
     border: none;
     border-radius: 20px;
-    display:inline-block;
+    display: inline-block;
     font-size: 1rem;
     min-width: 20em;
     padding: 0.5em 2.5em 0.5em 0.75em;
 }
-.search-input--btn{
-    display:none;
-}
 
+.search-input--btn {
+    display: none;
+}
 
 .avatar {
     border-radius: 50%;
@@ -191,12 +197,14 @@ main {
     grid-template-rows: 7em 1fr;
     row-gap: 1rem;
 }
+
 .nav-link-logga {
     align-items: center;
     display: flex;
     justify-content: flex-start;
     padding: 1rem 2rem;
 }
+
 .nav-links {
     display: flex;
     flex-direction: column;
@@ -341,7 +349,7 @@ nav-link span {
     width: 100%;
     outline: none;
     color: var(--input-text-color);
-    border: 1px solid var(--input-border-color);
+    border: 1px solid var(--cool-grey-50);
     background-color: var(--input-background-color);
     font-size: 1em;
 }
@@ -359,7 +367,6 @@ form button[type="submit"] {
     width: 100%;
     margin: 1rem 0;
 }
-
 
 .checkbox {
     display: grid;
@@ -442,14 +449,17 @@ form button[type="submit"] {
     background-color: var(--input-background-color);
 }
 
-
 #login {
     width: 600px;
     text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: white;
 }
 
     #login.card .card-body {
         padding: 0 3rem;
+        background-color:white;
     }
 
 #signup {
@@ -460,8 +470,6 @@ form button[type="submit"] {
     #signup.card .card-body {
         padding: 0 3rem;
     }
-
-
 
 @media screen and (max-width: 768px) {
     .nav-link span {
