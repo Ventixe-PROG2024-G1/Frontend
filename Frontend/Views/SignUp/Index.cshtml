@@ -1,3 +1,30 @@
-﻿@{
-    //
+﻿@model SignUpViewModel
+
+@{
+    ViewData["Title"] = "Create Account";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
 }
+
+<div id="signup" class="card">
+    <div class="card-header">
+        <h2 class="card-title">Create Account</h2>
+        <p>
+            @ViewBag?.ErrorMessage
+        </p>
+    </div>
+    <div class="card-body">
+        <form method="post" asp-action="Index" asp-controller="SignUp" novalidate>
+
+            <div class="form-group">
+                <div class="additional-info right"><a asp-action="Index" asp-controller="SignUp">Resend verification code? </a></div>
+                <input asp-for="Email" class="form-input" />
+            </div>
+            <button type="submit" class="btn btn-primary">Continue</button>
+        </form>
+    </div>
+    <div class="card-footer">
+        <div class="additional-info center">
+            Already have an account? <a asp-action="Index" asp-controller="Login">Log In</a>
+        </div>
+    </div>
+</div>
