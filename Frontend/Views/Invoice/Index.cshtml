@@ -2,4 +2,70 @@
     ViewData["Title"] = "Invoice";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="invoice-container">
+    <div class="invoice-wrapper">
+        <div class="invoicestatus-container">
+            <div class="invoice-status">
+                <p>Paid</p>
+                <h6>1805</h6>
+                <p>Last Month: 1,600</p>
+            </div>
+            <div class="invoice-status">
+                <p>Unpaid</p>
+                <h6>500</h6>
+                <p>Last Month: 650</p>
+            </div>
+            <div class="invoice-status">
+                <p>Overdue</p>
+                <h6>80</h6>
+                <p>Last Month: 70</p>
+            </div>
+        </div>
+        <div class="invoice-list">
+            <h2>Invoice List</h2>
+            <div class="invoice-search">
+                <input id="invoice-search"
+                       class="search-input"
+                       type="search"
+                       name="i"
+                       placeholder="Search anything"
+                       aria-label="Sök" />
+                <span class="search-input--btn">
+                    <button class="round-btn"><img class="icon-withe" src=" ~/images/icons/MagnifyingGlass.svg" asp-append-version="true" alt="dashboard icon" class="nav-icon" /></button>
+                </span>
+                <button class="round-btn"><img class="icon-withe" src=" ~/images/icons/ArrowsLeftRight.svg" asp-append-version="true" alt="ArrowsLeftRight icon" class="nav-icon" /></button>
+                <button class="round-btn primary-btn">Add</button>
+            </div>
+            <ul>
+                <li class="invoice-list-item">
+                    <div>
+                        <h3>INV10011</h3>
+                        <p>Feb 15, 2029</p>
+                    </div>
+                    <div>
+                        <p>$100</p>
+                        <p>Paid</p>
+                    </div>
+                </li>
+                <li class="invoice-list-item">
+                    <div>
+                        <h3>INV10011</h3>
+                        <p>Feb 15, 2029</p>
+                    </div>
+                    <div>
+                        <p>$220</p>
+                        <p>Unpaid</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="invoice-details-container">
+        <h2>Invoice Details</h2>
+        <div class="transparant">
+            <div class="invoice-details">
+                <h3>#INV10012</h3>
+            </div>
+        </div>
+    </div>
+</div>

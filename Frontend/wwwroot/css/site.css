@@ -172,9 +172,9 @@ a {
 }
 
 main {
-    background-color: #F7F7F7;
+    background-color: var(--grey-20);
     border-radius: 10px;
-    padding: 1em 2em;
+    padding: 2em;
 }
 
 .page-grid {
@@ -459,7 +459,7 @@ form button[type="submit"] {
 
     #login.card .card-body {
         padding: 0 3rem;
-        background-color:white;
+        background-color: white;
     }
 
 #signup {
@@ -470,6 +470,111 @@ form button[type="submit"] {
     #signup.card .card-body {
         padding: 0 3rem;
     }
+
+
+
+
+/*Invoice*/
+.invoice-container {
+    column-gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height: 100%;
+}
+
+.invoice-wrapper {
+    row-gap: 2rem;
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+}
+
+.invoicestatus-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+}
+
+    .invoicestatus-container div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: var(--grey-10);
+        padding: 0.5rem
+    }
+.invoice-status p {
+    color: #858585;
+}
+.invoice-status h6{
+    color:var(--secondary-100);
+    font-weight:bold;
+    font-size:20px;
+    margin:0.5em 0;
+}
+
+.invoice-search {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .invoice-search .search-input {
+        background-color: var(--grey-20);
+        min-width: auto;
+    }
+
+    .invoice-search .primary-btn {
+        background-color: var( --button-primary-border-color);
+        border-radius: 45%;
+        color: var(--grey-10);
+        padding: 0 2em;
+    }
+
+
+.invoice-list {
+    border-radius: 10px;
+    background-color: var(--grey-10);
+    padding: 1.5rem
+}
+
+    .invoice-list h2 {
+        margin-bottom: 1em;
+    }
+
+.invoice-list-item {
+    border-radius: 10px;
+    background-color: var(--grey-20);
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    margin: 1em 0;
+}
+
+.invoice-details-container {
+    border-radius: 10px;
+    background-color: var(--grey-10);
+    padding: 1rem;
+}
+
+    .invoice-details-container h2 {
+        margin-bottom: 1em;
+    }
+
+    .invoice-details-container .transparant {
+        border-radius: 10px;
+        background-color: var(--grey-20);
+        padding: 2em;
+    }
+
+.invoice-details {
+    border-radius: 10px;
+    background-color: var(--grey-10);
+    padding: 4em 2em;
+    border-top: 4px solid var(--primary-100)
+}
+
+
+
+
 
 @media screen and (max-width: 768px) {
     .nav-link span {

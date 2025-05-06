@@ -32,7 +32,7 @@ builder.Services.ConfigureApplicationCookie(x =>
 var app = builder.Build();
 
 // Roller skapas upp i databasen
-await SeedData.SetRolesAsync(app);
+//await SeedData.SetRolesAsync(app);
 
 app.UseHsts();
 app.UseHttpsRedirection();
