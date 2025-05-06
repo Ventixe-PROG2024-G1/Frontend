@@ -445,7 +445,7 @@ form button[type="submit"] {
     border-radius: 12px;
     outline: none;
     color: var(--input-text-color);
-    border: 1px solid var(--input-border-color);
+    border: 1px solid var(--cool-grey-50);
     background-color: var(--input-background-color);
 }
 
@@ -457,14 +457,22 @@ form button[type="submit"] {
     background-color: white;
 }
 
-    #login.card .card-body {
+    #login.card {
         padding: 0 3rem;
-        background-color:white;
+        background-color: white;
     }
+
+        #login.card .card-body {
+            padding: 0 3rem;
+            background-color: white;
+        }
 
 #signup {
     width: 600px;
     text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: white;
 }
 
     #signup.card .card-body {

@@ -1,18 +1,12 @@
-﻿namespace Frontend.Models.SignUp
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Frontend.Models.SignUp
 {
     public class SignUpViewModel
     {
-    }
-
-    public class AccountVerificationModel
-    {
-    }
-
-    public class SetPasswordViewModel
-    {
-    }
-
-    public class ProfileInformationViewModel
-    {
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email", Prompt = "Enter email address")]
+        [Required(ErrorMessage = "Email must be provided.")]
+        public string Email { get; set; } = null!;
     }
 }
