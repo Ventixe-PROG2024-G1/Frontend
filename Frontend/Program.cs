@@ -3,6 +3,7 @@ using AuthenticationLayer.Entities;
 using AuthenticationLayer.Seeders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Frontend.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,16 @@ builder.Services.AddIdentity<AppUserEntity, IdentityRole>(x =>
     x.User.RequireUniqueEmail = true;
 }
 ).AddEntityFrameworkStores<AuthenticationContext>();
+
+// Skapar upp clients
+builder.Services.AddGrpcClient<VerificationContract.VerificationContractClient>(x =>
+{
+    x.Address = new Uri(builder.Configuration["GrpcServices:VerificationService"]!);
+});
+builder.Services.AddGrpcClient<AccountContract.AccountContractClient>(x =>
+{
+    x.Address = new Uri(builder.Configuration["GrpcServices:LocalAccountService"]!);
+});
 
 builder.Services.ConfigureApplicationCookie(x =>
 {

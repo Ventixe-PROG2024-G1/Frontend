@@ -4,8 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Frontend.Controllers
 {
-    public class SignUpController : Controller
+    public class SignUpController(VerificationContract.VerificationContractClient verificationClient,
+                 AccountContract.AccountContractClient accountServiceClient) : Controller
     {
+        private readonly VerificationContract.VerificationContractClient _verificationServiceClient = verificationClient;
+        private readonly AccountContract.AccountContractClient _accountServiceClient = accountServiceClient;
+
         #region Step 1 - Set Email
 
         [HttpGet("signup")]
@@ -23,21 +27,20 @@ namespace Frontend.Controllers
                 return View(model);
             }
 
-            // Anrop till AccountServiceProvider
-            //var findAccountResponse = await _accountService.FindByEmailAsync(model.Email);
-            //if (findAccountResponse.Succeeded)
-            //{
-            //    ViewBag.ErrorMessage = "Account already exists";
-            //    return View(model);
-            //}
-
-            // Anrop till VerificaionServiceProvider
-            //var verificationResponse = await _verificationService.SendVerificationCodeAsync(model.Email);
-            //if (!verificationResponse.Succeeded)
-            //{
-            //    ViewBag.ErrorMessage = verificationResponse.Error;
-            //    return View(model);
-            //}
+            var findEmailRequest = new FindByEmailRequest { Email = model.Email };
+            var findEmailResponse = await _accountServiceClient.FindByEmailAsync(findEmailRequest);
+            if (findEmailResponse.Success)
+            {
+                ViewBag.ErrorMessage = "Account already exists";
+                return View(model);
+            }
+            var verificationRequest = new SendVerificationCodeRequest { Email = model.Email };
+            var verificationResponse = await _verificationServiceClient.SendVerificationCodeAsync(verificationRequest);
+            if (!verificationResponse.Succeeded)
+            {
+                ViewBag.ErrorMessage = verificationResponse.Error;
+                return View(model);
+            }
 
             TempData["Email"] = model.Email;
             return RedirectToAction("AccountVerification");
@@ -70,15 +73,15 @@ namespace Frontend.Controllers
             if (string.IsNullOrWhiteSpace(email))
                 return RedirectToAction("Index");
 
-            // Anrop till VerificationServiceProvider
-            //var response = await _verificationService.ValidateVerificationCodeAsync(email, model.Code);
-            //if (!response.Succeeded)
-            //{
-            //    ViewBag.ErrorMessage = response.Error;
-            //    TempData.Keep("Email");
-            //    return View(model);
-            //}
+            var verifyRequest = new VerifyVerificationCodeRequest { Email = email, Code = model.Code };
+            var verifyResponse = await _verificationServiceClient.VerifyVerificationCodeAsync(verifyRequest);
 
+            if (!verifyResponse.Succeeded)
+            {
+                ViewBag.ErrorMessage = verifyResponse.Error;
+                TempData.Keep("Email");
+                return View(model);
+            }
             TempData["Email"] = email;
             return RedirectToAction("SetPassword");
         }
@@ -103,22 +106,16 @@ namespace Frontend.Controllers
             if (string.IsNullOrWhiteSpace(email))
                 return RedirectToAction(nameof(Index));
 
-            var appUser = new AppUserEntity
+            var accountRequest = new CreateAccountRequest { Email = email, Password = model.Password };
+            var accountResponse = await _accountServiceClient.CreateAccountAsync(accountRequest);
+            if (!accountResponse.Success)
             {
-                UserName = email,
-                Email = email,
-            };
-
-            // Anrop till AccountServiceProvider
-            //var response = await _accountService.CreateAccountAsync(appUser, model.Password);
-            //if (!response.Succeeded)
-            //{
-            //    TempData.Keep("Email");
-            //    return View(model);
-            //}
+                TempData.Keep("Email");
+                return View(model);
+            }
 
             // Skickar tillbaka ID't som genereras till nästa steg för att skapa en koppling.
-            //TempData["UserId"] = response.Result;
+            TempData["UserId"] = accountResponse.Result;
             return RedirectToAction("ProfileInformation");
         }
 
@@ -135,6 +132,22 @@ namespace Frontend.Controllers
         [HttpPost("profile-information")]
         public IActionResult ProfileInformation(ProfileInformationViewModel model)
         {
+            //var userId = TempData["UserId"]!.ToString();
+            //if (string.IsNullOrWhiteSpace(userId))
+            //{
+            //    return RedirectToAction(nameof(Index));
+            //}
+
+            // Anrop till LocalProfileServiceProvider
+
+            // Om result inte är success:
+            //if (!respnse.Success)
+            //{
+            //    TempData.Keep("UserId");
+            //    return View(model);
+            //}
+
+            // Om result är success
             return RedirectToAction("Index", "Login");
         }
 

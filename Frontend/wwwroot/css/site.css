@@ -457,15 +457,15 @@ form button[type="submit"] {
     background-color: white;
 }
 
-    #login.card {
+    /* #login.card {
         padding: 0 3rem;
         background-color: white;
-    }
+    }*/
 
-        #login.card .card-body {
-            padding: 0 3rem;
-            background-color: white;
-        }
+    #login.card .card-body {
+        padding: 0 3rem;
+        /*background-color: white;*/
+    }
 
 #signup {
     width: 600px;
@@ -479,8 +479,12 @@ form button[type="submit"] {
         padding: 0 3rem;
     }
 
-
-
+.logo-form {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 50px;
+    height: auto;
+}
 
 /*Invoice*/
 .invoice-container {
@@ -510,14 +514,16 @@ form button[type="submit"] {
         background-color: var(--grey-10);
         padding: 0.5rem
     }
+
 .invoice-status p {
     color: #858585;
 }
-.invoice-status h6{
-    color:var(--secondary-100);
-    font-weight:bold;
-    font-size:20px;
-    margin:0.5em 0;
+
+.invoice-status h6 {
+    color: var(--secondary-100);
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0.5em 0;
 }
 
 .invoice-search {
@@ -536,7 +542,6 @@ form button[type="submit"] {
         color: var(--grey-10);
         padding: 0 2em;
     }
-
 
 .invoice-list {
     border-radius: 10px;
@@ -579,10 +584,6 @@ form button[type="submit"] {
     padding: 4em 2em;
     border-top: 4px solid var(--primary-100)
 }
-
-
-
-
 
 @media screen and (max-width: 768px) {
     .nav-link span {
