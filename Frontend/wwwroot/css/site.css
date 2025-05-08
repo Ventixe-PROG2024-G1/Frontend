@@ -177,6 +177,13 @@ main {
     padding: 2em;
 }
 
+main:has(#login),
+main:has(#signup) {
+    background-color:transparent;
+    border:1px solid var(--cool-grey-40);
+    border-radius:30px;
+}
+
 .page-grid {
     column-gap: 1.5rem;
     display: grid;
@@ -455,25 +462,35 @@ form button[type="submit"] {
     font-size: 16px;
     font-weight: 400;
     background-color: white;
+    
 }
 
-    /* #login.card {
-        padding: 0 3rem;
-        background-color: white;
-    }*/
+   
 
     #login.card .card-body {
         padding: 0 3rem;
         /*background-color: white;*/
     }
 
+    #login .additional-info {
+        color: var(--cool-grey-50);
+        text-align: center;
+        font-size: 14px;
+    }
+
 #signup {
-    width: 600px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 400;
-    background-color: white;
-}
+        width: 600px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 400;
+        background-color: white;
+    }
+
+    #signup .additional-info {
+        color: var(--cool-grey-50);
+        text-align: center;
+        font-size: 14px;
+    }
 
     #signup.card .card-body {
         padding: 0 3rem;
@@ -482,7 +499,7 @@ form button[type="submit"] {
 .logo-form {
     margin-top: 20px;
     margin-bottom: 10px;
-    width: 50px;
+    width: 40px;
     height: auto;
 }
 
