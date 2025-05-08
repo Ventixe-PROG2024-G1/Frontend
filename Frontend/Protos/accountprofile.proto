@@ -1,0 +1,49 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "LocalProfileServiceProvider.Services";
+
+service ProfileContract {
+    rpc CreateProfile(CreateProfileRequest) returns (ActionResponse);
+    rpc GetProfile(GetProfileRequest) returns (ProfileResponse); 
+    rpc GetAllProfiles(GetAllProfilesRequest) returns(AllProfilesResponse);
+}
+
+message CreateProfileRequest {
+   string id = 1;
+   string first_name = 2;
+   string last_name= 3;
+   string street_address = 4;
+   string zip_code =5;
+   string city = 6;
+   string profile_picture_url = 7;
+}
+
+message GetProfileRequest{
+    string id =1;
+}
+
+message GetAllProfilesRequest{
+
+}
+
+message ActionResponse{
+    bool succeeded = 1;
+    string message = 2;
+    string error = 3;
+}
+
+message AllProfilesResponse{
+    repeated ProfileResponse profiles = 1;
+}
+
+
+
+message ProfileResponse {
+   string id = 1;
+   string first_name = 2;
+   string last_name= 3;
+   string street_address = 4;
+   string zip_code =5;
+   string city = 6;
+   optional string profile_picture_url = 7;
+}

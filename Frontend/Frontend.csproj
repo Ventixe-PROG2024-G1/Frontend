@@ -51,6 +51,7 @@
 	<ItemGroup>
 		<Protobuf Include="Protos/verification.proto" GrpcServices="Client" />
 		<Protobuf Include="Protos/account.proto" GrpcServices="Client" />
+		<Protobuf Include="Protos/accountprofile.proto" GrpcServices="Client" />
 	</ItemGroup>
 
 </Project>

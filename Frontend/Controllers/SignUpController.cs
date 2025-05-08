@@ -1,14 +1,17 @@
 ﻿using AuthenticationLayer.Entities;
 using Frontend.Models.SignUp;
+using LocalProfileServiceProvider.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Frontend.Controllers
 {
     public class SignUpController(VerificationContract.VerificationContractClient verificationClient,
-                 AccountContract.AccountContractClient accountServiceClient) : Controller
+                 AccountContract.AccountContractClient accountServiceClient,
+                 ProfileContract.ProfileContractClient profileServiceClient) : Controller
     {
         private readonly VerificationContract.VerificationContractClient _verificationServiceClient = verificationClient;
         private readonly AccountContract.AccountContractClient _accountServiceClient = accountServiceClient;
+        private readonly ProfileContract.ProfileContractClient _profileServiceClient = profileServiceClient;
 
         #region Step 1 - Set Email
 
@@ -130,24 +133,36 @@ namespace Frontend.Controllers
         }
 
         [HttpPost("profile-information")]
-        public IActionResult ProfileInformation(ProfileInformationViewModel model)
+        public async Task<IActionResult> ProfileInformation(ProfileInformationViewModel model)
         {
-            //var userId = TempData["UserId"]!.ToString();
-            //if (string.IsNullOrWhiteSpace(userId))
-            //{
-            //    return RedirectToAction(nameof(Index));
-            //}
+            var userId = TempData["UserId"]!.ToString();
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return RedirectToAction(nameof(Index));
+            }
 
-            // Anrop till LocalProfileServiceProvider
+            // Anrop till ImageMicroService som sparar ner bilden i Azure blob storage och returnerar ProfilePictureUrl
 
-            // Om result inte är success:
-            //if (!respnse.Success)
-            //{
-            //    TempData.Keep("UserId");
-            //    return View(model);
-            //}
+            //Anrop till LocalProfileServiceProvider för att spara profil kopplad till UserId
 
-            // Om result är success
+            var profileRequest = new CreateProfileRequest
+            {
+                Id = userId,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                StreetAddress = model.StreetAddress,
+                ZipCode = model.ZipCode,
+                City = model.City,
+                ProfilePictureUrl = model.ProfilePictureUrl ?? "",
+            };
+
+            var profileResponse = await _profileServiceClient.CreateProfileAsync(profileRequest);
+            if (!profileResponse.Succeeded)
+            {
+                TempData.Keep("UserId");
+                return View(model);
+            }
+
             return RedirectToAction("Index", "Login");
         }
 
