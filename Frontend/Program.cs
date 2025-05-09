@@ -46,6 +46,8 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.Cookie.SameSite = SameSiteMode.Lax;
 });
 
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 // Roller skapas upp i databasen
