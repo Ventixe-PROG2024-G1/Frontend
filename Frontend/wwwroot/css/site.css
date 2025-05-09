@@ -551,11 +551,20 @@ form button[type="submit"] {
 .invoice-list-item {
     border-radius: 10px;
     background-color: var(--grey-20);
+    margin: 1em 0;
+}
+.invoice-button {
+    border:none;
+    background-color:transparent;
     display: flex;
     justify-content: space-between;
     padding: 1em 2em;
-    margin: 1em 0;
+    width:100%;
 }
+    .invoice-button:active {
+        border: 1px solid var(--primary-100);
+        border-radius: 10px
+    }
 
 .invoice-details-container {
     border-radius: 10px;

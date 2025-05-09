@@ -36,36 +36,23 @@
                 <button class="round-btn"><img class="icon-withe" src=" ~/images/icons/ArrowsLeftRight.svg" asp-append-version="true" alt="ArrowsLeftRight icon" class="nav-icon" /></button>
                 <button class="round-btn primary-btn">Add</button>
             </div>
-            <ul>
-                <li class="invoice-list-item">
-                    <div>
-                        <h3>INV10011</h3>
-                        <p>Feb 15, 2029</p>
-                    </div>
-                    <div>
-                        <p>$100</p>
-                        <p>Paid</p>
-                    </div>
-                </li>
-                <li class="invoice-list-item">
-                    <div>
-                        <h3>INV10011</h3>
-                        <p>Feb 15, 2029</p>
-                    </div>
-                    <div>
-                        <p>$220</p>
-                        <p>Unpaid</p>
-                    </div>
-                </li>
+
+            <ul id="invoice-list">
+                
             </ul>
         </div>
     </div>
     <div class="invoice-details-container">
         <h2>Invoice Details</h2>
         <div class="transparant">
-            <div class="invoice-details">
-                <h3>#INV10012</h3>
+            <div class="invoice-details" id="invoice-details">
+                
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/InvoiceList.js"></script>
+    <script src="~/js/InvoiceDetails.js"></script>
+}
