@@ -9,7 +9,7 @@
 
 <div id="login" class="card">
     <div class="card-header">
-        <h2>Welcome back!</h2>
+        <h2 class="card-title">Welcome back!</h2>
         <p>
             @ViewBag?.ErrorMessage
         </p>
@@ -39,5 +39,6 @@
                 <div class="additional-info center">Don't have an account yet? <a asp-action="Index" asp-controller="SignUp">Sign Up</a></div>
             </div>
         </form>
+        <img src="~/images/icons/logo.png" class="logo-form" />
     </div>
 </div>

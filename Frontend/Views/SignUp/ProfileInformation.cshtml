@@ -1,0 +1,64 @@
+﻿@model ProfileInformationViewModel
+
+@{
+    ViewData["Title"] = "Create Profile";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+
+<div id="signup" class="card">
+    <div class="card-header">
+        <h2 class="card-title">Create Profile</h2>
+        <p>
+            @ViewBag?.ErrorMessage
+        </p>
+    </div>
+    <div class="card-body">
+        <form method="post" asp-action="ProfileInformation" asp-controller="SignUp" novalidate>
+
+            <div class="form-group">
+                <input asp-for="FirstName" class="form-input" />
+            </div>
+            <div class="form-group">
+                <input asp-for="LastName" class="form-input" />
+            </div>
+            <div>
+                <p>
+                    -
+                </p>
+            </div>
+            <div class="form-group">
+                <input asp-for="StreetAddress" class="form-input" />
+            </div>
+            <div class="form-group">
+                <input asp-for="ZipCode" class="form-input" />
+            </div>
+            <div class="form-group">
+                <input asp-for="City" class="form-input" />
+            </div>
+            <div>
+                <p>
+                    -
+                </p>
+            </div>
+            <div class="form-group">
+                <input asp-for="ProfilePictureFile" type="file" id="fileInput" style="display: none;" />
+                <label for="fileInput" class="btn btn-primary" style="background-color: #d6d6d6; border-color: #d6d6d6; color: black;">
+                    Upload profile picture
+                </label>
+                <span id="fileName"></span>
+            </div>
+           
+            <button type="submit" class="btn btn-primary">CreateAccount</button>
+        </form>
+        <img src="~/images/icons/logo.png" class ="logo-form" />
+    </div>
+   
+</div>
+
+<!-- AI-genererad kod -->
+<script>
+    document.getElementById("fileInput").addEventListener("change", function () {
+        var fileName = this.files.length > 0 ? this.files[0].name : "No file chosen";
+        document.getElementById("fileName").textContent = fileName;
+    });
+</script>

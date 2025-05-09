@@ -177,6 +177,13 @@ main {
     padding: 2em;
 }
 
+main:has(#login),
+main:has(#signup) {
+    background-color:transparent;
+    border:1px solid var(--cool-grey-40);
+    border-radius:30px;
+}
+
 .page-grid {
     column-gap: 1.5rem;
     display: grid;
@@ -455,32 +462,46 @@ form button[type="submit"] {
     font-size: 16px;
     font-weight: 400;
     background-color: white;
+    
 }
 
-    #login.card {
+   
+
+    #login.card .card-body {
         padding: 0 3rem;
+        /*background-color: white;*/
+    }
+
+    #login .additional-info {
+        color: var(--cool-grey-50);
+        text-align: center;
+        font-size: 14px;
+    }
+
+#signup {
+        width: 600px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 400;
         background-color: white;
     }
 
-        #login.card .card-body {
-            padding: 0 3rem;
-            background-color: white;
-        }
-
-#signup {
-    width: 600px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 400;
-    background-color: white;
-}
+    #signup .additional-info {
+        color: var(--cool-grey-50);
+        text-align: center;
+        font-size: 14px;
+    }
 
     #signup.card .card-body {
         padding: 0 3rem;
     }
 
-
-
+.logo-form {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 40px;
+    height: auto;
+}
 
 /*Invoice*/
 .invoice-container {
@@ -510,14 +531,16 @@ form button[type="submit"] {
         background-color: var(--grey-10);
         padding: 0.5rem
     }
+
 .invoice-status p {
     color: #858585;
 }
-.invoice-status h6{
-    color:var(--secondary-100);
-    font-weight:bold;
-    font-size:20px;
-    margin:0.5em 0;
+
+.invoice-status h6 {
+    color: var(--secondary-100);
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0.5em 0;
 }
 
 .invoice-search {
@@ -536,7 +559,6 @@ form button[type="submit"] {
         color: var(--grey-10);
         padding: 0 2em;
     }
-
 
 .invoice-list {
     border-radius: 10px;
@@ -588,10 +610,6 @@ form button[type="submit"] {
     padding: 4em 2em;
     border-top: 4px solid var(--primary-100)
 }
-
-
-
-
 
 @media screen and (max-width: 768px) {
     .nav-link span {

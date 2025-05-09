@@ -1,0 +1,23 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "Frontend.Controllers";
+
+service AccountContract {
+    rpc CreateAccount(CreateAccountRequest) returns (AccountServiceResult);
+    rpc FindByEmail(FindByEmailRequest) returns (AccountServiceResult);
+}
+
+message CreateAccountRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message FindByEmailRequest {
+    string email = 1;
+}
+
+message AccountServiceResult {
+    bool success = 1;
+    string error = 2;
+    string result = 3; 
+}
