@@ -5,6 +5,8 @@ option csharp_namespace = "Frontend.Controllers";
 service AccountContract {
     rpc CreateAccount(CreateAccountRequest) returns (AccountServiceResult);
     rpc FindByEmail(FindByEmailRequest) returns (AccountServiceResult);
+    rpc GetAccount(GetAccountRequest) returns (AccountResponse);
+    rpc GetAllAccounts(GetAccountRequest) returns (AllAccountsResponse);
 }
 
 message CreateAccountRequest {
@@ -16,8 +18,27 @@ message FindByEmailRequest {
     string email = 1;
 }
 
+message GetAccountRequest{
+    string id =1;
+}
+
+message GetAllAccountsRequest{
+
+}
+
 message AccountServiceResult {
     bool success = 1;
     string error = 2;
     string result = 3; 
+}
+
+
+message AllAccountsResponse{
+    repeated AccountResponse accounts = 1;
+}
+
+message AccountResponse {
+   string id = 1;
+   string email = 2;
+   string role = 3;
 }
