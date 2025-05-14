@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Frontend.Controllers;
 using LocalProfileServiceProvider.Services;
+using Frontend.Middlewares;
+using Frontend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,12 +41,15 @@ builder.Services.AddGrpcClient<ProfileContract.ProfileContractClient>(x =>
 builder.Services.ConfigureApplicationCookie(x =>
 {
     x.LoginPath = "/login";
+    x.LogoutPath = "/login";
     x.AccessDeniedPath = "/accessdenied";
     x.Cookie.IsEssential = true;
     x.ExpireTimeSpan = TimeSpan.FromDays(30);
     x.SlidingExpiration = true;
     x.Cookie.SameSite = SameSiteMode.Lax;
 });
+
+builder.Services.AddScoped<IAppUserService, AppUserService>();
 
 builder.Services.AddHttpClient();
 
@@ -58,6 +63,7 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 app.UseAuthentication();
+app.UseMiddleware<UserIdentityMiddleware>();
 app.UseAuthorization();
 
 app.MapStaticAssets();
