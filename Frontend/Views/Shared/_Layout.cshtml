@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Frontend.Stores
+
+@{
+    var user = UserStore.CurrentUser;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -16,7 +22,14 @@
             <header class="header-container">
                 <div>
                     <h1>@ViewData["Title"]</h1>
-                    <p>Hello Orlando, welcome back!</p>
+                    @if(user != null)
+                    {
+                        <p>Hello @user.FirstName, welcome back!</p>
+                    }
+                    else
+                    {
+                        <p>Hello Guest, welcome back!</p>
+                    }
                 </div>
                 <partial name="Partials/_HeaderToolbar" />
             </header>
