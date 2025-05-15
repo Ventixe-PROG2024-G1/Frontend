@@ -560,9 +560,10 @@ form button[type="submit"] {
         padding: 0 2em;
     }
 
-.invoice-list {
+#invoice-list {
     border-radius: 10px;
     background-color: var(--grey-10);
+    list-style:none;
     padding: 1.5rem
 }
 
@@ -587,12 +588,28 @@ form button[type="submit"] {
         border: 1px solid var(--primary-100);
         border-radius: 10px
     }
+    .invoice-button h3{
+        font-size:16px;
+    }
+    .invoice-list-date{
+        color:var(--grey-100);
+        font-size:12px;
+        margin-top:0.5rem;
+    }
+    .invoice-list-status{
+        background-color:var(--secondary-90);
+        border-radius:8px;
+        color:var(--grey-10);
+        margin-top:0.5rem;
+        padding:0.25rem 0.75rem;
 
-.invoice-details-container {
-    border-radius: 10px;
-    background-color: var(--grey-10);
-    padding: 1rem;
-}
+    }
+
+    .invoice-details-container {
+        border-radius: 10px;
+        background-color: var(--grey-10);
+        padding: 1rem;
+    }
 
     .invoice-details-container h2 {
         margin-bottom: 1em;
@@ -609,6 +626,25 @@ form button[type="submit"] {
     background-color: var(--grey-10);
     padding: 4em 2em;
     border-top: 4px solid var(--primary-100)
+}
+.invoice-details-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:2em;
+}
+.invoice-details-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.invoice-details-body p{
+    color:var(--grey-60);
+}
+    .invoice-details-ticets{
+    border:1px solid var(--grey-30);
+    border-radius:8px;
+    margin-top:2em;
+    padding:1em 2em;
 }
 
 @media screen and (max-width: 768px) {
