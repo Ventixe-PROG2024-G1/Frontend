@@ -177,12 +177,12 @@ main {
     padding: 2em;
 }
 
-main:has(#login),
-main:has(#signup) {
-    background-color:transparent;
-    border:1px solid var(--cool-grey-40);
-    border-radius:30px;
-}
+    main:has(#login),
+    main:has(#signup) {
+        background-color: transparent;
+        border: 1px solid var(--cool-grey-40);
+        border-radius: 30px;
+    }
 
 .page-grid {
     column-gap: 1.5rem;
@@ -462,10 +462,7 @@ form button[type="submit"] {
     font-size: 16px;
     font-weight: 400;
     background-color: white;
-    
 }
-
-   
 
     #login.card .card-body {
         padding: 0 3rem;
@@ -479,12 +476,12 @@ form button[type="submit"] {
     }
 
 #signup {
-        width: 600px;
-        text-align: center;
-        font-size: 16px;
-        font-weight: 400;
-        background-color: white;
-    }
+    width: 600px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: white;
+}
 
     #signup .additional-info {
         color: var(--cool-grey-50);
@@ -563,53 +560,57 @@ form button[type="submit"] {
 #invoice-list {
     border-radius: 10px;
     background-color: var(--grey-10);
-    list-style:none;
+    list-style: none;
     padding: 1.5rem
 }
 
-    .invoice-list h2 {
-        margin-bottom: 1em;
-    }
+.invoice-list h2 {
+    margin-bottom: 1em;
+}
 
 .invoice-list-item {
     border-radius: 10px;
     background-color: var(--grey-20);
     margin: 1em 0;
 }
+
 .invoice-button {
-    border:none;
-    background-color:transparent;
+    border: none;
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
     padding: 1em 2em;
-    width:100%;
+    width: 100%;
 }
+
     .invoice-button:active {
         border: 1px solid var(--primary-100);
         border-radius: 10px
     }
-    .invoice-button h3{
-        font-size:16px;
-    }
-    .invoice-list-date{
-        color:var(--grey-100);
-        font-size:12px;
-        margin-top:0.5rem;
-    }
-    .invoice-list-status{
-        background-color:var(--secondary-90);
-        border-radius:8px;
-        color:var(--grey-10);
-        margin-top:0.5rem;
-        padding:0.25rem 0.75rem;
 
+    .invoice-button h3 {
+        font-size: 16px;
     }
 
-    .invoice-details-container {
-        border-radius: 10px;
-        background-color: var(--grey-10);
-        padding: 1rem;
-    }
+.invoice-list-date {
+    color: var(--grey-100);
+    font-size: 12px;
+    margin-top: 0.5rem;
+}
+
+.invoice-list-status {
+    background-color: var(--secondary-90);
+    border-radius: 8px;
+    color: var(--grey-10);
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+}
+
+.invoice-details-container {
+    border-radius: 10px;
+    background-color: var(--grey-10);
+    padding: 1rem;
+}
 
     .invoice-details-container h2 {
         margin-bottom: 1em;
@@ -627,24 +628,59 @@ form button[type="submit"] {
     padding: 4em 2em;
     border-top: 4px solid var(--primary-100)
 }
-.invoice-details-header{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:2em;
+
+.invoice-details-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
 }
+
 .invoice-details-body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.invoice-details-body p{
-    color:var(--grey-60);
+
+    .invoice-details-body p {
+        color: var(--grey-60);
+    }
+
+.invoice-details-ticets {
+    border: 1px solid var(--grey-30);
+    border-radius: 8px;
+    margin-top: 2em;
+    padding: 1em 2em;
 }
-    .invoice-details-ticets{
-    border:1px solid var(--grey-30);
-    border-radius:8px;
-    margin-top:2em;
-    padding:1em 2em;
+
+#loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/*Delvis AI-genererad kod*/
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px var(--primary-50);
+    border-top: 4px solid var(--primary-90);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    padding: 20px;
+    margin: auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media screen and (max-width: 768px) {
