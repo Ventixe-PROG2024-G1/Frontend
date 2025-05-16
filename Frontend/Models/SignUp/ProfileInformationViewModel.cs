@@ -29,5 +29,9 @@ namespace Frontend.Models.SignUp
 
         [Display(Name = "Upload picture")]
         public IFormFile? ProfilePictureFile { get; set; }
+
+        [Display(Name = "Phone", Prompt = "Enter phone number")]
+        [DataType(DataType.PhoneNumber)]
+        public string? Phone { get; set; }
     }
 }
