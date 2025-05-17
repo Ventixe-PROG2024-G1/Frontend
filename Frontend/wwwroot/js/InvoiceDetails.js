@@ -7,7 +7,7 @@
         })
         .then(invoice => {
             const div = document.getElementById('invoice-details');
-            console.log(invoice)
+            console.log("details" + invoice)
 
             div.innerHTML = `
             <div class="invoice-details-header">

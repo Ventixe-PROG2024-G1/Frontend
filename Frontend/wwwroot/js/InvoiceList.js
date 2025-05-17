@@ -8,6 +8,7 @@
             return res.json();
         })
         .then(invoices => {
+            console.log("listan" + invoices)
             const ul = document.getElementById('invoice-list');
             ul.innerHTML = '';
 

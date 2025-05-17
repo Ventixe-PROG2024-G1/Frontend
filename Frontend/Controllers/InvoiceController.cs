@@ -23,6 +23,8 @@ public class InvoiceController : Controller
     {
         var invoices = await _https
             .GetFromJsonAsync<List<InvoiceDto>>("https://localhost:7042/api/Invoice");
+        if (invoices == null)
+            return NotFound();
 
         return Json(invoices);
     }
