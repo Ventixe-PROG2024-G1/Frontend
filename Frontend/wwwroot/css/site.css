@@ -104,7 +104,7 @@ html, body {
     color: var(--text-color);
 }
 
-h1, h2, h3, ul, p {
+h1, h2, h3, ul, ol, p {
     margin: 0;
     padding: 0;
 }
@@ -651,6 +651,99 @@ form button[type="submit"] {
     margin-top: 2em;
     padding: 1em 2em;
 }
+
+/*E-Voucher*/
+
+.evoucher-container {
+    display: grid;
+    gap: 2em;
+}
+.evoucher-wrapper {
+    background-color: var(--grey-10);
+    border-radius: 10px;
+    padding: 1em;
+    width: 100%;
+}
+.evoucher-ticker {
+    background: var(--cool-grey-20);
+    display:flex;
+    height: 100px;
+}
+.evoucher-tickerEvent {
+    border-right: 3px dashed var(--grey-10);
+    padding:0.5em;
+}
+.evoucher-tickerInfo {
+    border-right: 3px dashed var(--grey-10);
+    padding: 0.5em;
+    width:30%;
+}
+.evoucher-tickerScan {
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+    .evoucher-tickerScan p{
+        text-align:center;
+    }
+    .evoucher-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2em;
+    }
+
+    .evoucher-info .evoucher-infoItem {
+        display: grid;
+        gap: 1em;
+    }
+
+.evoucher-wrapper h3{
+    padding:1em 0;
+
+}
+
+.evoucher-scheduleList {
+    list-style: none;
+}
+
+.evoucher-scheduleList-Item {
+    background-color: var(--grey-20);
+    border-radius: 10px;
+    padding: 1em 2em;
+    margin-bottom: 0.5em;
+}
+
+.evoucher-conditionsList {
+    margin-left: 1em;
+}
+
+    .evoucher-conditionsList li {
+        margin-top: 1.5em;
+    }
+
+.evoucher-conditionsUnderList {
+    margin-left: 2em;
+}
+
+    .evoucher-conditionsUnderList li {
+        margin-top: 0.5em;
+    }
+
+.evoucher-boldtext {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.evoucher-legendList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+    .evoucher-legendList ul {
+        list-style: none;
+    }
 
 #loading {
     display: flex;
