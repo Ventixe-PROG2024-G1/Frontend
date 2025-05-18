@@ -16,6 +16,7 @@
     /* ---------- Primary ---------- */
     --primary-100: #F26CF9;
     --primary-90: #F589FA;
+    --primary-90-rgb: 245, 137, 250;
     --primary-50: #FCD3FE;
     --primary-40: #FCE2FE;
     --primary-30: #FDEDFE;
@@ -96,6 +97,18 @@
     --checkbox-checked-background-color: var(--primary-100);
     --checkbox-checked-border-color: var(--primary-100);
     --checkbox-checked-text-color: var(--gray-10);
+
+    --table-cell-reference-text-color: var(--grey-70);
+    --table-cell-header-text-color: var(--grey-70);
+    --table-cell-sub-text-color: var(--grey-70);
+    --table-cell-category-color: var(--secondary-100);
+
+    --booking-status-pending-text-color: var(--secondary-100);
+    --booking-status-pending-background-color: var(--cool-grey-20);
+    --booking-status-confirmed-text-color: var(--primary-100);
+    --booking-status-confirmed-background-color: rgba(var(--primary-90-rgb), 0.24);
+    --booking-status-cancelled-text-color: var(--grey-80);
+    --booking-status-cancelled-background-color: var(--cool-grey-20);
 }
 
 html, body {
@@ -792,4 +805,10 @@ form button[type="submit"] {
     .search-input--btn {
         display: inline-block;
     }
+
+}
+
+/*Bookings*/
+
+
 }
