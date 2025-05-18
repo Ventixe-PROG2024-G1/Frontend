@@ -98,6 +98,10 @@
     --checkbox-checked-border-color: var(--primary-100);
     --checkbox-checked-text-color: var(--gray-10);
 
+    --booking-status-title-text-color: #858585;
+    --booking-status-icon-color: var(--primary-100);
+    --booking-status-stat-text-color: var(--secondary-100);
+
     --table-cell-reference-text-color: var(--grey-70);
     --table-cell-header-text-color: var(--grey-70);
     --table-cell-sub-text-color: var(--grey-70);
@@ -812,9 +816,49 @@ form button[type="submit"] {
 
 /*Bookings*/
 
-/*Bookings Status*/
+.bookingstatus-container {
+    display:flex;
+    margin-bottom: 24px;
+    gap: 12px;
+}
 
-/*Bookings Table*/
+.bookingstatus-card {
+    background-color: var(--grey-10);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: grid;
+}
+
+.bookingstatus-icon {
+    background-color: var(--booking-status-icon-color);
+    width: 44px;
+    height: 44px;
+    padding: 11px;
+    border-radius: 50%;
+    grid-area: icon;
+}
+
+.bookingstatus-dots {
+    grid-area: dots;
+}
+
+.bookingstatus-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    grid-area: status;
+}
+
+.bookingstatus-title {
+    color: var(--booking-status-title-text-color);
+}
+
+.bookingstatus-card h6 {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    color: var(--booking-status-stat-text-color);
+}
 
 .bookingtable-container {
     width: 100%;
@@ -919,7 +963,52 @@ form button[type="submit"] {
     color: var(--booking-status-pending-text-color);
 }
 
-@media (max-width: 1024px) {
+@media screen and (max-width: 768px) {
+    .bookingstatus-container {
+        flex-direction: column;
+    }
+
+    .bookingstatus-card {
+        display: grid;
+        grid-template-areas:
+            "icon status dots";
+        grid-template-columns: auto 1fr auto;
+        gap: 16px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .bookingtable-container {
+        overflow-x: auto;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+}
+
+@media screen and (min-width: 769px) {
+    .bookingstatus-card {
+        display: grid;
+        grid-template-areas:
+            "icon dots"
+            "status status";
+        grid-template-columns: 1fr auto;
+        grid-auto-rows: auto auto;
+        gap: 16px;
+        width: 178px;
+    }
+
+    .bookingstatus-container {
+        flex-direction: row;
+    }
+
+    .bookingtable-container {
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width: 1024px) {
     .bookingtable-container table {
         font-size: 11px;
     }
@@ -944,7 +1033,7 @@ form button[type="submit"] {
     }
 }
 
-@media (min-width: 1025px) {
+@media screen and (min-width: 1025px) {
     .bookingtable-container table {
         font-size: 12px;
     }
@@ -967,4 +1056,10 @@ form button[type="submit"] {
     .invoice-mobile-col {
         display: none;
     }
+
+    .bookingstatus-container {
+        flex-direction: row;
+    }
+
+
 }
