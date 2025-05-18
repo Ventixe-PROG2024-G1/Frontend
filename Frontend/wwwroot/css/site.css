@@ -16,6 +16,7 @@
     /* ---------- Primary ---------- */
     --primary-100: #F26CF9;
     --primary-90: #F589FA;
+    --primary-90-rgb: 245, 137, 250;
     --primary-50: #FCD3FE;
     --primary-40: #FCE2FE;
     --primary-30: #FDEDFE;
@@ -96,6 +97,24 @@
     --checkbox-checked-background-color: var(--primary-100);
     --checkbox-checked-border-color: var(--primary-100);
     --checkbox-checked-text-color: var(--gray-10);
+
+    --booking-status-title-text-color: #858585;
+    --booking-status-icon-color: var(--primary-100);
+    --booking-status-stat-text-color: var(--secondary-100);
+
+    --table-cell-reference-text-color: var(--grey-70);
+    --table-cell-header-text-color: var(--grey-70);
+    --table-cell-sub-text-color: var(--grey-70);
+    --table-cell-category-text-color: var(--secondary-100);
+    --table-category-background-color: var(--grey-30);
+    --table-row-border-color: var(--grey-30);
+
+    --booking-status-pending-text-color: var(--secondary-100);
+    --booking-status-pending-background-color: var(--cool-grey-20);
+    --booking-status-confirmed-text-color: var(--primary-100);
+    --booking-status-confirmed-background-color: rgba(var(--primary-90-rgb), 0.24);
+    --booking-status-cancelled-text-color: var(--grey-80);
+    --booking-status-cancelled-background-color: var(--cool-grey-20);
 }
 
 html, body {
@@ -792,4 +811,255 @@ form button[type="submit"] {
     .search-input--btn {
         display: inline-block;
     }
+
+}
+
+/*Bookings*/
+
+.bookingstatus-container {
+    display:flex;
+    margin-bottom: 24px;
+    gap: 12px;
+}
+
+.bookingstatus-card {
+    background-color: var(--grey-10);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: grid;
+}
+
+.bookingstatus-icon {
+    background-color: var(--booking-status-icon-color);
+    width: 44px;
+    height: 44px;
+    padding: 11px;
+    border-radius: 50%;
+    grid-area: icon;
+}
+
+.bookingstatus-dots {
+    grid-area: dots;
+}
+
+.bookingstatus-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    grid-area: status;
+}
+
+.bookingstatus-title {
+    color: var(--booking-status-title-text-color);
+}
+
+.bookingstatus-card h6 {
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    color: var(--booking-status-stat-text-color);
+}
+
+.bookingtable-container {
+    width: 100%;
+    background-color: var(--grey-10);
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.bookingtable-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+        .bookingtable th {
+            color: var(--table-cell-header-text-color);
+            font-weight: normal;
+            text-align: start;
+            padding: 14px 4px;
+        }
+
+.bookingtable .price-col,
+.bookingtable .qty-col,
+.bookingtable .amount-col {
+    text-align: center;
+}
+
+.tableheader-col {
+    display: flex;
+}
+
+.price-col .tableheader-col,
+.qty-col .tableheader-col,
+.amount-col .tableheader-col {
+    justify-content: center;
+}
+
+.bookingtable td {
+    padding: 12px 4px;
+    border-top: 1px solid var(--grey-30);
+}
+
+.cell-subrow {
+    color: var(--table-cell-sub-text-color);
+}
+
+.cell-reference {
+    color: var(--table-cell-reference-text-color);
+}
+
+.bookingticket-category {
+    padding: 2px 8px 2px 6px;
+    background-color: var(--table-category-background-color);
+    border-radius: 24px;
+    gap: 4px;
+    display: inline-flex;  
+    align-items: center;
+}
+
+.category-dot {
+    background-color: var(--primary-100);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.category-name {
+    color: var(--table-cell-category-text-color);
+}
+
+.bookingtable-multi-cell {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ticketprice-qty {
+    padding-left: 6px;
+    padding-right: 6px;
+    gap: 4px;
+    display: inline-flex;
+}
+
+.bookingstatus-cell {
+    padding: 4px 10px;
+    border-radius: 24px;
+    align-items: center;
+    display: inline;
+}
+
+.bookingstatus-confirmed {
+    background-color: var(--booking-status-confirmed-background-color);
+    color: var(--booking-status-confirmed-text-color);
+}
+
+.bookingstatus-cancelled {
+    background-color: var(--booking-status-cancelled-background-color);
+    color: var(--booking-status-cancelled-text-color);
+}
+
+.bookingstatus-pending {
+    background-color: var(--booking-status-pending-background-color);
+    color: var(--booking-status-pending-text-color);
+}
+
+@media screen and (max-width: 768px) {
+    .bookingstatus-container {
+        flex-direction: column;
+    }
+
+    .bookingstatus-card {
+        display: grid;
+        grid-template-areas:
+            "icon status dots";
+        grid-template-columns: auto 1fr auto;
+        gap: 16px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .bookingtable-container {
+        overflow-x: auto;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+}
+
+@media screen and (min-width: 769px) {
+    .bookingstatus-card {
+        display: grid;
+        grid-template-areas:
+            "icon dots"
+            "status status";
+        grid-template-columns: 1fr auto;
+        grid-auto-rows: auto auto;
+        gap: 16px;
+        width: 178px;
+    }
+
+    .bookingstatus-container {
+        flex-direction: row;
+    }
+
+    .bookingtable-container {
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .bookingtable-container table {
+        font-size: 11px;
+    }
+
+    .cell-subrow {
+        font-size: 10px;
+    }
+
+    .name-col,
+    .category-col,
+    .name-col,
+    .price-col,
+    .qty-col,
+    .voucher-col,
+    .invoice-desktop-col {
+        display: none;
+    }
+
+    .ticket-col,
+    .invoice-mobile-col {
+        display: table-cell;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .bookingtable-container table {
+        font-size: 12px;
+    }
+
+    .cell-subrow {
+        font-size: 11px;
+    }
+
+    .name-col,
+    .category-col,
+    .name-col,
+    .price-col,
+    .qty-col,
+    .voucher-col,
+    .invoice-desktop-col {
+        display: table-cell;
+    }
+
+    .ticket-col,
+    .invoice-mobile-col {
+        display: none;
+    }
+
+    .bookingstatus-container {
+        flex-direction: row;
+    }
+
+
 }
