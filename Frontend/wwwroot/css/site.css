@@ -102,6 +102,7 @@
     --table-cell-header-text-color: var(--grey-70);
     --table-cell-sub-text-color: var(--grey-70);
     --table-cell-category-color: var(--secondary-100);
+    --table-row-border-color: var(--grey-30);
 
     --booking-status-pending-text-color: var(--secondary-100);
     --booking-status-pending-background-color: var(--cool-grey-20);
@@ -810,11 +811,51 @@ form button[type="submit"] {
 
 /*Bookings*/
 
+thead {
+
+}
+
+.bookingtable-container {
+    width: 100%;
+    background-color: var(--grey-10);
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
 .bookingtable-container table {
-    font-size: 12px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+        .bookingtable th {
+            color: var(--table-cell-header-text-color);
+            font-weight: normal;
+            text-align: start;
+            padding: 14px 4px;
+        }
+
+.bookingtable td {
+    padding: 12px 4px;
+    border-top: 1px solid var(--grey-30);
+}
+
+.cell-subrow {
+    color: var(--table-cell-sub-text-color);
+}
+
+.cell-reference {
+    color: var(--table-cell-reference-text-color);
 }
 
 @media (max-width: 1024px) {
+    .bookingtable-container table {
+        font-size: 11px;
+    }
+
+    .cell-subrow {
+        font-size: 10px;
+    }
+
     .name-col,
     .category-col,
     .name-col,
@@ -832,6 +873,14 @@ form button[type="submit"] {
 }
 
 @media (min-width: 1025px) {
+    .bookingtable-container table {
+        font-size: 12px;
+    }
+
+    .cell-subrow {
+        font-size: 11px;
+    }
+
     .name-col,
     .category-col,
     .name-col,
