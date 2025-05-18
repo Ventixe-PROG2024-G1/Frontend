@@ -835,19 +835,26 @@ form button[type="submit"] {
             padding: 14px 4px;
         }
 
-        .bookingtable .price-col,
-        .bookingtable .qty-col,
-        .bookingtable .amount-col
-        {
-            text-align: center;
-        }
+.bookingtable .price-col,
+.bookingtable .qty-col,
+.bookingtable .amount-col {
+    text-align: center;
+}
+
+.tableheader-col {
+    display: flex;
+}
+
+.price-col .tableheader-col,
+.qty-col .tableheader-col,
+.amount-col .tableheader-col {
+    justify-content: center;
+}
 
 .bookingtable td {
     padding: 12px 4px;
     border-top: 1px solid var(--grey-30);
 }
-
-
 
 .cell-subrow {
     color: var(--table-cell-sub-text-color);
