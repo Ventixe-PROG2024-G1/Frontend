@@ -4,26 +4,198 @@
 
 <div class="booking-container">
     <section class="bookingstatus-container">
-        <div class="bookingstatus-item">
-            <p>Total Bookings</p>
-            <h6>55,000</h6>
+        <div class="bookingstatus-card">
+            <div>
+            </div>
+            <div class="bookingstatus-body">
+                <div class="bookingstatus-title">Total Bookings</div>
+                <h6 class="bookingstatus-stats">55,000</h6>
+            </div>
+        </div>
+        <div class="bookingstatus-card">
+            <div class="bookngstatus-header">
+            </div>
+            <div class="bookingstatus-body">
+                <div class="bookingstatus-title">Total Tickets Sold</div>
+                <h6 class="bookingstatus-stats">45,000</h6>
+            </div>
         </div>
         <div class="bookingstatus-item">
-            <p>Total Bookings</p>
-            <h6>45,000</h6>
-        </div>
-        <div class="bookingstatus-item">
-            <p>Total Bookings</p>
-            <h6>$275,450</h6>
+            <div>
+
+            </div>
+            <div class="bookingstatus-card">
+                <div class="bookingstatus-title">Total Earnings</div>
+                <h6 class="bookingstatus-stats">$275,450</h6>
+            </div>
         </div>
     </section>
-    <section class="booking-wrapper">
-        <header>
-            <nav></nav>
+    <section class="bookingtable-container">
+        <header class="bookingtable-header">
+
         </header>
-        <div class="booking-list">
+        <table class="bookingtable">
+            <thead>
+                <tr class="header-row">
+                    <th>Invoice ID</th>
+                    <th>Date</th>
+                    <th class="name-col">Name</th>
+                    <th>Event</th>
+                    <th class="category-col">Ticket Category</th>
+                    <th class="price-col">Price</th>
+                    <th class="qty-col">Qty</th>
+                    <th class="ticket-col">Ticket</th>
+                    <th class="amount-col">Amount</th>
+                    <th>Status</th>
+                    <th class="voucher-col">E-Voucher</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="body-row">
+                    <td class="invoice-desktop-col cell-reference">Invoice</td>
+                    <td class="invoice-mobile-col">
+                        <div class="bookingtable-multi-cell">
+                            <div>Invoice</div>
+                            <div class="cell-subrow">Mr. Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="bookingtable-multi-cell">
+                            <div>10/21/3000</div>
+                            <div class="cell-subrow">10:35 PM</div>
+                        </div>
+                    </td>
+                    <td class="name-col">Mr. Name</td>
+                    <td>
+                        <div class="bookingtable-multi-cell">
+                            <div>Event</div>
+                            <div class="cell-subrow">Category</div>
+                        </div>
+                    </td>
+                    <td class="category-col">
+                        <div class="bookingticket-category">
+                            <div class="category-dot"></div>
+                            <div class="category-name">Diamond</div>
+                        </div>
+                    </td>
+                    <td class="price-col">$50</td>
+                    <td class="qty-col col-center center">2</td>
+                    <td class="ticket-col">
+                        <div class="bookingtable-multi-cell">
+                            <div class="bookingticket-category">
+                                <div class="category-dot"></div>
+                                <div class="category-name">Diamond</div>
+                            </div>
+                            <div class="ticketprice-qty">
+                                <div class="cell-subrow">2x</div>
+                                <div class="cell-subrow">$50</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="amount-col">$100</td>
+                    <td>
+                        <div class="bookingstatus-cell bookingstatus-confirmed">Confirmed</div>
+                    </td>
+                    <td class="voucher-col cell-reference">-</td>
+                </tr>
+                <tr class="body-row">
+                    <td class="invoice-desktop-col cell-reference">Invoice</td>
+                    <td class="invoice-mobile-col">
+                        <div class="bookingtable-multi-cell">
+                            <div>Invoice</div>
+                            <div class="cell-subrow">Mr. Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="bookingtable-multi-cell">
+                            <div>10/21/3000</div>
+                            <div class="cell-subrow">10:35 PM</div>
+                        </div>
+                    </td>
+                    <td class="name-col">Mr. Name</td>
+                    <td>
+                        <div class="bookingtable-multi-cell">
+                            <div>Event</div>
+                            <div class="cell-subrow">Category</div>
+                        </div>
+                    </td>
+                    <td class="category-col">
+                        <div class="bookingticket-category">
+                            <div class="category-dot"></div>
+                            <div class="category-name">Diamond</div>
+                        </div>
+                    </td>
+                    <td class="price-col">$50</td>
+                    <td class="qty-col col-center center">2</td>
+                    <td class="ticket-col">
+                        <div class="bookingtable-multi-cell">
+                            <div class="bookingticket-category">
+                                <div class="category-dot"></div>
+                                <div class="category-name">Diamond</div>
+                            </div>
+                            <div class="ticketprice-qty">
+                                <div class="cell-subrow">2x</div>
+                                <div class="cell-subrow">$50</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="amount-col">$100</td>
+                    <td>
+                        <div class="bookingstatus-cell bookingstatus-cancelled">Cancelled</div>
+                    </td>
+                    <td class="voucher-col cell-reference">VOUCHER</td>
+                </tr>
+                <tr class="body-row">
+                    <td class="invoice-desktop-col cell-reference">Invoice</td>
+                    <td class="invoice-mobile-col">
+                        <div class="bookingtable-multi-cell">
+                            <div>Invoice</div>
+                            <div class="cell-subrow">Mr. Name</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="bookingtable-multi-cell">
+                            <div>10/21/3000</div>
+                            <div class="cell-subrow">10:35 PM</div>
+                        </div>
+                    </td>
+                    <td class="name-col">Mr. Name</td>
+                    <td>
+                        <div class="bookingtable-multi-cell">
+                            <div>Event</div>
+                            <div class="cell-subrow">Category</div>
+                        </div>
+                    </td>
+                    <td class="category-col">
+                        <div class="bookingticket-category">
+                            <div class="category-dot"></div>
+                            <div class="category-name">Diamond</div>
+                        </div>
+                    </td>
+                    <td class="price-col">$50</td>
+                    <td class="qty-col col-center center">2</td>
+                    <td class="ticket-col">
+                        <div class="bookingtable-multi-cell">
+                            <div class="bookingticket-category">
+                                <div class="category-dot"></div>
+                                <div class="category-name">Diamond</div>
+                            </div>
+                            <div class="ticketprice-qty">
+                                <div class="cell-subrow">2x</div>
+                                <div class="cell-subrow">$50</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="amount-col">$100</td>
+                    <td >
+                        <div class="bookingstatus-cell bookingstatus-pending">Pending</div> 
+                    </td>
+                    <td class="voucher-col cell-reference">-</td>
+                </tr>
+            </tbody>
+        </table>
+        <footer class="bookingtable-footer">
 
-        </div>
-
+        </footer>
     </section>
 </div>
