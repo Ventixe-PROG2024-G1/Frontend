@@ -101,7 +101,8 @@
     --table-cell-reference-text-color: var(--grey-70);
     --table-cell-header-text-color: var(--grey-70);
     --table-cell-sub-text-color: var(--grey-70);
-    --table-cell-category-color: var(--secondary-100);
+    --table-cell-category-text-color: var(--secondary-100);
+    --table-category-background-color: var(--grey-30);
     --table-row-border-color: var(--grey-30);
 
     --booking-status-pending-text-color: var(--secondary-100);
@@ -811,9 +812,9 @@ form button[type="submit"] {
 
 /*Bookings*/
 
-thead {
+/*Bookings Status*/
 
-}
+/*Bookings Table*/
 
 .bookingtable-container {
     width: 100%;
@@ -834,10 +835,19 @@ thead {
             padding: 14px 4px;
         }
 
+        .bookingtable .price-col,
+        .bookingtable .qty-col,
+        .bookingtable .amount-col
+        {
+            text-align: center;
+        }
+
 .bookingtable td {
     padding: 12px 4px;
     border-top: 1px solid var(--grey-30);
 }
+
+
 
 .cell-subrow {
     color: var(--table-cell-sub-text-color);
@@ -845,6 +855,61 @@ thead {
 
 .cell-reference {
     color: var(--table-cell-reference-text-color);
+}
+
+.bookingticket-category {
+    padding: 2px 8px 2px 6px;
+    background-color: var(--table-category-background-color);
+    border-radius: 24px;
+    gap: 4px;
+    display: inline-flex;  
+    align-items: center;
+}
+
+.category-dot {
+    background-color: var(--primary-100);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.category-name {
+    color: var(--table-cell-category-text-color);
+}
+
+.bookingtable-multi-cell {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ticketprice-qty {
+    padding-left: 6px;
+    padding-right: 6px;
+    gap: 4px;
+    display: inline-flex;
+}
+
+.bookingstatus-cell {
+    padding: 4px 10px;
+    border-radius: 24px;
+    align-items: center;
+    display: inline;
+}
+
+.bookingstatus-confirmed {
+    background-color: var(--booking-status-confirmed-background-color);
+    color: var(--booking-status-confirmed-text-color);
+}
+
+.bookingstatus-cancelled {
+    background-color: var(--booking-status-cancelled-background-color);
+    color: var(--booking-status-cancelled-text-color);
+}
+
+.bookingstatus-pending {
+    background-color: var(--booking-status-pending-background-color);
+    color: var(--booking-status-pending-text-color);
 }
 
 @media (max-width: 1024px) {
