@@ -810,5 +810,40 @@ form button[type="submit"] {
 
 /*Bookings*/
 
+.bookingtable-container table {
+    font-size: 12px;
+}
 
+@media (max-width: 1024px) {
+    .name-col,
+    .category-col,
+    .name-col,
+    .price-col,
+    .qty-col,
+    .voucher-col,
+    .invoice-desktop-col {
+        display: none;
+    }
+
+    .ticket-col,
+    .invoice-mobile-col {
+        display: table-cell;
+    }
+}
+
+@media (min-width: 1025px) {
+    .name-col,
+    .category-col,
+    .name-col,
+    .price-col,
+    .qty-col,
+    .voucher-col,
+    .invoice-desktop-col {
+        display: table-cell;
+    }
+
+    .ticket-col,
+    .invoice-mobile-col {
+        display: none;
+    }
 }
