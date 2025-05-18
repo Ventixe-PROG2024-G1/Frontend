@@ -104,7 +104,7 @@ html, body {
     color: var(--text-color);
 }
 
-h1, h2, h3, ul, p {
+h1, h2, h3, ul, ol, p {
     margin: 0;
     padding: 0;
 }
@@ -177,12 +177,12 @@ main {
     padding: 2em;
 }
 
-main:has(#login),
-main:has(#signup) {
-    background-color:transparent;
-    border:1px solid var(--cool-grey-40);
-    border-radius:30px;
-}
+    main:has(#login),
+    main:has(#signup) {
+        background-color: transparent;
+        border: 1px solid var(--cool-grey-40);
+        border-radius: 30px;
+    }
 
 .page-grid {
     column-gap: 1.5rem;
@@ -462,10 +462,7 @@ form button[type="submit"] {
     font-size: 16px;
     font-weight: 400;
     background-color: white;
-    
 }
-
-   
 
     #login.card .card-body {
         padding: 0 3rem;
@@ -479,12 +476,12 @@ form button[type="submit"] {
     }
 
 #signup {
-        width: 600px;
-        text-align: center;
-        font-size: 16px;
-        font-weight: 400;
-        background-color: white;
-    }
+    width: 600px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: white;
+}
 
     #signup .additional-info {
         color: var(--cool-grey-50);
@@ -560,33 +557,54 @@ form button[type="submit"] {
         padding: 0 2em;
     }
 
-.invoice-list {
+#invoice-list {
     border-radius: 10px;
     background-color: var(--grey-10);
+    list-style: none;
     padding: 1.5rem
 }
 
-    .invoice-list h2 {
-        margin-bottom: 1em;
-    }
+.invoice-list h2 {
+    margin-bottom: 1em;
+}
 
 .invoice-list-item {
     border-radius: 10px;
     background-color: var(--grey-20);
     margin: 1em 0;
 }
+
 .invoice-button {
-    border:none;
-    background-color:transparent;
+    border: none;
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
     padding: 1em 2em;
-    width:100%;
+    width: 100%;
 }
+
     .invoice-button:active {
         border: 1px solid var(--primary-100);
         border-radius: 10px
     }
+
+    .invoice-button h3 {
+        font-size: 16px;
+    }
+
+.invoice-list-date {
+    color: var(--grey-100);
+    font-size: 12px;
+    margin-top: 0.5rem;
+}
+
+.invoice-list-status {
+    background-color: var(--secondary-90);
+    border-radius: 8px;
+    color: var(--grey-10);
+    margin-top: 0.5rem;
+    padding: 0.25rem 0.75rem;
+}
 
 .invoice-details-container {
     border-radius: 10px;
@@ -609,6 +627,153 @@ form button[type="submit"] {
     background-color: var(--grey-10);
     padding: 4em 2em;
     border-top: 4px solid var(--primary-100)
+}
+
+.invoice-details-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2em;
+}
+
+.invoice-details-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+    .invoice-details-body p {
+        color: var(--grey-60);
+    }
+
+.invoice-details-ticets {
+    border: 1px solid var(--grey-30);
+    border-radius: 8px;
+    margin-top: 2em;
+    padding: 1em 2em;
+}
+
+/*E-Voucher*/
+
+.evoucher-container {
+    display: grid;
+    gap: 2em;
+}
+.evoucher-wrapper {
+    background-color: var(--grey-10);
+    border-radius: 10px;
+    padding: 1em;
+    width: 100%;
+}
+.evoucher-ticker {
+    background: var(--cool-grey-20);
+    display:flex;
+    height: 100px;
+}
+.evoucher-tickerEvent {
+    border-right: 3px dashed var(--grey-10);
+    padding:0.5em;
+}
+.evoucher-tickerInfo {
+    border-right: 3px dashed var(--grey-10);
+    padding: 0.5em;
+    width:30%;
+}
+.evoucher-tickerScan {
+    align-items:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+    .evoucher-tickerScan p{
+        text-align:center;
+    }
+    .evoucher-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2em;
+    }
+
+    .evoucher-info .evoucher-infoItem {
+        display: grid;
+        gap: 1em;
+    }
+
+.evoucher-wrapper h3{
+    padding:1em 0;
+
+}
+
+.evoucher-scheduleList {
+    list-style: none;
+}
+
+.evoucher-scheduleList-Item {
+    background-color: var(--grey-20);
+    border-radius: 10px;
+    padding: 1em 2em;
+    margin-bottom: 0.5em;
+}
+
+.evoucher-conditionsList {
+    margin-left: 1em;
+}
+
+    .evoucher-conditionsList li {
+        margin-top: 1.5em;
+    }
+
+.evoucher-conditionsUnderList {
+    margin-left: 2em;
+}
+
+    .evoucher-conditionsUnderList li {
+        margin-top: 0.5em;
+    }
+
+.evoucher-boldtext {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.evoucher-legendList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+    .evoucher-legendList ul {
+        list-style: none;
+    }
+
+#loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/*Delvis AI-genererad kod*/
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px var(--primary-50);
+    border-top: 4px solid var(--primary-90);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    padding: 20px;
+    margin: auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media screen and (max-width: 768px) {

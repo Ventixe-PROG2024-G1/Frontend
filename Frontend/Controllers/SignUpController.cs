@@ -154,6 +154,7 @@ namespace Frontend.Controllers
                 ZipCode = model.ZipCode,
                 City = model.City,
                 ProfilePictureUrl = model.ProfilePictureUrl ?? "",
+                Phone = model.Phone,
             };
 
             var profileResponse = await _profileServiceClient.CreateProfileAsync(profileRequest);

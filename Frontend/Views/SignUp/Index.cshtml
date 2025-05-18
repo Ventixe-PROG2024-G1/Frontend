@@ -28,4 +28,18 @@
         </div>
     </div>
     <img src="~/images/icons/logo.png" class="logo-form" />
+    <div id="loading" style="display: none;">
+        <p>Sending verification code...</p>
+        <div class="spinner"></div>
+    </div>
+
 </div>
+
+@* AI-genererat script *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("form").addEventListener("submit", function () {
+            document.getElementById("loading").style.display = "block";
+        });
+    });
+</script>

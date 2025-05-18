@@ -8,6 +8,7 @@
             return res.json();
         })
         .then(invoices => {
+            console.log("listan" + invoices)
             const ul = document.getElementById('invoice-list');
             ul.innerHTML = '';
 
@@ -19,11 +20,11 @@
           <button class="invoice-button">
               <div>
                 <h3>${inv.invoiceNumber}</h3>
-                <p>${new Date(inv.createdDate).toLocaleDateString('sv-SE')}</p>
+                <p class="invoice-list-date">${new Date(inv.createdDate).toLocaleDateString('sv-SE')}</p>
               </div>
               <div>
                 <p>${inv.amount.toFixed(2)} kr</p>
-                <p>${inv.paid ? 'Paid' : 'Unpaid'}</p>
+                <p class="invoice-list-status">${inv.paid ? 'Paid' : 'Unpaid'}</p>
               </div>
           </button>`;
                 li.querySelector('.invoice-button')
