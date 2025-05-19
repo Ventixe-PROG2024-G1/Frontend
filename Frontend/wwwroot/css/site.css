@@ -110,7 +110,7 @@
     --table-row-border-color: var(--grey-30);
 
     --booking-status-pending-text-color: var(--secondary-100);
-    --booking-status-pending-background-color: var(--cool-grey-20);
+    --booking-status-pending-background-color: var(--cool-grey-10);
     --booking-status-confirmed-text-color: var(--primary-100);
     --booking-status-confirmed-background-color: rgba(var(--primary-90-rgb), 0.24);
     --booking-status-cancelled-text-color: var(--grey-80);
