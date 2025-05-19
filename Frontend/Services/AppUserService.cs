@@ -14,7 +14,7 @@ namespace Frontend.Services
                 return null;
             }
 
-            var apiUrl = $"https://localhost:7286/api/users/{id}";
+            var apiUrl = $"https://local-user-amgpg7afdcaag2cz.swedencentral-01.azurewebsites.net/api/users/{id}";
 
             try
             {
