@@ -22,7 +22,7 @@ public class InvoiceController : Controller
     public async Task<IActionResult> GetInvoices()
     {
         var invoices = await _https
-            .GetFromJsonAsync<List<InvoiceDto>>("https://localhost:7042/api/Invoice");
+            .GetFromJsonAsync<List<InvoiceDto>>("https://invoice-ventixe-dyhxapdyaqdbcacq.swedencentral-01.azurewebsites.net/api/Invoice");
         if (invoices == null)
             return NotFound();
 
@@ -33,7 +33,7 @@ public class InvoiceController : Controller
     public async Task<IActionResult> GetById(string id)
     {
         var invoice = await _https
-            .GetFromJsonAsync<InvoiceDetailsDto>($"https://localhost:7042/api/Invoice/{id}");
+            .GetFromJsonAsync<InvoiceDetailsDto>($"https://invoice-ventixe-dyhxapdyaqdbcacq.swedencentral-01.azurewebsites.net/api/Invoice/{id}");
 
         if (invoice == null)
             return NotFound();     
