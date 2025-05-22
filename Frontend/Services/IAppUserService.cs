@@ -4,6 +4,6 @@ namespace Frontend.Services
 {
     public interface IAppUserService
     {
-        Task<AppUser> GetUserAsync(string id);
+        Task<AppUserResponseRest> GetUserAsync(string id);
     }
 }
