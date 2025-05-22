@@ -6,7 +6,7 @@ namespace Frontend.Services
     {
         private readonly HttpClient _httpClient = httpClient;
 
-        public async Task<AppUser> GetUserAsync(string id)
+        public async Task<AppUserResponseRest> GetUserAsync(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -18,7 +18,7 @@ namespace Frontend.Services
 
             try
             {
-                return await _httpClient.GetFromJsonAsync<AppUser>(apiUrl);
+                return await _httpClient.GetFromJsonAsync<AppUserResponseRest>(apiUrl);
             }
             catch (Exception ex)
             {
