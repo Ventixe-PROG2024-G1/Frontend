@@ -734,22 +734,25 @@ form button[type="submit"] {
 .evoucher-ticker {
     background: var(--cool-grey-20);
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr; /* Vänster:1, Mitten:2, Höger:1 */
-    gap: 1rem; /* valfritt mellanrum */
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem; 
 }
 
 .evoucher-tickerEvent {
-    background: #1C2346;
-    background: linear-gradient(0deg, rgba(28, 35, 70, 1) 22%, rgba(28, 35, 70, 0) 100%);
     border-right: 3px dashed var(--grey-10);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 2em;
+    padding: 0 2em 0 0;
 }
 
     .evoucher-tickerEvent div {
+        background: linear-gradient(0deg,rgba(28, 35, 70, 1) 9%, rgba(28, 35, 70, 0) 100%);
+        border-radius:8px;
         color: var(--grey-10);
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:end;
+        align-items:center;
+        padding:1em;
     }
 
 .evoucher-tickerInfo {
@@ -759,20 +762,26 @@ form button[type="submit"] {
     grid-auto-flow: row;
     gap: 0.5em;
 }
+.evoucher-tickerInfo-item  {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0.5em;
+}
+    .evoucher-tickerInfo-item div {
+        align-self: end;
+        display: grid;
+        grid-auto-flow: row;
+        gap: 0.5em;
+    }
 
-    .evoucher-tickerInfo div {
-        display: flex;
-        gap: 3rem;
-        align-items: flex-start;
-    }
-    .evoucher-tickerInfo > div:nth-child(2) {
-        border-bottom: 1px solid var(--grey-10); 
-        padding-bottom: 0.5rem; 
-        margin-bottom: 0.5rem;
-    }
+.evoucher-tickerInfo > div:nth-child(1) {
+    border-bottom: 1px solid var(--grey-10);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
 
     .evoucher-tickerInfo div h4{
-        margin:0;
+        margin:0.5em 0;
     }
 
 .evoucher-tickerScan {

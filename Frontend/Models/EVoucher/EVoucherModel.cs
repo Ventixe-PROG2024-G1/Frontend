@@ -17,7 +17,7 @@ public class EVoucherTicket
     public string Title { get; set; } = "";
     public string Name { get; set; } = "";
     public string Type { get; set; } = "";
-    public string InvoiceID { get; set; } = "";
+    public string InvoiceNumber { get; set; } = "";
     public string SeatNumber { get; set; } = "";
     public string Gate { get; set; } = "";
     public string Location { get; set; } = "";
