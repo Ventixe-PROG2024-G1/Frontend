@@ -104,6 +104,7 @@
 
     --table-cell-reference-text-color: var(--grey-70);
     --table-cell-header-text-color: var(--grey-70);
+    --table-cell-header-text-hover-color: var(--secondary-100);
     --table-cell-sub-text-color: var(--grey-70);
     --table-cell-category-text-color: var(--secondary-100);
     --table-category-background-color: var(--grey-30);
@@ -879,6 +880,12 @@ form button[type="submit"] {
             padding: 14px 4px;
         }
 
+            .bookingtable th:hover {
+                color: var(--table-cell-header-text-hover-color);
+                transition: color 0.1s ease-in-out;
+                cursor: pointer;
+            }
+
 .bookingtable .price-col,
 .bookingtable .qty-col,
 .bookingtable .amount-col {
@@ -997,6 +1004,7 @@ form button[type="submit"] {
         grid-auto-rows: auto auto;
         gap: 16px;
         width: 178px;
+        align-items: center;
     }
 
     .bookingstatus-container {
