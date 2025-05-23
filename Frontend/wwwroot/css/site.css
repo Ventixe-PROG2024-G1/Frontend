@@ -562,7 +562,7 @@ form button[type="submit"] {
 }
 
     .invoice-search .search-input {
-/*        background-color: var(--grey-20);*/
+        /*        background-color: var(--grey-20);*/
         min-width: auto;
     }
 
@@ -577,7 +577,7 @@ form button[type="submit"] {
     border-radius: 10px;
     background-color: var(--grey-10);
     list-style: none;
-    margin:1em  0;
+    margin: 1em 0;
     padding: 1.5rem
 }
 
@@ -706,15 +706,16 @@ form button[type="submit"] {
 
     .invoice-ticet-table tbody tr {
         border-bottom: none;
-        font-weight:bold;
+        font-weight: bold;
     }
 
         .invoice-ticet-table tbody tr:not(:last-child) {
             border-bottom: 2px solid var(--grey-30);
-            font-weight:normal;
+            font-weight: normal;
         }
-.invoice-detail-footer{
-    margin:3em 0;
+
+.invoice-detail-footer {
+    margin: 3em 0;
 }
 /*E-Voucher*/
 .evoucher-container {
@@ -725,26 +726,54 @@ form button[type="submit"] {
 .evoucher-wrapper {
     background-color: var(--grey-10);
     border-radius: 10px;
+
     padding: 1em;
     width: 100%;
 }
 
 .evoucher-ticker {
     background: var(--cool-grey-20);
-    display: flex;
-    height: 100px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* Vänster:1, Mitten:2, Höger:1 */
+    gap: 1rem; /* valfritt mellanrum */
 }
 
 .evoucher-tickerEvent {
+    background: #1C2346;
+    background: linear-gradient(0deg, rgba(28, 35, 70, 1) 22%, rgba(28, 35, 70, 0) 100%);
     border-right: 3px dashed var(--grey-10);
-    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2em;
 }
+
+    .evoucher-tickerEvent div {
+        color: var(--grey-10);
+    }
 
 .evoucher-tickerInfo {
     border-right: 3px dashed var(--grey-10);
-    padding: 0.5em;
-    width: 30%;
+    padding: 2em;
+    display: grid;
+    grid-auto-flow: row;
+    gap: 0.5em;
 }
+
+    .evoucher-tickerInfo div {
+        display: flex;
+        gap: 3rem;
+        align-items: flex-start;
+    }
+    .evoucher-tickerInfo > div:nth-child(2) {
+        border-bottom: 1px solid var(--grey-10); 
+        padding-bottom: 0.5rem; 
+        margin-bottom: 0.5rem;
+    }
+
+    .evoucher-tickerInfo div h4{
+        margin:0;
+    }
 
 .evoucher-tickerScan {
     align-items: center;
