@@ -1,6 +1,8 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     const detailDiv = document.getElementById('invoice-details');
     detailDiv.innerHTML = '<p>Klicka på en faktura för att se mer information.</p>';
+    const ul = document.getElementById('invoice-list');
+    ul.innerHTML ='<p>Fakturor laddas</p>'
 
     fetch('/Invoice/GetInvoices')
         .then(res => {
@@ -9,10 +11,8 @@
         })
         .then(invoices => {
             
-            const ul = document.getElementById('invoice-list');
+            
             ul.innerHTML = '';
-
-
             invoices.forEach(inv => {
                 const li = document.createElement('li');
                 li.className = 'invoice-list-item';
