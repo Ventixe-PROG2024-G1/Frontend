@@ -97,11 +97,9 @@
     --checkbox-checked-background-color: var(--primary-100);
     --checkbox-checked-border-color: var(--primary-100);
     --checkbox-checked-text-color: var(--gray-10);
-
     --booking-status-title-text-color: #858585;
     --booking-status-icon-color: var(--primary-100);
     --booking-status-stat-text-color: var(--secondary-100);
-
     --table-cell-reference-text-color: var(--grey-70);
     --table-cell-header-text-color: var(--grey-70);
     --table-cell-header-text-hover-color: var(--secondary-100);
@@ -109,7 +107,6 @@
     --table-cell-category-text-color: var(--secondary-100);
     --table-category-background-color: var(--grey-30);
     --table-row-border-color: var(--grey-30);
-
     --booking-status-pending-text-color: var(--secondary-100);
     --booking-status-pending-background-color: var(--cool-grey-10);
     --booking-status-confirmed-text-color: var(--primary-100);
@@ -580,7 +577,7 @@ form button[type="submit"] {
 }
 
     .invoice-search .search-input {
-        background-color: var(--grey-20);
+        /*        background-color: var(--grey-20);*/
         min-width: auto;
     }
 
@@ -595,6 +592,7 @@ form button[type="submit"] {
     border-radius: 10px;
     background-color: var(--grey-10);
     list-style: none;
+    margin: 1em 0;
     padding: 1.5rem
 }
 
@@ -617,14 +615,30 @@ form button[type="submit"] {
     width: 100%;
 }
 
-    .invoice-button:active {
-        border: 1px solid var(--primary-100);
-        border-radius: 10px
+.invoice-btn-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.75em 0;
+}
+
+    .invoice-btn-footer button {
+        border: 1px solid var(--grey-60);
+        background-color: var(--grey-10);
+        border-radius: 50px;
+        cursor: pointer;
+        color: var(--grey-90);
+        margin: 0 0.5em;
+        padding: 1em 2em;
     }
 
-    .invoice-button h3 {
-        font-size: 16px;
-    }
+.invoice-button:active {
+    border: 1px solid var(--primary-100);
+    border-radius: 10px
+}
+
+.invoice-button h3 {
+    font-size: 16px;
+}
 
 .invoice-list-date {
     color: var(--grey-100);
@@ -686,55 +700,129 @@ form button[type="submit"] {
     padding: 1em 2em;
 }
 
-/*E-Voucher*/
+.invoice-ticet-table {
+    border-collapse: collapse;
+    border: none;
+    width: 100%;
+}
 
+    .invoice-ticet-table th {
+        background-color: var(--grey-20);
+        color: var(--grey-70);
+        font-weight: normal;
+    }
+
+    .invoice-ticet-table th, td {
+        padding: 8px;
+        border: none;
+        text-align: left;
+        padding: 2em;
+    }
+
+    .invoice-ticet-table tbody tr {
+        border-bottom: none;
+        font-weight: bold;
+    }
+
+        .invoice-ticet-table tbody tr:not(:last-child) {
+            border-bottom: 2px solid var(--grey-30);
+            font-weight: normal;
+        }
+
+.invoice-detail-footer {
+    margin: 3em 0;
+}
+/*E-Voucher*/
 .evoucher-container {
     display: grid;
     gap: 2em;
 }
+
 .evoucher-wrapper {
     background-color: var(--grey-10);
     border-radius: 10px;
+
     padding: 1em;
     width: 100%;
 }
+
 .evoucher-ticker {
     background: var(--cool-grey-20);
-    display:flex;
-    height: 100px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem; 
 }
+
 .evoucher-tickerEvent {
     border-right: 3px dashed var(--grey-10);
-    padding:0.5em;
+    padding: 0 2em 0 0;
 }
+
+    .evoucher-tickerEvent div {
+        background: linear-gradient(0deg,rgba(28, 35, 70, 1) 9%, rgba(28, 35, 70, 0) 100%);
+        border-radius:8px;
+        color: var(--grey-10);
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:end;
+        align-items:center;
+        padding:1em;
+    }
+
 .evoucher-tickerInfo {
     border-right: 3px dashed var(--grey-10);
-    padding: 0.5em;
-    width:30%;
+    padding: 2em;
+    display: grid;
+    grid-auto-flow: row;
+    gap: 0.5em;
 }
-.evoucher-tickerScan {
-    align-items:center;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+.evoucher-tickerInfo-item  {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0.5em;
 }
-    .evoucher-tickerScan p{
-        text-align:center;
-    }
-    .evoucher-info {
+    .evoucher-tickerInfo-item div {
+        align-self: end;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2em;
+        grid-auto-flow: row;
+        gap: 0.5em;
     }
+
+.evoucher-tickerInfo > div:nth-child(1) {
+    border-bottom: 1px solid var(--grey-10);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+    .evoucher-tickerInfo div h4{
+        margin:0.5em 0;
+    }
+
+.evoucher-tickerScan {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .evoucher-tickerScan p {
+        text-align: center;
+    }
+
+.evoucher-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
 
     .evoucher-info .evoucher-infoItem {
         display: grid;
         gap: 1em;
     }
 
-.evoucher-wrapper h3{
-    padding:1em 0;
-
+.evoucher-wrapper h3 {
+    padding: 1em 0;
 }
 
 .evoucher-scheduleList {
@@ -826,13 +914,12 @@ form button[type="submit"] {
     .search-input--btn {
         display: inline-block;
     }
-
 }
 
 /*Bookings*/
 
 .bookingstatus-container {
-    display:flex;
+    display: flex;
     margin-bottom: 24px;
     gap: 12px;
 }
@@ -884,11 +971,17 @@ form button[type="submit"] {
     padding: 1.5rem;
 }
 
-.bookingtable-container table {
-    width: 100%;
-    border-collapse: collapse;
-}
+    .bookingtable-container table {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
+.bookingtable th {
+    color: var(--table-cell-header-text-color);
+    font-weight: normal;
+    text-align: start;
+    padding: 14px 4px;
+}
 .bookingtable-header {
     display: flex;
     justify-content: space-between;
@@ -947,7 +1040,7 @@ form button[type="submit"] {
     background-color: var(--table-category-background-color);
     border-radius: 24px;
     gap: 4px;
-    display: inline-flex;  
+    display: inline-flex;
     align-items: center;
 }
 
@@ -1150,7 +1243,6 @@ form button[type="submit"] {
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-
 }
 
 @media screen and (min-width: 769px) {
@@ -1227,6 +1319,4 @@ form button[type="submit"] {
     .bookingstatus-container {
         flex-direction: row;
     }
-
-
 }

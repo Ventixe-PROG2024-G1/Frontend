@@ -1,5 +1,4 @@
 ﻿function loadInvoiceDetails(invoiceId) {
-    console.log('Laddar detaljer för', invoiceId);
     fetch(`/Invoice/GetById/${invoiceId}`)
         .then(res => {
             if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -7,12 +6,10 @@
         })
         .then(invoice => {
             const div = document.getElementById('invoice-details');
-            console.log("details" + invoice)
-
             div.innerHTML = `
             <div class="invoice-details-header">
                 <div>
-                    <h3>#INV10012</h3>
+                    <h3>${invoice.InvoiceNumber}</h3>
                     <p class="invoice-list-status">UnPaid</p>
                 </div>
                 <div>
@@ -37,14 +34,44 @@
                 </div>
             </div>
             <div class="invoice-details-ticets">
-            <h4>Ticket Details</h4>
-            <div>
-                <p><strong>Pris:</strong> ${invoice.price} kr</p>
-                <p><strong>Antal:</strong> ${invoice.qty}</p>
-            </div>
-                <p><strong>Summa:</strong> ${invoice.amount.toFixed(2)} kr</p>
-            </div>
+                <h4>Ticket Details</h4>
+                <table border="1" cellpadding="8" cellspacing="0" class="invoice-ticet-table">
+                  <thead>
+                    <tr>
+                      <th>Ticket Category</th>
+                      <th>Price</th>
+                      <th>Qty</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
+                    <tr>
+                      <td>VIP</td>
+                      <td>$ ${invoice.price}</td>
+                      <td>${invoice.qty}</td>
+                      <td>$ ${invoice.amount}</td>
+                    </tr>
+                    <tr>
+                      <td>Total</td>
+                      <td></td>
+                      <td></td>
+                      <td>$ ${invoice.amount}</td>
+                    </tr>
+                    <tr>
+                      <td>Total</td>
+                      <td></td>
+                      <td></td>
+                      <td>$ ${invoice.amount}</td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <div class="invoice-detail-footer">
+            <p>Note</p>
+            <p>Please make payment before the due date to avoid any penalties or cancellation of your ticket. For any questions or concerns, contact our support team at support@eventmgmt.com or </p>
+            <p>call +1-800-555-1234.</p>
+            </div>
       `;
         })
         .catch(err => {

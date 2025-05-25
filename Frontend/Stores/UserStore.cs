@@ -4,6 +4,6 @@ namespace Frontend.Stores
 {
     public static class UserStore
     {
-        public static AppUser? CurrentUser { get; set; }
+        public static AppUserResponseRest? CurrentUser { get; set; }
     }
 }

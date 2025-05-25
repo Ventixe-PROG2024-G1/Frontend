@@ -1,6 +1,8 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     const detailDiv = document.getElementById('invoice-details');
     detailDiv.innerHTML = '<p>Klicka på en faktura för att se mer information.</p>';
+    const ul = document.getElementById('invoice-list');
+    ul.innerHTML ='<p>Fakturor laddas</p>'
 
     fetch('/Invoice/GetInvoices')
         .then(res => {
@@ -8,11 +10,9 @@
             return res.json();
         })
         .then(invoices => {
-            console.log("listan" + invoices)
-            const ul = document.getElementById('invoice-list');
+            
+            
             ul.innerHTML = '';
-
-
             invoices.forEach(inv => {
                 const li = document.createElement('li');
                 li.className = 'invoice-list-item';
@@ -28,7 +28,10 @@
               </div>
           </button>`;
                 li.querySelector('.invoice-button')
-                    .addEventListener('click', () => loadInvoiceDetails(inv.id));
+                    .addEventListener('click', () => {
+                        loadInvoiceDetails(inv.id);
+                        loadInvoiceEmail(inv.id);
+                    });
                 ul.appendChild(li);
             });
         })
@@ -37,4 +40,9 @@
             document.getElementById('invoice-list')
                 .innerHTML = '<li class="invoice-list-item">Kunde inte ladda fakturor.</li>';
         });
+
+
 });
+
+
+

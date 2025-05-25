@@ -6,7 +6,7 @@ namespace Frontend.Services
     {
         private readonly HttpClient _httpClient = httpClient;
 
-        public async Task<AppUser> GetUserAsync(string id)
+        public async Task<AppUserResponseRest> GetUserAsync(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -14,11 +14,11 @@ namespace Frontend.Services
                 return null;
             }
 
-            var apiUrl = $"https://localhost:7286/api/users/{id}";
+            var apiUrl = $"https://local-user-amgpg7afdcaag2cz.swedencentral-01.azurewebsites.net/api/users/{id}";
 
             try
             {
-                return await _httpClient.GetFromJsonAsync<AppUser>(apiUrl);
+                return await _httpClient.GetFromJsonAsync<AppUserResponseRest>(apiUrl);
             }
             catch (Exception ex)
             {
