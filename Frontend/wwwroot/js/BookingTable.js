@@ -1,16 +1,44 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
-    loadBookings();
-});
+﻿import { initCustomSelect } from "/js/CustomSelect.js";
 
-const updateBookingQuery = (key, value) => {
-    const url = new URL(window.location.href);
-    if (value)
-        url.searchParams.set(key, value);
-    else
-        url.searchParams.delete(key);
-    window.history.pushState({}, '', url);
+document.addEventListener('DOMContentLoaded', () => {
     loadBookings();
-};
+
+    const categorySelect = document.getElementById('category-select');
+    categorySelect.innerHTML = '';
+
+    fetch('/Booking/GetAllEventCategories')
+        .then(res => res.ok ? res.json() : Promise.reject(res.status))
+        .then(data => {
+            categorySelect.innerHTML = `
+                <div class="custom-select-selected">
+                    <span class="custom-select-text">All Categories</span>
+                    <svg class="custom-select-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.19064 5.37814C3.3615 5.20729 3.6385 5.20729 3.80936 5.37814L7 8.56878L10.1906 5.37814C10.3615 5.20729 10.6385 5.20729 10.8094 5.37814C10.9802 5.549 10.9802 5.826 10.8094 5.99686L7.30936 9.49686C7.1385 9.66771 6.8615 9.66771 6.69064 9.49686L3.19064 5.99686C3.01979 5.826 3.01979 5.549 3.19064 5.37814Z" fill="currentColor" />
+                    </svg>
+                </div>
+            `;
+            const selectOptions = document.createElement('ul');
+            selectOptions.className = 'custom-select-options custom-select-hide';
+
+            const allCategories = document.createElement('li');
+            allCategories.dataset.value = '';
+            allCategories.textContent = 'All Categories';
+            selectOptions.appendChild(allCategories);
+
+            data.forEach(c => {
+                const item = document.createElement('li');
+                item.dataset.value = c.categoryName;
+                item.textContent = c.categoryName;
+                selectOptions.appendChild(item);
+            });
+            categorySelect.appendChild(selectOptions);
+
+            initCustomSelect();
+        })
+        .catch(err => {
+            console.error('Failed to load Event Categories: ', err);
+        });
+});
 
 const loadBookings = () => {
     const tableBody = document.getElementById('booking-table-body');
@@ -81,4 +109,14 @@ const loadBookings = () => {
             console.error('Failed to load bookings: ', err);
             tableBody.innerHTML = '<tr><td colspan="12">Failed to load Bookings.</td></tr>';
         });
+};
+
+const updateBookingQuery = (key, value) => {
+    const url = new URL(window.location.href);
+    if (value)
+        url.searchParams.set(key, value);
+    else
+        url.searchParams.delete(key);
+    window.history.pushState({}, '', url);
+    loadBookings();
 };

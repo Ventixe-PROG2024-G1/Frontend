@@ -58,6 +58,21 @@ public class BookingController(IHttpClientFactory httpFactory, IConfiguration co
         return StatusCode((int)response.StatusCode, "Failed to fetch Booking Table Data");
     }
 
+    [HttpGet("GetAllEventCategories")]
+    public async Task<IActionResult> GetAllEventCategories()
+    {
+        var url = $"https://ventixe-events.azurewebsites.net/api/category";
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+        var response = await _httpClient.SendAsync(request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadFromJsonAsync<IEnumerable<EventCategory>>();
+            return Ok(json);
+        }
+        return StatusCode((int)response.StatusCode, "Failed to fetch Event Categories");
+    }
+
     // AI writen helper "function"
     private static string ToQueryString(object obj)
     {
