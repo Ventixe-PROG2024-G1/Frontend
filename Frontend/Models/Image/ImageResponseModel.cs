@@ -1,4 +1,4 @@
-﻿namespace Frontend.Models.Event.Responses;
+﻿namespace Frontend.Models.Image;
 
 public class ImageResponseModel
 {
