@@ -123,6 +123,13 @@
     --segmented-control-selected-text-color: var(--grey-10);
     __segmented-control-hover-text-color: var(--cool-grey-10);
     --segmented-control-hover-text-color: var(--secondary-100);
+
+    --custom-select-color: var(--cool-grey-10);
+    --custom-select-text-color: var(--secondary-100);
+    --custom-select-hover-color: var(--secondary-100);
+    --custom-select-hover-text-color: var(--cool-grey-10);
+    --custom-select-active-color: var(--primary-100);
+    --custom-select-active-text-color: var(--cool-grey-10);
 }
 
 html, body {
@@ -839,6 +846,7 @@ form button[type="submit"] {
 
 .bookingstatus-icon {
     background-color: var(--booking-status-icon-color);
+    color: var(--grey-10);
     width: 44px;
     height: 44px;
     padding: 11px;
@@ -848,6 +856,7 @@ form button[type="submit"] {
 
 .bookingstatus-dots {
     grid-area: dots;
+    color: var(--grey-90);
 }
 
 .bookingstatus-body {
@@ -878,6 +887,16 @@ form button[type="submit"] {
 .bookingtable-container table {
     width: 100%;
     border-collapse: collapse;
+}
+
+.bookingtable-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.booking-options {
+    display: flex;
+    gap: 10px;
 }
 
 .bookingtable th {
@@ -991,6 +1010,7 @@ form button[type="submit"] {
 }
 
     .segmented-control label {
+        align-self: center;
         border-radius: 1rem;
         font-size: 10px;
         padding-top: 9px;
@@ -999,6 +1019,17 @@ form button[type="submit"] {
         background: #f0f0f0;
         user-select: none;
         transition: background 0.3s;
+        display: 
+    }
+
+
+    .segmented-control label:hover {
+        color: var(--segmented-control-hover-text-color);
+    }
+
+    .segmented-control input[type="radio"]:checked + label {
+        background: var(--segmented-control-selected-color);
+        color: var(--segmented-control-selected-text-color);
     }
 
     label[for="status-segment-all"] {
@@ -1017,15 +1048,6 @@ form button[type="submit"] {
         padding-right: 18px;
     }
 
-    .segmented-control label:hover {
-        color: var(--segmented-control-hover-text-color);
-    }
-
-    .segmented-control input[type="radio"]:checked + label {
-        background: var(--segmented-control-selected-color);
-        color: var(--segmented-control-selected-text-color);
-    }
-
 .segmented-control:has(#status-segment-confirmed:checked) label[for="status-segment-confirmed"] {
     padding-right: 18px;
 }
@@ -1041,6 +1063,71 @@ form button[type="submit"] {
 .segmented-control:has(#status-segment-pending:checked) label[for="status-segment-cancelled"] {
     padding-left: 2px;
 }
+
+/* Custom Select */ 
+
+.custom-select {
+    align-self: center;
+    font-size: 10px;
+    position: relative;
+}
+
+.custom-select-selected {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: center;
+    border-radius: 1rem;
+    background-color: var(--custom-select-color);
+    color: var(--custom-select-text-color);
+    padding: 6px 8px 6px 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+    .custom-select-selected:hover {
+        background-color: var(--custom-select-hover-color);
+        color: var(--custom-select-hover-text-color);
+    }
+
+    .custom-select-selected.custom-select-active {
+        background-color: var(--custom-select-active-color);
+        color: var(--custom-select-active-text-color);
+    }
+    .custom-select-selected.custom-select-active + .custom-select-options {
+        display: block;
+    }
+
+.custom-select-options {
+    border-radius: 1rem;
+    position: absolute;
+    background-color: var(--custom-select-color);
+    border-top: none;
+    min-width: 100%;
+    width: auto;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 999;
+    list-style-type: none;
+}
+
+    .custom-select-options li {
+        padding: 10px;
+        border-bottom: 1px solid var(--cool-grey-30);
+        cursor: pointer;
+    }
+
+        .custom-select-options li:hover {
+            background-color: var(--custom-select-hover-color);
+            color: var(--custom-select-hover-text-color);
+        }
+
+.custom-select-hide {
+    display: none;
+}
+
+
+
 
 @media screen and (max-width: 768px) {
     .bookingstatus-container {
