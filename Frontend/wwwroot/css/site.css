@@ -116,6 +116,13 @@
     --booking-status-confirmed-background-color: rgba(var(--primary-90-rgb), 0.24);
     --booking-status-cancelled-text-color: var(--grey-80);
     --booking-status-cancelled-background-color: var(--cool-grey-20);
+
+    --segmented-control-color: var(--cool-grey-10);
+    --segmented-control-text-color: var(--grey-90);
+    --segmented-control-selected-color: var(--primary-100);
+    --segmented-control-selected-text-color: var(--grey-10);
+    __segmented-control-hover-text-color: var(--cool-grey-10);
+    --segmented-control-hover-text-color: var(--secondary-100);
 }
 
 html, body {
@@ -873,12 +880,13 @@ form button[type="submit"] {
     border-collapse: collapse;
 }
 
-        .bookingtable th {
-            color: var(--table-cell-header-text-color);
-            font-weight: normal;
-            text-align: start;
-            padding: 14px 4px;
-        }
+.bookingtable th {
+    color: var(--table-cell-header-text-color);
+    font-weight: normal;
+    text-align: start;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--grey-30);
+}
 
             .bookingtable th:hover {
                 color: var(--table-cell-header-text-hover-color);
@@ -904,7 +912,7 @@ form button[type="submit"] {
 
 .bookingtable td {
     padding: 12px 4px;
-    border-top: 1px solid var(--grey-30);
+    border-bottom: 1px solid var(--grey-30);
 }
 
 .cell-subrow {
@@ -968,6 +976,70 @@ form button[type="submit"] {
 .bookingstatus-pending {
     background-color: var(--booking-status-pending-background-color);
     color: var(--booking-status-pending-text-color);
+}
+
+.segmented-control {
+    display: inline-flex;
+    border-radius: 1rem;
+    overflow: hidden;
+    gap: 2px;
+    background-color: var(--segmented-control-color);
+}
+
+.segmented-control input[type="radio"] {
+    display: none;
+}
+
+    .segmented-control label {
+        border-radius: 1rem;
+        font-size: 10px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+        cursor: pointer;
+        background: #f0f0f0;
+        user-select: none;
+        transition: background 0.3s;
+    }
+
+    label[for="status-segment-all"] {
+        padding-left: 26px;
+        padding-right: 26px;
+    }
+
+    label[for="status-segment-confirmed"],
+    label[for="status-segment-pending"] {
+        padding-left: 18px;
+        padding-right: 2px;
+    }
+
+    label[for="status-segment-cancelled"] {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .segmented-control label:hover {
+        color: var(--segmented-control-hover-text-color);
+    }
+
+    .segmented-control input[type="radio"]:checked + label {
+        background: var(--segmented-control-selected-color);
+        color: var(--segmented-control-selected-text-color);
+    }
+
+.segmented-control:has(#status-segment-confirmed:checked) label[for="status-segment-confirmed"] {
+    padding-right: 18px;
+}
+
+.segmented-control:has(#status-segment-pending:checked) label[for="status-segment-pending"] {
+    padding-right: 18px;
+}
+
+.segmented-control:has(#status-segment-confirmed:checked) label[for="status-segment-pending"] {
+    padding-left: 2px;
+}
+
+.segmented-control:has(#status-segment-pending:checked) label[for="status-segment-cancelled"] {
+    padding-left: 2px;
 }
 
 @media screen and (max-width: 768px) {
