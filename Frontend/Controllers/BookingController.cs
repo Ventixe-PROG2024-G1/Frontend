@@ -1,11 +1,71 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Frontend.Models.Booking;
+using Frontend.Stores;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Frontend.Controllers;
 
-public class BookingController : Controller
+[Route("[controller]")]
+public class BookingController(IHttpClientFactory httpFactory, IConfiguration config) : Controller
 {
+    private readonly HttpClient _httpClient = httpFactory.CreateClient();
+    private readonly IConfiguration _config = config;
+
     public IActionResult Index()
     {
         return View();
+    }
+
+    [HttpGet("GetAll")]
+    public async Task<IActionResult> GetAll()
+    {
+        var url = $"https://localhost:7148/api/bookings";
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add("booking-api-key", _config["SecretKeys:BookingApiKey"]);
+        var response = await _httpClient.SendAsync(request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadFromJsonAsync<IEnumerable<BookingModel>>();
+            return Ok(json);
+        }
+        return StatusCode((int)response.StatusCode, "Failed to fetch All Bookings");
+    }
+
+    [HttpGet("GetTableData")]
+    public async Task<IActionResult> GetTableData([FromQuery] BookingQueryParams queryParams)
+    {
+        /*
+        if (UserStore.CurrentUser?.Role != "Admin")
+            queryParams.UserId = UserStore.CurrentUser?.Id;
+        */
+
+        Debug.WriteLine(UserStore.CurrentUser);
+
+        var queryString = ToQueryString(queryParams);
+        var url = $"https://localhost:7148/api/bookings/query?{queryString}";
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+        request.Headers.Add("booking-api-key", _config["SecretKeys:BookingApiKey"]);
+        var response = await _httpClient.SendAsync(request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadFromJsonAsync<BookingQueryResponse>();
+            return Ok(json);
+        }
+        return StatusCode((int)response.StatusCode, "Failed to fetch Booking Table Data");
+    }
+
+    // AI writen helper "function"
+    private static string ToQueryString(object obj)
+    {
+        var properties = from p in obj.GetType().GetProperties()
+                         let value = p.GetValue(obj, null)
+                         where value != null
+                         select $"{Uri.EscapeDataString(p.Name)}={Uri.EscapeDataString(value.ToString())}";
+
+        return string.Join("&", properties);
     }
 }
