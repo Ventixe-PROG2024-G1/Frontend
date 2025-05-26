@@ -1,5 +1,7 @@
-﻿using Frontend.Models.Event.Responses;
+﻿using Frontend.Models.Event.Requests;
+using Frontend.Models.Event.Responses;
 using Microsoft.AspNetCore.WebUtilities;
+using System.Runtime.InteropServices;
 
 namespace Frontend.Services;
 
@@ -60,6 +62,35 @@ public class EventApiService(HttpClient httpClient)
         else
         {
             return new List<EventResponseModel>();
+        }
+    }
+
+    public async Task<EventResponseModel?> GetEventByIdAsync(Guid eventId)
+    {
+        if (eventId == Guid.Empty)
+            return null;
+
+        var response = await _httpClient.GetAsync($"event/{eventId}");
+
+        if (response.IsSuccessStatusCode)
+            return await response.Content.ReadFromJsonAsync<EventResponseModel?>();
+        else
+            return null;
+    }
+
+    public async Task<EventResponseModel?> CreateEventAsync(CreateEventModel createEvent)
+    {
+        if (createEvent == null)
+            return null;
+        
+        var response = await _httpClient.PostAsJsonAsync("event", createEvent);
+
+        if (response.IsSuccessStatusCode) { 
+            return await response.Content.ReadFromJsonAsync<EventResponseModel?>();
+        }
+        else
+        {
+            return null;
         }
     }
 }
