@@ -21,7 +21,7 @@ public class BookingController(IHttpClientFactory httpFactory, IConfiguration co
     [HttpGet("GetAll")]
     public async Task<IActionResult> GetAll()
     {
-        var url = $"https://localhost:7148/api/bookings";
+        var url = $"{_config["RestServices:BookingService"]}/api/bookings";
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Add("booking-api-key", _config["SecretKeys:BookingApiKey"]);
         var response = await _httpClient.SendAsync(request);
@@ -45,7 +45,7 @@ public class BookingController(IHttpClientFactory httpFactory, IConfiguration co
         Debug.WriteLine(UserStore.CurrentUser);
 
         var queryString = ToQueryString(queryParams);
-        var url = $"https://localhost:7148/api/bookings/query?{queryString}";
+        var url = $"{_config["RestServices:BookingService"]}/api/bookings/query?{queryString}";
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         request.Headers.Add("booking-api-key", _config["SecretKeys:BookingApiKey"]);
         var response = await _httpClient.SendAsync(request);
@@ -58,10 +58,11 @@ public class BookingController(IHttpClientFactory httpFactory, IConfiguration co
         return StatusCode((int)response.StatusCode, "Failed to fetch Booking Table Data");
     }
 
+    // Move to event controller?
     [HttpGet("GetAllEventCategories")]
     public async Task<IActionResult> GetAllEventCategories()
     {
-        var url = $"https://ventixe-events.azurewebsites.net/api/category";
+        var url = $"{_config["RestServices:EventService"]}/api/category";
         var request = new HttpRequestMessage(HttpMethod.Get, url);
         var response = await _httpClient.SendAsync(request);
 
