@@ -167,7 +167,7 @@ namespace Frontend.Controllers
 
             var profileRequest = new
             {
-                //Id = userId,
+                Id = userId,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 StreetAddress = model.StreetAddress,
