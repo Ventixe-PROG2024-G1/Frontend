@@ -13,7 +13,7 @@ public class StatusApiService(HttpClient httpClient) : IStatusApiService
 
     public async Task<IEnumerable<StatusResponseModel>> GetEventStatusesAsync()
     {
-        var statuses = await _httpClient.GetFromJsonAsync<List<StatusResponseModel>>("status/eventstatuses");
+        var statuses = await _httpClient.GetFromJsonAsync<List<StatusResponseModel>>("api/status/eventstatuses");
 
         return statuses ?? new List<StatusResponseModel>();
     }

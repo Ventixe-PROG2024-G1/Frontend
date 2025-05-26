@@ -18,7 +18,7 @@ public class ImageApiService(HttpClient httpClient) : IImageApiService
         if (imageId == Guid.Empty)
             return null;
 
-        var response = await _httpClient.GetAsync($"images/{imageId}");
+        var response = await _httpClient.GetAsync($"api/images/{imageId}");
 
         if (response.IsSuccessStatusCode)
             return await response.Content.ReadFromJsonAsync<ImageResponseModel>();
@@ -37,7 +37,7 @@ public class ImageApiService(HttpClient httpClient) : IImageApiService
         streamContent.Headers.ContentType = new MediaTypeHeaderValue(imageFile.ContentType);
         content.Add(streamContent, "file", imageFile.FileName);
 
-        var response = await _httpClient.PostAsync("images", content);
+        var response = await _httpClient.PostAsync("api/images", content);
 
         if (response.IsSuccessStatusCode)
             return await response.Content.ReadFromJsonAsync<ImageResponseModel>();

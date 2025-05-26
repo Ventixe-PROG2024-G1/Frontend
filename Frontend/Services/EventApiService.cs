@@ -28,7 +28,7 @@ public class EventApiService(HttpClient httpClient) : IEventApiService
         string? statusFilter = null
         )
     {
-        string requestUrl = "event";
+        string requestUrl = "api/event";
 
         var queryParams = new Dictionary<string, string?>();
 
@@ -60,7 +60,7 @@ public class EventApiService(HttpClient httpClient) : IEventApiService
 
     public async Task<IEnumerable<EventResponseModel>> GetAllEventsAsync()
     {
-        var response = await _httpClient.GetAsync("event/all");
+        var response = await _httpClient.GetAsync("api/event/all");
 
         if (response.IsSuccessStatusCode)
         {
@@ -78,7 +78,7 @@ public class EventApiService(HttpClient httpClient) : IEventApiService
         if (eventId == Guid.Empty)
             return null;
 
-        var response = await _httpClient.GetAsync($"event/{eventId}");
+        var response = await _httpClient.GetAsync($"api/event/{eventId}");
 
         if (response.IsSuccessStatusCode)
             return await response.Content.ReadFromJsonAsync<EventResponseModel?>();
@@ -91,7 +91,7 @@ public class EventApiService(HttpClient httpClient) : IEventApiService
         if (createEvent == null)
             return null;
 
-        var response = await _httpClient.PostAsJsonAsync("event", createEvent);
+        var response = await _httpClient.PostAsJsonAsync("api/event", createEvent);
 
         if (response.IsSuccessStatusCode)
         {

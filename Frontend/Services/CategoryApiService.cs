@@ -15,7 +15,7 @@ public class CategoryApiService(HttpClient httpClient) : ICategoryApiService
 
     public async Task<IEnumerable<CategoryResponseModel>> GetEventCategoriesAsync()
     {
-        var categories = await _httpClient.GetFromJsonAsync<List<CategoryResponseModel>>("category");
+        var categories = await _httpClient.GetFromJsonAsync<List<CategoryResponseModel>>("api/category");
 
         return categories ?? new List<CategoryResponseModel>();
     }
