@@ -4,17 +4,17 @@ namespace Frontend.Services;
 
 public interface IStatusApiService
 {
-    Task<IEnumerable<EventStatusModel>> GetEventStatusesAsync();
+    Task<IEnumerable<StatusResponseModel>> GetEventStatusesAsync();
 }
 
 public class StatusApiService(HttpClient httpClient) : IStatusApiService
 {
     private readonly HttpClient _httpClient = httpClient;
 
-    public async Task<IEnumerable<EventStatusModel>> GetEventStatusesAsync()
+    public async Task<IEnumerable<StatusResponseModel>> GetEventStatusesAsync()
     {
-        var statuses = await _httpClient.GetFromJsonAsync<List<EventStatusModel>>("status/eventstatuses");
+        var statuses = await _httpClient.GetFromJsonAsync<List<StatusResponseModel>>("status/eventstatuses");
 
-        return statuses ?? new List<EventStatusModel>();
+        return statuses ?? new List<StatusResponseModel>();
     }
 }
