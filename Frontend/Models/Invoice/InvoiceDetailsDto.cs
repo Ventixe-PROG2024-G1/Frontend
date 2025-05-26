@@ -7,6 +7,7 @@ public class InvoiceDetailsDto
     
     public DateTime CreatedDate { get; set; }
     public DateTime DueDate { get; set; }
+    public string InvoiceNumber { get; set; }
     public string Title { get; set; }
     public int Price { get; set; }
     public int Qty { get; set; }
