@@ -102,7 +102,10 @@ const loadBookings = () => {
                 </td>
                 <td class="voucher-col cell-reference">-</td>
             `;
-                tableBody.appendChild(row);
+                row.addEventListener('click', (e) => {
+                    console.log('row, click: ');
+                })
+            tableBody.appendChild(row);
             })
         })
         .catch(err => {
