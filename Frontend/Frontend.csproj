@@ -44,10 +44,6 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\Event\ViewModels\" />
-  </ItemGroup>
-
 	<!--<ItemGroup>
 		<Protobuf Include="Protos/verification.proto" GrpcServices="Client" />
 		<Protobuf Include="Protos/account.proto" GrpcServices="Client" />
