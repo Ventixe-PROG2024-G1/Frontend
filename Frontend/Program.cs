@@ -50,6 +50,51 @@ builder.Services.AddScoped<IAppUserService, AppUserService>();
 
 builder.Services.AddHttpClient();
 
+builder.Services.AddHttpClient<IEventApiService, EventApiService>(client =>
+{
+    var baseAdress = builder.Configuration["RestServices:EventService"];
+    if (string.IsNullOrEmpty(baseAdress))
+    {
+        throw new InvalidOperationException("EventsService URL not configured in RestService:EventService");
+    }
+    client.BaseAddress = new Uri(baseAdress);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+builder.Services.AddHttpClient<IStatusApiService, StatusApiService>(client =>
+{
+    var baseAdress = builder.Configuration["RestServices:EventService"];
+    if (string.IsNullOrEmpty(baseAdress))
+    {
+        throw new InvalidOperationException("EventsService URL not configured in RestService:EventService");
+    }
+    client.BaseAddress = new Uri(baseAdress);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+builder.Services.AddHttpClient<ICategoryApiService, CategoryApiService>(client =>
+{
+    var baseAdress = builder.Configuration["RestServices:EventService"];
+    if (string.IsNullOrEmpty(baseAdress))
+    {
+        throw new InvalidOperationException("EventsService URL not configured in RestService:EventService");
+    }
+    client.BaseAddress = new Uri(baseAdress);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+builder.Services.AddHttpClient<IImageApiService, ImageApiService>(client =>
+{
+    var baseAdress = builder.Configuration["RestServices:EventService"];
+    if (string.IsNullOrEmpty(baseAdress))
+    {
+        throw new InvalidOperationException("ImageService URL not configured in RestService:ImageService");
+    }
+    client.BaseAddress = new Uri(baseAdress);
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+
 var app = builder.Build();
 
 // Roller skapas upp i databasen
