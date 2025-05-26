@@ -10,9 +10,9 @@ namespace Frontend.Controllers
     {
         private readonly HttpClient _httpClient = httpClient;
 
-        private readonly string _accountServiceUrl = "https://local-account-f0epfuc6b6amgwdd.swedencentral-01.azurewebsites.net";
-        private readonly string _verificationServiceUrl = "https://verification-ahbgdfdbceg9dccm.swedencentral-01.azurewebsites.net";
-        private readonly string _profileServiceUrl = "https://local-profile-ggh3dsf7cwhhhkfa.swedencentral-01.azurewebsites.net";
+        private readonly string _accountServiceUrl = "https://ventixe-account-provider.azurewebsites.net/api/account";
+        private readonly string _verificationServiceUrl = "https://ventixe-verification-provider.azurewebsites.net/api/verification";
+        private readonly string _profileServiceUrl = "https://ventixe-profile-provider.azurewebsites.net/api/profile";
 
         #region Step 1 - Set Email
 

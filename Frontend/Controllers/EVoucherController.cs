@@ -19,7 +19,7 @@ namespace Frontend.Controllers
         [HttpGet("GetByIds/{Invoiceid}/{Eventid}")]
         public async Task<IActionResult> GetByIds(string Invoiceid, string Eventid)
         {
-            var Evoucher = await _https.GetFromJsonAsync<EVoucherModel>($"https://localhost:7260/api/Evoucher/{Invoiceid}/{Eventid}");
+            var Evoucher = await _https.GetFromJsonAsync<EVoucherModel>($"https://e-voucher-ventixe-csgvatffg9b7gacy.swedencentral-01.azurewebsites.net/api/Evoucher/{Invoiceid}/{Eventid}");
 
             if (Evoucher == null)
                 return NotFound();

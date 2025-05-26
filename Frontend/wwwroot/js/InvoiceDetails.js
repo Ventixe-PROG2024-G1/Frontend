@@ -5,11 +5,12 @@
             return res.json();
         })
         .then(invoice => {
+            console.log(invoice)
             const div = document.getElementById('invoice-details');
             div.innerHTML = `
             <div class="invoice-details-header">
                 <div>
-                    <h3>${invoice.InvoiceNumber}</h3>
+                    <h3>${invoice.invoiceNumber}</h3>
                     <p class="invoice-list-status">UnPaid</p>
                 </div>
                 <div>
@@ -53,10 +54,10 @@
                       <td>$ ${invoice.amount}</td>
                     </tr>
                     <tr>
-                      <td>Total</td>
+                      <td>Moms</td>
                       <td></td>
                       <td></td>
-                      <td>$ ${invoice.amount}</td>
+                      <td>$ ${(invoice.amount * 0.20).toFixed(2)}</td>
                     </tr>
                     <tr>
                       <td>Total</td>
