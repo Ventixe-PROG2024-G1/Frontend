@@ -105,10 +105,10 @@ const loadBookings = () => {
                 <td class="voucher-col cell-reference">-</td>
             `;
                 row.addEventListener('click', (e) => {
-                    loadEvoucherTicket(e.currentTarget.dataset.invoice, e.currentTarget.dataset.event);
-            })
-            tableBody.appendChild(row);
-            })
+                    fetch(`GetByIds/${e.currentTarget.dataset.invoice}/${e.currentTarget.dataset.event}`);
+                });
+                tableBody.appendChild(row);
+            });
         })
         .catch(err => {
             console.error('Failed to load bookings: ', err);
