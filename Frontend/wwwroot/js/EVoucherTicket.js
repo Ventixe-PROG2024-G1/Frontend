@@ -1,16 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
-    const div = document.getElementById('Getbtn');
-    const button = document.createElement('button');
-    button.className = 'test';
-    button.textContent = 'Hämta';
-
-    div.appendChild(button);
-
-    button.addEventListener('click', () => {
-        loadEvoucherTicket("161ea8fb-73d9-41bd-b87e-6164b98357d8", "161ea8fb-73d9-41bd-b87e-6164b98357d8");
-    });
-});
-function loadEvoucherTicket(invoiceId, EventId) {
+﻿function loadEvoucherTicket(invoiceId, EventId) {
     fetch(`/EVoucher/GetByIds/${invoiceId}/${EventId}`)
         .then(res => {
             if (!res.ok) throw new Error('HTTP ' + res.status);

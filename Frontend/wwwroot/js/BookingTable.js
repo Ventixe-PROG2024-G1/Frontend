@@ -54,6 +54,8 @@ const loadBookings = () => {
                 const createdDate = created ? created.toLocaleDateString() : '';
                 const createdTime = created ? created.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
                 const row = document.createElement('tr');
+                row.dataset.event = b.eventId;
+                row.dataset.invoice = b.invoiceId;
                 row.className = 'body-row';
                 row.innerHTML = `
                 <td class="invoice-desktop-col cell-reference">${b.invoiceId}</td>
@@ -103,8 +105,8 @@ const loadBookings = () => {
                 <td class="voucher-col cell-reference">-</td>
             `;
                 row.addEventListener('click', (e) => {
-                    console.log('row, click: ');
-                })
+                    loadEvoucherTicket(e.currentTarget.dataset.invoice, e.currentTarget.dataset.event);
+            })
             tableBody.appendChild(row);
             })
         })

@@ -7,7 +7,7 @@
     </section>
     <section class="bookingtable-container">
         <header class="bookingtable-header">
-            <div class="segmented-control">
+            <div class="segmented-control" id="booking-segmented-control">
                 
                 <input type="radio" id="status-segment-all" name="status-segment" value="" checked/>
                 <label for="status-segment-all">All</label>
@@ -68,6 +68,7 @@
 </div>
 
 @section Scripts {
+    <script src="~/js/EVoucherTicket.js"></script>
     <script type="module" src="~/js/BookingTable.js"></script>
     <script type="module" src="~/js/CustomSelect.js"></script>
     <script src="~/js/BookingStats.js"></script>
