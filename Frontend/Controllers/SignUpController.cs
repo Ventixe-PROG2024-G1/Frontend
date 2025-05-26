@@ -133,17 +133,21 @@ namespace Frontend.Controllers
         [HttpGet("profile-information")]
         public IActionResult ProfileInformation()
         {
+            if (TempData.Count == 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
 
         [HttpPost("profile-information")]
         public async Task<IActionResult> ProfileInformation(ProfileInformationViewModel model)
         {
-            //var userId = TempData["UserId"]!.ToString();
-            //if (string.IsNullOrWhiteSpace(userId))
-            //{
-            //    return RedirectToAction(nameof(Index));
-            //}
+            var userId = TempData["UserId"]!.ToString();
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return RedirectToAction(nameof(Index));
+            }
 
             if (model.ProfilePictureFile != null || model.ProfilePictureFile?.Length > 1)
             {
