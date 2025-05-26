@@ -5,7 +5,15 @@ using System.Runtime.InteropServices;
 
 namespace Frontend.Services;
 
-public class EventApiService(HttpClient httpClient)
+public interface IEventApiService
+{
+    Task<EventResponseModel?> CreateEventAsync(CreateEventModel createEvent);
+    Task<IEnumerable<EventResponseModel>> GetAllEventsAsync();
+    Task<EventResponseModel?> GetEventByIdAsync(Guid eventId);
+    Task<PaginatedEventResponseModel?> GetPaginatedEventsAsync(int pageNumber = 1, int pageSize = 6, string? categoryNameFilter = null, string? searchTerm = null, string? dateFilter = null, DateTime? specificDateFrom = null, DateTime? specificDateTo = null, string? statusFilter = null);
+}
+
+public class EventApiService(HttpClient httpClient) : IEventApiService
 {
     private readonly HttpClient _httpClient = httpClient;
 
@@ -82,10 +90,11 @@ public class EventApiService(HttpClient httpClient)
     {
         if (createEvent == null)
             return null;
-        
+
         var response = await _httpClient.PostAsJsonAsync("event", createEvent);
 
-        if (response.IsSuccessStatusCode) { 
+        if (response.IsSuccessStatusCode)
+        {
             return await response.Content.ReadFromJsonAsync<EventResponseModel?>();
         }
         else
