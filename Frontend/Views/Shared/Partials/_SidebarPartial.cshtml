@@ -6,35 +6,38 @@
         <img src="~/images/icons/Logo.svg" asp-append-version="true" alt="logan" /><h1>Ventixe</h1>
     </a>
     <nav class="nav-links">
-        <a class="nav-link @(Context.Request.Path =="/" ? "active": null)" asp-controller="Home" asp-action="Index">
+        <div class="nav-group">
+            <a class="nav-link @(Context.Request.Path =="/" ? "active": null)" asp-controller="Home" asp-action="Index">
 
-            <img src="~/images/icons/SquaresFour.svg" asp-append-version="true" alt="dashboard icon" class="nav-icon" /><span>Dashboard</span>
-        </a>
-        <a class="nav-link @(Context.Request.Path =="/Booking" ? "active": null)" asp-controller="Booking" asp-action="Index">
-            <img src="~/images/icons/CheckSquare.svg" asp-append-version="true" alt="Booking icon" class="nav-icon" /><span>Booking</span>
-        </a>
-        <a class="nav-link @(Context.Request.Path =="/invoice" ? "active": null)" asp-controller="Invoice" asp-action="Index">
-            <img src="~/images/icons/Receipt.svg" asp-append-version="true" alt="invoice icon" class="nav-icon" /><span>Invoice</span>
-        </a>
-        <a class="nav-link @(Context.Request.Path =="/inbox" ? "active": null)" asp-controller="Inbox" asp-action="Index">
-            <img src="~/images/icons/EnvelopeOpen.svg" asp-append-version="true" alt="inbox icon" class="nav-icon" /><span>Inbox</span>
-        </a>
-        <a class="nav-link @(Context.Request.Path =="/calendar" ? "active": null)" asp-controller="Calendar" asp-action="Index">
-            <img src="~/images/icons/CalendarDots.svg" asp-append-version="true" alt="Calendar icon" class="nav-icon" /><span>Calendar</span>
-        </a>
-        <a class="nav-link @(Context.Request.Path =="/events" ? "active": null)" asp-controller="Events" asp-action="Index">
-            <img src="~/images/icons/Ticket.svg" asp-append-version="true" alt="Events icon" class="nav-icon" /><span>Events</span>
-        </a>
-        <a class="nav-link @(Context.Request.Path =="/financials" ? "active": null)" asp-controller="Financials" asp-action="Index">
-            <img src="~/images/icons/CurrencyCircleDollar.svg" asp-append-version="true" alt="Financials icon" class="nav-icon" /><span>Financials</span>
-        </a>
-        <a class="nav-link @(Context.Request.Path =="/gallery" ? "active": null)" asp-controller="Gallery" asp-action="Index">
-            <img src="~/images/icons/Cards.svg" asp-append-version="true" alt="Gallery icon" class="nav-icon" /><span>Gallery</span>
-        </a>
-        <a class="nav-link @(Context.Request.Path =="/feedback" ? "active": null)" asp-controller="Feedback" asp-action="Index">
-            <img src="~/images/icons/ListStar.svg" asp-append-version="true" alt="Feedback icon" class="nav-icon" /><span>Feedback</span>
-        </a>
-        <a class="nav-link" asp-controller="Login" asp-action="SignOut">
+                <img src="~/images/icons/SquaresFour.svg" asp-append-version="true" alt="dashboard icon" class="nav-icon" /><span>Dashboard</span>
+            </a>
+            <a class="nav-link @(Context.Request.Path =="/Booking" ? "active": null)" asp-controller="Booking" asp-action="Index">
+                <img src="~/images/icons/CheckSquare.svg" asp-append-version="true" alt="Booking icon" class="nav-icon" /><span>Booking</span>
+            </a>
+            <a class="nav-link @(Context.Request.Path =="/invoice" ? "active": null)" asp-controller="Invoice" asp-action="Index">
+                <img src="~/images/icons/Receipt.svg" asp-append-version="true" alt="invoice icon" class="nav-icon" /><span>Invoice</span>
+            </a>
+            <a class="nav-link @(Context.Request.Path =="/inbox" ? "active": null)" asp-controller="Inbox" asp-action="Index">
+                <img src="~/images/icons/EnvelopeOpen.svg" asp-append-version="true" alt="inbox icon" class="nav-icon" /><span>Inbox</span>
+            </a>
+            <a class="nav-link @(Context.Request.Path =="/calendar" ? "active": null)" asp-controller="Calendar" asp-action="Index">
+                <img src="~/images/icons/CalendarDots.svg" asp-append-version="true" alt="Calendar icon" class="nav-icon" /><span>Calendar</span>
+            </a>
+            <a class="nav-link @(Context.Request.Path =="/events" ? "active": null)" asp-controller="Events" asp-action="Index">
+                <img src="~/images/icons/Ticket.svg" asp-append-version="true" alt="Events icon" class="nav-icon" /><span>Events</span>
+            </a>
+            <a class="nav-link @(Context.Request.Path =="/financials" ? "active": null)" asp-controller="Financials" asp-action="Index">
+                <img src="~/images/icons/CurrencyCircleDollar.svg" asp-append-version="true" alt="Financials icon" class="nav-icon" /><span>Financials</span>
+            </a>
+            <a class="nav-link @(Context.Request.Path =="/gallery" ? "active": null)" asp-controller="Gallery" asp-action="Index">
+                <img src="~/images/icons/Cards.svg" asp-append-version="true" alt="Gallery icon" class="nav-icon" /><span>Gallery</span>
+            </a>
+            <a class="nav-link @(Context.Request.Path =="/feedback" ? "active": null)" asp-controller="Feedback" asp-action="Index">
+                <img src="~/images/icons/ListStar.svg" asp-append-version="true" alt="Feedback icon" class="nav-icon" /><span>Feedback</span>
+            </a>
+        </div>
+        
+        <a class="signout-link" asp-controller="Login" asp-action="SignOut">
             <img src="~/images/icons/SignOut.svg" asp-append-version="true" alt="Sign Out icon" class="nav-icon" />
             <span>Sign Out</span>
         </a>
