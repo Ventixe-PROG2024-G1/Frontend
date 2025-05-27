@@ -39,6 +39,18 @@
                 <div class="additional-info center">Don't have an account yet? <a asp-action="Index" asp-controller="SignUp">Sign Up</a></div>
             </div>
         </form>
-        <img src="~/images/icons/logo.png" class="logo-form" />
+        <img src="~/images/icons/logo.svg" class="logo-form" />
+        <div id="loading" style="display: none;">
+            <div class="spinner"></div>
+        </div>
     </div>
 </div>
+
+@* AI-genererat script *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("form").addEventListener("submit", function () {
+            document.getElementById("loading").style.display = "block";
+        });
+    });
+</script>
