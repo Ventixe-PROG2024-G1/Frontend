@@ -12,10 +12,6 @@ namespace Frontend.Controllers
         {
             _https = httpFactory.CreateClient();
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpGet("GetByIds/{Invoiceid}/{Eventid}")]
         public async Task<IActionResult> GetByIds(string Invoiceid, string Eventid)
         {
@@ -24,7 +20,7 @@ namespace Frontend.Controllers
             if (Evoucher == null)
                 return NotFound();
 
-            return Json(Evoucher);
+            return View("VoucherDetails", Evoucher);
         }
     }
 }
