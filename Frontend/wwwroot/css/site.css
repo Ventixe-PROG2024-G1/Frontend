@@ -92,10 +92,10 @@
     --input-border-focus-color: var(--primary-50);
     --input-text-color: var(--gray-100);
     --input-placeholder-color: var(--gray-50);
-    --checkbox-background-color: var(--gray-10);
+    --checkbox-background-color: red;
     --checkbox-border-color: var(--gray-40);
-    --checkbox-checked-background-color: var(--primary-100);
-    --checkbox-checked-border-color: var(--primary-100);
+    --checkbox-checked-background-color: red;
+    --checkbox-checked-border-color: red;
     --checkbox-checked-text-color: var(--gray-10);
     --booking-status-title-text-color: #858585;
     --booking-status-icon-color: var(--primary-100);
@@ -419,6 +419,7 @@ form button[type="submit"] {
         text-align: left;
         margin: 0;
         padding: 0;
+        
     }
 
 .form-checkbox {
@@ -439,7 +440,7 @@ form button[type="submit"] {
     .form-checkbox .checkmark {
         height: 30px;
         width: 30px;
-        background-color: var(--checkbox-checked-text-color);
+        background-color: var(--grey-40);
         border-radius: 10px;
         border: 2px solid var(--checkbox-border-color);
         display: inline-block;
@@ -449,7 +450,7 @@ form button[type="submit"] {
     }
 
     .form-checkbox input:checked ~ .checkmark {
-        background-color: var(--checkbox-checked-background-color);
+        background-color: var(--primary-100);
         border-color: var(--checkbox-checked-border-color);
     }
 
@@ -465,7 +466,7 @@ form button[type="submit"] {
         top: 4px;
         width: 8px;
         height: 16px;
-        border: solid var(--checkbox-checked-text-color);
+        border: solid white;
         border-width: 0 3px 3px 0;
         transform: rotate(45deg);
     }
@@ -515,6 +516,7 @@ form button[type="submit"] {
 }
 
     #signup .additional-info {
+        margin-top:20px;
         color: var(--cool-grey-50);
         text-align: center;
         font-size: 14px;

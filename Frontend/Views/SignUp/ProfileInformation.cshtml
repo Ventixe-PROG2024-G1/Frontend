@@ -13,7 +13,7 @@
         </p>
     </div>
     <div class="card-body">
-        <form method="post" asp-action="ProfileInformation" asp-controller="SignUp" novalidate>
+        <form method="post" asp-action="ProfileInformation" asp-controller="SignUp" enctype="multipart/form-data" novalidate>
 
             <div class="form-group">
                 <input asp-for="FirstName" class="form-input" />
@@ -51,7 +51,7 @@
                 <span id="fileName"></span>
             </div>
            
-            <button type="submit" class="btn btn-primary">CreateAccount</button>
+            <button type="submit" class="btn btn-primary">Create Account</button>
         </form>
         <img src="~/images/icons/logo.png" class ="logo-form" />
     </div>

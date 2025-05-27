@@ -1,6 +1,7 @@
 ﻿using Frontend.Models.Responses;
 using Frontend.Models.SignUp;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
@@ -13,6 +14,7 @@ namespace Frontend.Controllers
         private readonly string _accountServiceUrl = "https://ventixe-account-provider.azurewebsites.net/api/account";
         private readonly string _verificationServiceUrl = "https://ventixe-verification-provider.azurewebsites.net/api/verification";
         private readonly string _profileServiceUrl = "https://ventixe-profile-provider.azurewebsites.net/api/profile";
+        private readonly string _imageServiceUrl = "https://azurefunctionimage.azurewebsites.net/api/images";
 
         #region Step 1 - Set Email
 
@@ -131,6 +133,10 @@ namespace Frontend.Controllers
         [HttpGet("profile-information")]
         public IActionResult ProfileInformation()
         {
+            if (TempData.Count == 0)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             return View();
         }
 
@@ -143,9 +149,21 @@ namespace Frontend.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            // Anrop till ImageMicroService som sparar ner bilden i Azure blob storage och returnerar ProfilePictureUrl
+            if (model.ProfilePictureFile != null || model.ProfilePictureFile?.Length > 1)
+            {
+                using var fileStream = model.ProfilePictureFile.OpenReadStream();
+                var imageResponse = await PostFileRequest<ImageResponseModel>(_imageServiceUrl,
+                                                        fileStream,
+                                                         model.ProfilePictureFile.FileName,
+                                                         model.ProfilePictureFile.ContentType);
 
-            //Anrop till LocalProfileServiceProvider för att spara profil kopplad till UserId
+                if (string.IsNullOrEmpty(imageResponse?.ImageUrl))
+                {
+                    ViewBag.ErrorMessage = "Failed to upload image";
+                    return View(model);
+                }
+                model.ProfilePictureUrl = imageResponse.ImageUrl;
+            }
 
             var profileRequest = new
             {
@@ -165,11 +183,28 @@ namespace Frontend.Controllers
                 TempData.Keep("UserId");
                 return View(model);
             }
-
             return RedirectToAction("Index", "Login");
         }
 
         #endregion Step 4 - Set Profile Information
+
+        #region Generic API methods
+
+        public async Task<T?> GetRequest<T>(string url)
+        {
+            var response = await _httpClient.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode) return default;
+
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            return JsonSerializer.Deserialize<T>(responseString, options);
+        }
 
         // AI-genererad kod
         public async Task<T?> PostRequest<T>(string url, object requestData)
@@ -191,9 +226,15 @@ namespace Frontend.Controllers
         }
 
         // AI-genererad kod
-        public async Task<T?> GetRequest<T>(string url)
+        public async Task<T?> PostFileRequest<T>(string url, Stream fileStream, string fileName, string contentType)
         {
-            var response = await _httpClient.GetAsync(url);
+            using var content = new MultipartFormDataContent();
+            using var streamContent = new StreamContent(fileStream);
+            streamContent.Headers.ContentType = new MediaTypeHeaderValue(contentType);
+
+            content.Add(streamContent, "file", fileName);
+
+            var response = await _httpClient.PostAsync(url, content);
 
             if (!response.IsSuccessStatusCode) return default;
 
@@ -206,6 +247,8 @@ namespace Frontend.Controllers
 
             return JsonSerializer.Deserialize<T>(responseString, options);
         }
+
+        #endregion Generic API methods
 
         private string MaskEmail(string email)
         {
