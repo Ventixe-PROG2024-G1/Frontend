@@ -105,7 +105,7 @@ const loadBookings = () => {
                 <td class="voucher-col cell-reference">-</td>
             `;
                 row.addEventListener('click', (e) => {
-                    fetch(`GetByIds/${e.currentTarget.dataset.invoice}/${e.currentTarget.dataset.event}`);
+                    window.location.href =`/EVoucher/GetByIds/${e.currentTarget.dataset.invoice}/${e.currentTarget.dataset.event}`;
                 });
                 tableBody.appendChild(row);
             });
