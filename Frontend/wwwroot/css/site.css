@@ -127,6 +127,8 @@
     --custom-select-hover-text-color: var(--cool-grey-10);
     --custom-select-active-color: var(--primary-100);
     --custom-select-active-text-color: var(--cool-grey-10);
+
+    --modal-background-color: var(--cool-grey-10);
 }
 
 html, body {
@@ -1121,6 +1123,8 @@ form button[type="submit"] {
     background-color: var(--segmented-control-color);
 }
 
+/* Segmented Booking Control */
+
 .segmented-control input[type="radio"] {
     display: none;
 }
@@ -1135,7 +1139,6 @@ form button[type="submit"] {
         background: #f0f0f0;
         user-select: none;
         transition: background 0.3s;
-        display: 
     }
 
 
@@ -1242,10 +1245,46 @@ form button[type="submit"] {
     display: none;
 }
 
+/* Modal */
 
+.modal {
+    position: fixed;
+    z-index: 1000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
 
+.modal-content {
+    background-color: var(--modal-background-color);
+    margin: auto;
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.booking-modal-close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.hide-modal {
+    display: none;
+}
+
+/* Media */
 
 @media screen and (max-width: 768px) {
+    .modal-content {
+        width: 100%;
+    }
+
     .bookingstatus-container {
         flex-direction: column;
     }
@@ -1291,6 +1330,10 @@ form button[type="submit"] {
 }
 
 @media screen and (max-width: 1024px) {
+    .modal-content {
+        width: 75%;
+    }
+
     .bookingtable-container table {
         font-size: 11px;
     }
@@ -1316,6 +1359,10 @@ form button[type="submit"] {
 }
 
 @media screen and (min-width: 1025px) {
+    .modal-content {
+        width: 50%;
+    }
+
     .bookingtable-container table {
         font-size: 12px;
     }
