@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Frontend.Models.EVoucher.EVoucherModel
+
+@{
     ViewData["Title"] = "E-Voucher";
 }
 
@@ -7,11 +9,57 @@
     <div class="evoucher-wrapper evoucher-ticker">
         <div class="evoucher-tickerEvent">
             <div>
-                <h2>Rhythm & Beats Music Festival</h2>
+                <h2>@Model.Ticket.Title</h2>
                 <p>DJ Nova, The Rockerz, ElectroBeats, Harmony Crew</p>
             </div>
         </div>
         <div class="evoucher-tickerInfo" id="evoucher-tickerInfo">
+            <div class="evoucher-tickerInfo-item">
+                <div>
+                    <span>
+                        <h4>Namn</h4>
+                        <p>@Model.Ticket.Name</p>
+                    </span>
+                    <span>
+                        <h4>Ticket Category</h4>
+                        <p>@Model.Ticket.Type</p>
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        <h4>Invoice ID</h4>
+                        <p>@Model.Ticket.InvoiceNumber</p>
+                    </span>
+                    <span>
+                        <h4>Seat Number</h4>
+                        <p>@Model.Ticket.SeatNumber</p>
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        <h4>Gate</h4>
+                        <p>@Model.Ticket.Gate</p>
+                    </span>
+                </div>
+            </div>
+            <div class="evoucher-tickerInfo-item">
+                <div>
+                    <span>
+                        <h4>Location</h4>
+                        <p>@Model.Ticket.Location</p>
+                    </span>
+                    <span>
+                        <h4>Date</h4>
+                        <p>@Model.Ticket.Date</p>
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        <h4>Time</h4>
+                        <p>@Model.Ticket.Time</p>
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="evoucher-tickerScan">
             <h2>Scan to Enter</h2>

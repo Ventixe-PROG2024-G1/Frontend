@@ -10,8 +10,6 @@
             return res.json();
         })
         .then(invoices => {
-            
-            
             ul.innerHTML = '';
             invoices.forEach(inv => {
                 const li = document.createElement('li');
@@ -38,7 +36,7 @@
         .catch(err => {
             console.error('Fel vid hämtning av fakturor:', err);
             document.getElementById('invoice-list')
-                .innerHTML = '<li class="invoice-list-item">Kunde inte ladda fakturor.</li>';
+                .innerHTML = '<li class="invoice-list-item">Laddar fakturor...</li>';
         });
 
 

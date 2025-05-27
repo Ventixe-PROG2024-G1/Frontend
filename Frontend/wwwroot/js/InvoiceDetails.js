@@ -5,7 +5,6 @@
             return res.json();
         })
         .then(invoice => {
-            console.log(invoice)
             const div = document.getElementById('invoice-details');
             div.innerHTML = `
             <div class="invoice-details-header">
@@ -81,4 +80,3 @@
                 '<p class="text-red-600">Kunde inte ladda fakturadetaljer.</p>';
         });
 }
-console.log('InvoiceDetails.js loaded');
