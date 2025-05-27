@@ -5,6 +5,7 @@ public class EventViewModel
     public Guid EventId { get; set; }
     public string EventName { get; set; } = string.Empty;
     public string? ThumbnailUrl { get; set; }
+    public string? CategoryName { get; set; }
     public string? ShortDescription { get; set; }
     public string? Location { get; set; }
 
