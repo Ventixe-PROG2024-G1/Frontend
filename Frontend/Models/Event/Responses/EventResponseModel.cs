@@ -4,6 +4,7 @@ public class EventResponseModel
 {
     public Guid EventId { get; set; }
     public Guid? EventImageId { get; set; }
+    public string? ImageUrl { get; set; }
     public string? EventName { get; set; }
     public string? Description { get; set; }
     public CategoryResponseModel? Category { get; set; }

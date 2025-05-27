@@ -10,7 +10,7 @@ public interface IEventApiService
     Task<EventResponseModel?> CreateEventAsync(CreateEventModel createEvent);
     Task<IEnumerable<EventResponseModel>> GetAllEventsAsync();
     Task<EventResponseModel?> GetEventByIdAsync(Guid eventId);
-    Task<PaginatedEventResponseModel?> GetPaginatedEventsAsync(int pageNumber = 1, int pageSize = 6, string? categoryNameFilter = null, string? searchTerm = null, string? dateFilter = null, DateTime? specificDateFrom = null, DateTime? specificDateTo = null, string? statusFilter = null);
+    Task<PaginatedEventResponseModel?> GetPaginatedEventsAsync(int pageNumber = 1, int? pageSize = null, string? categoryNameFilter = null, string? searchTerm = null, string? dateFilter = null, DateTime? specificDateFrom = null, DateTime? specificDateTo = null, string? statusFilter = null);
 }
 
 public class EventApiService(HttpClient httpClient) : IEventApiService
@@ -19,7 +19,7 @@ public class EventApiService(HttpClient httpClient) : IEventApiService
 
     public async Task<PaginatedEventResponseModel?> GetPaginatedEventsAsync(
         int pageNumber = 1,
-        int pageSize = 6,
+        int? pageSize = null,
         string? categoryNameFilter = null,
         string? searchTerm = null,
         string? dateFilter = null,
@@ -33,7 +33,8 @@ public class EventApiService(HttpClient httpClient) : IEventApiService
         var queryParams = new Dictionary<string, string?>();
 
         queryParams["pageNumber"] = pageNumber.ToString();
-        queryParams["pageSize"] = pageSize.ToString();
+        if (pageSize.HasValue && pageSize.Value > 0)
+            queryParams["pageSize"] = pageSize.Value.ToString();
 
         if (!string.IsNullOrEmpty(categoryNameFilter)) queryParams["categoryNameFilter"] = categoryNameFilter;
         if (!string.IsNullOrEmpty(searchTerm)) queryParams["searchTerm"] = searchTerm;

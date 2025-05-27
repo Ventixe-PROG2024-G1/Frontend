@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Frontend.Models.Event.ViewModels;
 
-public enum DateFilter
+public enum DateFilterOptionsEnum
 {
     Upcoming,
     ThisWeek,
@@ -13,9 +13,9 @@ public enum DateFilter
 
 public class EventIndexPageViewModel
 {
-    public IEnumerable<EventViewModel> Events { get; set; } = [];
+    public IEnumerable<EventViewModel> Events { get; set; } = new List<EventViewModel>();
 
-    // Paging features
+    // Paging Features
     public int PageNumber { get; set; }
     public int PageSize { get; set; }
     public int TotalCount { get; set; }
@@ -24,16 +24,13 @@ public class EventIndexPageViewModel
     public bool HasNextPage { get; set; }
 
     // Filter Features
-    public IEnumerable<SelectListItem> CategoryFilterOptions { get; set; } = [];
-    public IEnumerable<StatusResponseModel> StatusFilterOptions { get; set; } = [];
-    public IEnumerable<SelectListItem> DateFilterOptions { get; set; } = [];
+    public IEnumerable<SelectListItem> CategoryFilterOptions { get; set; } = new List<SelectListItem>();
+    public IEnumerable<StatusResponseModel> StatusFilterOptions { get; set; } = new List<StatusResponseModel>();
+    public IEnumerable<SelectListItem> DateFilterOptions { get; set; } = new List<SelectListItem>();
 
-    // Current FilterOptions
-    public string? CurrentCategoryFilterId { get; set; }
-    public string? CurrentStatusFilterName { get; set; }
-    public string? CurrentSearchTerm {  get; set; }
-    public DateFilter CurrentDateFilter { get; set; } = DateFilter.Upcoming;
-
-    public DateTime? FilterDateFrom { get; set; }
-    public DateTime? FilterDateTo { get; set; }
+    // Current Filter Values
+    public string? CurrentCategoryId { get; set; }
+    public string? CurrentStatusName { get; set; }
+    public string? CurrentSearchTerm { get; set; }
+    public string? CurrentDateFilter { get; set; } = "upcoming";
 }
