@@ -3,6 +3,7 @@ using Frontend.Models.Event.Requests;
 using Frontend.Models.Event.Responses;
 using Frontend.Models.Event.ViewModels;
 using Frontend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text.RegularExpressions;

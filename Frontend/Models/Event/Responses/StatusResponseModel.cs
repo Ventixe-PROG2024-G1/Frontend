@@ -3,5 +3,5 @@
 public class StatusResponseModel
 {
     public int? StatusId { get; set; }
-    public string? StatusName { get; set; }
+    public string? Name { get; set; }
 }
