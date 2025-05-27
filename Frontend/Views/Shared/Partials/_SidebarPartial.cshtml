@@ -34,7 +34,7 @@
         <a class="nav-link @(Context.Request.Path =="/feedback" ? "active": null)" asp-controller="Feedback" asp-action="Index">
             <img src="~/images/icons/ListStar.svg" asp-append-version="true" alt="Feedback icon" class="nav-icon" /><span>Feedback</span>
         </a>
-        <a class="nav-link" asp-controller="Login" asp-action="SignOut">
+        <a class="nav-link nav-link__end" asp-controller="Login" asp-action="SignOut">
             <img src="~/images/icons/SignOut.svg" asp-append-version="true" alt="Sign Out icon" class="nav-icon" />
             <span>Sign Out</span>
         </a>
