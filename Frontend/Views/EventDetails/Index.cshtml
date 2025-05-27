@@ -1,0 +1,52 @@
+﻿@using Frontend.Models.EventDetails
+@model EventDetailsPageView
+
+@{
+    ViewData["Title"] = Model.Event?.EventName ?? "EventDetails";
+}
+
+<h1 id="booking-modal-open">@ViewData["Title"]</h1>
+
+
+
+
+
+
+
+
+
+
+<!-- Create Booking Modal -->
+<div id="booking-modal" class="modal hide-modal">
+    <div class="modal-content">
+        <span class="booking-modal-close">&times;</span>
+        <h2 class="modal-title">Create booking for @ViewData["Title"]</h2>
+        <p>Book tickets for the event @ViewData["Title"].</p>
+        <form asp-controller="EventDetails" asp-action="SubmitBooking" method="post">
+            <input type="hidden" name="EventId" value="@Model.Event.EventId.ToString()" />
+            <div>
+                <label for="ticket-category">Select Category:</label>
+                <select id="ticket-category" name="TicketId" required>
+                    <option value="">-- Loading Categories --</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="ticket-quantity">Select Quantity:</label>
+                <select id="ticket-quantity" name="TicketQuantity" required>
+                    <option value="">-- Choose a Category --</option>
+                </select>
+            </div>
+
+            <button class="button" type="submit">Book</button>
+        </form>
+
+
+        <div asp-validation-summary="All"></div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/BookingModal.js"></script>
+}
