@@ -1,4 +1,4 @@
-using AuthenticationLayer.Contexts;
+﻿using AuthenticationLayer.Contexts;
 using AuthenticationLayer.Entities;
 using Frontend.Middlewares;
 using Frontend.Services;
@@ -85,7 +85,7 @@ builder.Services.AddHttpClient<ICategoryApiService, CategoryApiService>(client =
 
 builder.Services.AddHttpClient<IImageApiService, ImageApiService>(client =>
 {
-    var baseAdress = builder.Configuration["RestServices:EventService"];
+    var baseAdress = builder.Configuration["RestServices:ImageService"];
     if (string.IsNullOrEmpty(baseAdress))
     {
         throw new InvalidOperationException("ImageService URL not configured in RestService:ImageService");
