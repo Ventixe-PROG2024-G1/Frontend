@@ -1,9 +1,11 @@
 ﻿using Frontend.Models;
 using Frontend.Models.Invoice;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Frontend.Controllers;
 [Route("[controller]")]
+[Authorize]
 public class InvoiceController : Controller
 {
     private readonly HttpClient _https;
