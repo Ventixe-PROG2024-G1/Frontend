@@ -19,7 +19,7 @@ public class EventsController(IEventApiService eventApiService, ICategoryApiServ
     private readonly IImageApiService _imageApiService = imageApiService;
     private readonly HttpClient _httpClient = httpClientFactory.CreateClient();
     private readonly IConfiguration _config = config;
-    private const int DefaultPageSize = 6;
+    private const int AdjustedPageSize = 6;
 
     public async Task<IActionResult> Index([FromQuery] EventListQueryParameters queryParams)
     {
@@ -129,7 +129,7 @@ public class EventsController(IEventApiService eventApiService, ICategoryApiServ
         }
 
         var apiDateFilter = (queryParams.DateFilter?.ToLowerInvariant() == "all") ? null : queryParams.DateFilter;
-        int actualPageSize = (queryParams.PageSize.HasValue && queryParams.PageSize.Value > 0) ? queryParams.PageSize.Value : DefaultPageSize;
+        int actualPageSize = (queryParams.PageSize.HasValue && queryParams.PageSize.Value > 0) ? queryParams.PageSize.Value : AdjustedPageSize;
 
         return new ApiCallAndViewModelParameters
         {
