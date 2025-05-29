@@ -28,7 +28,6 @@
                 li.querySelector('.invoice-button')
                     .addEventListener('click', () => {
                         loadInvoiceDetails(inv.id);
-                        loadInvoiceEmail(inv.id);
                     });
                 ul.appendChild(li);
             });

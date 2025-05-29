@@ -1,4 +1,6 @@
 ﻿function loadInvoiceDetails(invoiceId) {
+    loadInvoiceEmail(invoiceId)
+
     fetch(`/Invoice/GetById/${invoiceId}`)
         .then(res => {
             if (!res.ok) throw new Error('HTTP ' + res.status);
