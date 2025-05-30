@@ -1,7 +1,10 @@
-﻿namespace Frontend.Models.Event.Responses;
+﻿using System.Text.Json.Serialization;
+
+namespace Frontend.Models.Event.Responses;
 
 public class EventResponseModel
 {
+    [JsonPropertyName("id")]
     public Guid EventId { get; set; }
     public Guid? EventImageId { get; set; }
     public string? ImageUrl { get; set; }

@@ -1,4 +1,4 @@
-using AuthenticationLayer.Contexts;
+﻿using AuthenticationLayer.Contexts;
 using AuthenticationLayer.Entities;
 using Frontend.Middlewares;
 using Frontend.Services;
@@ -59,6 +59,13 @@ builder.Services.AddHttpClient<IEventApiService, EventApiService>(client =>
     }
     client.BaseAddress = new Uri(baseAdress);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+    var apiKey = builder.Configuration["SecretKeys:EventApiKey"];
+    if (string.IsNullOrEmpty(apiKey))
+    {
+        throw new InvalidOperationException("EventApiKey not configured in SecretKeys");
+    }
+    client.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
 });
 
 builder.Services.AddHttpClient<IStatusApiService, StatusApiService>(client =>
@@ -70,6 +77,13 @@ builder.Services.AddHttpClient<IStatusApiService, StatusApiService>(client =>
     }
     client.BaseAddress = new Uri(baseAdress);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+    var apiKey = builder.Configuration["SecretKeys:EventApiKey"];
+    if (string.IsNullOrEmpty(apiKey))
+    {
+        throw new InvalidOperationException("EventApiKey not configured in SecretKeys");
+    }
+    client.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
 });
 
 builder.Services.AddHttpClient<ICategoryApiService, CategoryApiService>(client =>
@@ -81,11 +95,18 @@ builder.Services.AddHttpClient<ICategoryApiService, CategoryApiService>(client =
     }
     client.BaseAddress = new Uri(baseAdress);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+    var apiKey = builder.Configuration["SecretKeys:EventApiKey"];
+    if (string.IsNullOrEmpty(apiKey))
+    {
+        throw new InvalidOperationException("EventApiKey not configured in SecretKeys");
+    }
+    client.DefaultRequestHeaders.Add("X-API-KEY", apiKey);
 });
 
 builder.Services.AddHttpClient<IImageApiService, ImageApiService>(client =>
 {
-    var baseAdress = builder.Configuration["RestServices:EventService"];
+    var baseAdress = builder.Configuration["RestServices:ImageService"];
     if (string.IsNullOrEmpty(baseAdress))
     {
         throw new InvalidOperationException("ImageService URL not configured in RestService:ImageService");
