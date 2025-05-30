@@ -25,12 +25,11 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
         if (string.IsNullOrEmpty(eventId))
             return BadRequest("Event ID is required.");
 
-        var url = $"{_config[$"RestServices:EventService"]}/api/event/{eventId}";
-        var request = new HttpRequestMessage(HttpMethod.Get, url);
-        var response = await _httpClient.SendAsync(request);
+        //var url = $"{_config[$"RestServices:EventService"]}/api/event/{eventId}";
+        //var request = new HttpRequestMessage(HttpMethod.Get, url);
+        //var response = await _httpClient.SendAsync(request);
 
-        var eventData = await response.Content.ReadFromJsonAsync<EventResponseModel>();
-        eventData.EventId = Guid.Parse(eventId);
+        var eventData = await _eventService.GetEventByIdAsync(Guid.Parse(eventId));
 
         var vm = new EventDetailsPageView
         {
