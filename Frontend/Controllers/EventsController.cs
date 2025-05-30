@@ -11,15 +11,15 @@ using System.Text.RegularExpressions;
 namespace Frontend.Controllers;
 
 [Route("[controller]")]
-public class EventsController(IEventApiService eventApiService, ICategoryApiService categoryApiService, IStatusApiService statusApiService, IImageApiService imageApiService, IHttpClientFactory httpClientFactory, IConfiguration config) : Controller
+[Authorize]
+public class EventsController(IEventApiService eventApiService, ICategoryApiService categoryApiService, IStatusApiService statusApiService, IImageApiService imageApiService, IConfiguration config) : Controller
 {
     private readonly IEventApiService _eventApiService = eventApiService;
     private readonly ICategoryApiService _categoryApiService = categoryApiService;
     private readonly IStatusApiService _statusApiService = statusApiService;
     private readonly IImageApiService _imageApiService = imageApiService;
-    private readonly HttpClient _httpClient = httpClientFactory.CreateClient();
     private readonly IConfiguration _config = config;
-    private const int AdjustedPageSize = 6;
+    private const int AdjustedPageSize = 12;
 
     public async Task<IActionResult> Index([FromQuery] EventListQueryParameters queryParams)
     {
