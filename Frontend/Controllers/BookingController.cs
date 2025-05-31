@@ -37,14 +37,12 @@ public class BookingController(IHttpClientFactory httpFactory, IConfiguration co
     [HttpGet("GetTableData")]
     public async Task<IActionResult> GetTableData([FromQuery] BookingQueryParams queryParams)
     {
-        // Load all bookings if logged in as Admin, load only those for the user logged in otherwise.
-        if (UserStore.CurrentUser?.Role != "Admin")
-            queryParams.UserId = UserStore.CurrentUser?.Id;
-        else if (UserStore.CurrentUser?.Role == "Admin")
-            queryParams.UserId = null;
-
-
-            Debug.WriteLine(UserStore.CurrentUser);
+        if (UserStore.CurrentUser == null || UserStore.CurrentUser.Role == null || UserStore.CurrentUser.Id == null)
+            queryParams.UserId = "None"; // Load no bookings if no user or admin is logged in.
+        else if (UserStore.CurrentUser.Role == "Admin")
+            queryParams.UserId = null; // Null value loads all bookings for all users.
+        else
+            queryParams.UserId = UserStore.CurrentUser.Id; // Load the bookings for the current none admin user.
 
         var queryString = ToQueryString(queryParams);
         var url = $"{_config["RestServices:BookingService"]}/api/bookings/query?{queryString}";
