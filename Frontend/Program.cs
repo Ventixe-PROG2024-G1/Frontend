@@ -122,6 +122,11 @@ builder.Services.AddHttpClient<IImageApiService, ImageApiService>(client =>
     client.DefaultRequestHeaders.Add("x-functions-key", apiKey);
 });
 
+builder.Services.AddHttpClient<ITicketService, TicketService>(x =>
+{
+    x.BaseAddress = new Uri(builder.Configuration["RestServices:TicketService"]!);
+});
+
 
 var app = builder.Build();
 
