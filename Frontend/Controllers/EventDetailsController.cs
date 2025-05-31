@@ -37,9 +37,6 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
             BookingForm = new AddBookingFormView { EventId = eventId } // prefill event id if needed
         };
 
-        Debug.WriteLine(eventData);
-        Debug.WriteLine(eventData.EventId);
-
         return View(vm);
     }
 
@@ -73,23 +70,12 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
     [HttpPost("EventDetails/SubmitBooking")]
     public async Task<IActionResult> SubmitBooking(AddBookingFormView model)
     {
-        Debug.WriteLine("---------Start---------");
-        Debug.WriteLine(model);
-        Debug.WriteLine(model.EventId);
-        Debug.WriteLine(model.TicketId);
-        Debug.WriteLine(model.TicketQuantity);
 
         var eventUrl = $"{_config[$"RestServices:EventService"]}/api/event/{model.EventId}";
         var eventRequest = new HttpRequestMessage(HttpMethod.Get, eventUrl);
         var eventResponse = await _httpClient.SendAsync(eventRequest);
 
-        Debug.WriteLine(eventResponse);
-
         var eventData = await eventResponse.Content.ReadFromJsonAsync<EventResponseModel>();
-
-        Debug.WriteLine("--------");
-        Debug.WriteLine(eventData);
-        Debug.WriteLine("--------");
 
         if (!ModelState.IsValid)
         {
@@ -102,11 +88,7 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
             return View("Index", vm);
         }
 
-        Debug.WriteLine("Valid");
-
         var ticket = await GetTicketAsync(model.TicketId);
-
-        Debug.WriteLine("GetTickets");
 
         if (ticket == null)
         {
@@ -114,15 +96,11 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
             return View("Index", new EventDetailsPageView { Event = eventData, BookingForm = model });
         }
 
-        Debug.WriteLine("TicketFound");
-
         if (UserStore.CurrentUser == null)
         {
             ModelState.AddModelError("", "No User Found");
             return View("Index", new EventDetailsPageView { Event = eventData, BookingForm = new AddBookingFormView() });
         }
-
-        Debug.WriteLine("UserFound");
 
         var dto = new AddBookingDto
         {
@@ -138,8 +116,6 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
             EventId = model.EventId,
             TicketId = model.TicketId
         };
-
-        Debug.WriteLine("Created");
 
         var json = JsonSerializer.Serialize(dto);
 
