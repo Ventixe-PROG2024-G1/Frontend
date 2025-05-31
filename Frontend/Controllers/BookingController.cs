@@ -37,12 +37,14 @@ public class BookingController(IHttpClientFactory httpFactory, IConfiguration co
     [HttpGet("GetTableData")]
     public async Task<IActionResult> GetTableData([FromQuery] BookingQueryParams queryParams)
     {
-        /*
+        // Load all bookings if logged in as Admin, load only those for the user logged in otherwise.
         if (UserStore.CurrentUser?.Role != "Admin")
             queryParams.UserId = UserStore.CurrentUser?.Id;
-        */
+        else if (UserStore.CurrentUser?.Role == "Admin")
+            queryParams.UserId = null;
 
-        Debug.WriteLine(UserStore.CurrentUser);
+
+            Debug.WriteLine(UserStore.CurrentUser);
 
         var queryString = ToQueryString(queryParams);
         var url = $"{_config["RestServices:BookingService"]}/api/bookings/query?{queryString}";
