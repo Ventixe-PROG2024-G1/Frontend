@@ -573,6 +573,7 @@ form button[type="submit"] {
     background-color: var(--grey-10);
     border-radius: 8px;
     max-width: 26em;
+    min-height: 35em;
     padding: 1em;
 }
 .event-card-header {
@@ -632,6 +633,29 @@ form button[type="submit"] {
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         border-color: var(--primary-90);
     }
+
+.event-filter-group {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 5rem;
+}
+
+.events-group-form-btn {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.event-filter-btn {
+    background-color: var(--secondary-90);
+    border: none;
+    border-radius: 20px;
+    color: var(--grey-10);
+    cursor: pointer;
+    padding: 0.5em 1.5em;
+    font-size: 14px;
+}
 
 
 /*Invoice*/
