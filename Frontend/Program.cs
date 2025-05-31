@@ -113,6 +113,13 @@ builder.Services.AddHttpClient<IImageApiService, ImageApiService>(client =>
     }
     client.BaseAddress = new Uri(baseAdress);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
+
+    var apiKey = builder.Configuration["SecretKeys:ImageFunctionKey"];
+    if (string.IsNullOrEmpty(apiKey))
+    {
+        throw new InvalidOperationException("ImageFunctionKey not configured in SecretKeys");
+    }
+    client.DefaultRequestHeaders.Add("x-functions-key", apiKey);
 });
 
 
