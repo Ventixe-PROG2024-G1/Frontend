@@ -247,9 +247,9 @@ public class EventsController(IEventApiService eventApiService, ICategoryApiServ
             return "Ingen beskrivning tillgänglig.";
         }
         string plainTextDescription = Regex.Replace(fullDescription, "<.*?>", String.Empty);
-        return plainTextDescription.Length <= 100
+        return plainTextDescription.Length <= 50
             ? plainTextDescription
-            : plainTextDescription.Substring(0, 97) + "...";
+            : plainTextDescription.Substring(0, 47) + "...";
     }
     #endregion
 
