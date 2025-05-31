@@ -3,6 +3,7 @@ using Frontend.Models.Event.Responses;
 using Frontend.Models.EventDetails;
 using Frontend.Services;
 using Frontend.Stores;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -13,13 +14,14 @@ using System.Text.Json;
 
 namespace Frontend.Controllers;
 
+[Route("[controller]")]
 public class EventDetailsController(IHttpClientFactory httpFactory, IConfiguration config, IEventApiService eventService) : Controller
 {
     private readonly HttpClient _httpClient = httpFactory.CreateClient();
     private readonly IConfiguration _config = config;
     private readonly IEventApiService _eventService = eventService;
 
-    [Route("EventDetails/{eventId}")]
+    [Route("{eventId}")]
     public async Task<IActionResult> Index(string eventId)
     {     
         if (string.IsNullOrEmpty(eventId))
@@ -40,7 +42,7 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
         return View(vm);
     }
 
-    [Route("EventDetails/Tickets")]
+    [Route("Tickets")]
     public async Task<IActionResult> GetTickets()
     {
         var url = $"{_config[$"RestServices:TicketService"]}/api/tickets";
@@ -56,7 +58,7 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
         return StatusCode((int)response.StatusCode, "Failed to fetch Tickets");
     }
 
-    [Route("EventDetails/Tickets/{ticketId}")]
+    [Route("Tickets/{ticketId}")]
     public async Task<IActionResult> GetTicket(string ticketId)
     {
         var ticket = await GetTicketAsync(ticketId);
@@ -67,7 +69,7 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
         return Ok(ticket);
     }
 
-    [HttpPost("EventDetails/SubmitBooking")]
+    [HttpPost("SubmitBooking")]
     public async Task<IActionResult> SubmitBooking(AddBookingFormView model)
     {
 
