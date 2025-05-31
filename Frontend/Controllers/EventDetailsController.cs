@@ -14,6 +14,7 @@ using System.Text.Json;
 
 namespace Frontend.Controllers;
 
+[Authorize]
 [Route("[controller]")]
 public class EventDetailsController(IHttpClientFactory httpFactory, IConfiguration config, IEventApiService eventService) : Controller
 {
