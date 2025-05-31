@@ -1,12 +1,12 @@
 ﻿using Frontend.Models.Booking;
 using Frontend.Stores;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace Frontend.Controllers;
 
+[Authorize]
 [Route("[controller]")]
 public class BookingController(IHttpClientFactory httpFactory, IConfiguration config) : Controller
 {

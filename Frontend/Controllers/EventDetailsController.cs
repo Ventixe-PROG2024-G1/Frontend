@@ -3,23 +3,22 @@ using Frontend.Models.Event.Responses;
 using Frontend.Models.EventDetails;
 using Frontend.Services;
 using Frontend.Stores;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 
 namespace Frontend.Controllers;
 
+[Authorize]
+[Route("[controller]")]
 public class EventDetailsController(IHttpClientFactory httpFactory, IConfiguration config, IEventApiService eventService) : Controller
 {
     private readonly HttpClient _httpClient = httpFactory.CreateClient();
     private readonly IConfiguration _config = config;
     private readonly IEventApiService _eventService = eventService;
 
-    [Route("EventDetails/{eventId}")]
+    [Route("{eventId}")]
     public async Task<IActionResult> Index(string eventId)
     {     
         if (string.IsNullOrEmpty(eventId))
@@ -37,13 +36,10 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
             BookingForm = new AddBookingFormView { EventId = eventId } // prefill event id if needed
         };
 
-        Debug.WriteLine(eventData);
-        Debug.WriteLine(eventData.EventId);
-
         return View(vm);
     }
 
-    [Route("EventDetails/Tickets")]
+    [Route("Tickets")]
     public async Task<IActionResult> GetTickets()
     {
         var url = $"{_config[$"RestServices:TicketService"]}/api/tickets";
@@ -59,7 +55,7 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
         return StatusCode((int)response.StatusCode, "Failed to fetch Tickets");
     }
 
-    [Route("EventDetails/Tickets/{ticketId}")]
+    [Route("Tickets/{ticketId}")]
     public async Task<IActionResult> GetTicket(string ticketId)
     {
         var ticket = await GetTicketAsync(ticketId);
@@ -70,26 +66,15 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
         return Ok(ticket);
     }
 
-    [HttpPost("EventDetails/SubmitBooking")]
+    [HttpPost("SubmitBooking")]
     public async Task<IActionResult> SubmitBooking(AddBookingFormView model)
     {
-        Debug.WriteLine("---------Start---------");
-        Debug.WriteLine(model);
-        Debug.WriteLine(model.EventId);
-        Debug.WriteLine(model.TicketId);
-        Debug.WriteLine(model.TicketQuantity);
 
         var eventUrl = $"{_config[$"RestServices:EventService"]}/api/event/{model.EventId}";
         var eventRequest = new HttpRequestMessage(HttpMethod.Get, eventUrl);
         var eventResponse = await _httpClient.SendAsync(eventRequest);
 
-        Debug.WriteLine(eventResponse);
-
         var eventData = await eventResponse.Content.ReadFromJsonAsync<EventResponseModel>();
-
-        Debug.WriteLine("--------");
-        Debug.WriteLine(eventData);
-        Debug.WriteLine("--------");
 
         if (!ModelState.IsValid)
         {
@@ -102,11 +87,7 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
             return View("Index", vm);
         }
 
-        Debug.WriteLine("Valid");
-
         var ticket = await GetTicketAsync(model.TicketId);
-
-        Debug.WriteLine("GetTickets");
 
         if (ticket == null)
         {
@@ -114,15 +95,11 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
             return View("Index", new EventDetailsPageView { Event = eventData, BookingForm = model });
         }
 
-        Debug.WriteLine("TicketFound");
-
         if (UserStore.CurrentUser == null)
         {
             ModelState.AddModelError("", "No User Found");
             return View("Index", new EventDetailsPageView { Event = eventData, BookingForm = new AddBookingFormView() });
         }
-
-        Debug.WriteLine("UserFound");
 
         var dto = new AddBookingDto
         {
@@ -138,8 +115,6 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
             EventId = model.EventId,
             TicketId = model.TicketId
         };
-
-        Debug.WriteLine("Created");
 
         var json = JsonSerializer.Serialize(dto);
 
