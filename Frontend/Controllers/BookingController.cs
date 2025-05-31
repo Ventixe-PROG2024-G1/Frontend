@@ -1,10 +1,8 @@
 ﻿using Frontend.Models.Booking;
 using Frontend.Stores;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace Frontend.Controllers;
 

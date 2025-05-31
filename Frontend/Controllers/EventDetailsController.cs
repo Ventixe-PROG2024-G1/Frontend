@@ -4,11 +4,7 @@ using Frontend.Models.EventDetails;
 using Frontend.Services;
 using Frontend.Stores;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Diagnostics;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 
