@@ -1,10 +1,14 @@
 ﻿using Frontend.Models.AppUser;
+using Microsoft.Extensions.Configuration;
+using System.Text.Json;
 
 namespace Frontend.Services
 {
-    public class AppUserService(HttpClient httpClient) : IAppUserService
+    public class AppUserService(HttpClient httpClient, IConfiguration configuration) : IAppUserService
     {
+        private readonly IConfiguration _configuration = configuration;
         private readonly HttpClient _httpClient = httpClient;
+        private readonly string _apiKey = configuration.GetValue<string>("SecretKeys:AuthenticationKey")!;
 
         public async Task<AppUserResponseRest> GetUserAsync(string id)
         {
@@ -15,6 +19,7 @@ namespace Frontend.Services
             }
 
             var apiUrl = $"https://ventixe-user-provider.azurewebsites.net/api/users/{id}";
+           
 
             try
             {
