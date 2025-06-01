@@ -2,7 +2,6 @@
 using Frontend.Models.Event.Requests;
 using Frontend.Models.Event.Responses;
 using Frontend.Models.Event.ViewModels;
-using Frontend.Models.EventDetails;
 using Frontend.Models.Ticket;
 using Frontend.Services;
 using Microsoft.AspNetCore.Authorization;

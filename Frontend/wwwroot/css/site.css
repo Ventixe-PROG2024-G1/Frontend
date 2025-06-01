@@ -606,13 +606,17 @@ form button[type="submit"] {
     .event-card-body h2 {
     }
 .event-card-footer {
-    padding: 0.5em;
-}
-.event-card-footer, .event-card-footer div {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    padding: 0.5em;
+    gap: 0.5em;
 }
+    .event-card-footer div {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
 .event-card-colorpercent {
     border-radius: 10px;
     height: 0.8em;

@@ -1,4 +1,6 @@
-﻿namespace Frontend.Models.Event.ViewModels;
+﻿using System.Globalization;
+
+namespace Frontend.Models.Event.ViewModels;
 
 public class EventViewModel
 {
@@ -12,7 +14,7 @@ public class EventViewModel
     //Date & Time
     public DateTime EventStartDate { get; set; }
     public string FormattedEventDate { get; set; } = string.Empty;
-    public string FormattedEventTime {  get; set; } = string.Empty;
+    public string FormattedEventTime { get; set; } = string.Empty;
 
     // Ticket Info
     public int MaxAttendees { get; set; } // total tickets
@@ -24,7 +26,7 @@ public class EventViewModel
     public string FormattedTicketSalesPercentage => $"{TicketSalesPercentage:F0}% Tickets Sold";
 
     public decimal Price { get; set; }
-    public string FormattedPrice { get; set; } = string.Empty;
+    public string FormattedPrice => Price.ToString("C0", CultureInfo.GetCultureInfo("de-DE"));
 
     public bool IsFullyBooked => CurrentAttendees >= MaxAttendees;
     public string? StatusName {  get; set; }
