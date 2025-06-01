@@ -15,5 +15,6 @@ namespace Frontend.Models.EventDetails
         public List<TicketViewModel>? Tickets { get; set; } = new List<TicketViewModel>();
         public EventViewModel? EventDetails { get; set; }
         public IEnumerable<SelectListItem>? CategoryFilterOptions { get; set; }
+        public List<MerchViewModel>? Merch { get; set; } = new List<MerchViewModel>();
     }
 }

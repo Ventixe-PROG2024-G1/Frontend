@@ -127,6 +127,11 @@ builder.Services.AddHttpClient<ITicketService, TicketService>(x =>
     x.BaseAddress = new Uri(builder.Configuration["RestServices:TicketService"]!);
 });
 
+builder.Services.AddHttpClient<IMerchService, MerchService>(x =>
+{
+    x.BaseAddress = new Uri(builder.Configuration["RestServices:MerchService"]!);
+});
+
 
 var app = builder.Build();
 
