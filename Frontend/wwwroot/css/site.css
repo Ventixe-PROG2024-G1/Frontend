@@ -615,10 +615,9 @@ form button[type="submit"] {
 }
 .event-card-colorpercent {
     border-radius: 10px;
-    background: linear-gradient(90deg,rgba(242, 108, 249, 1) 65%, rgba(252, 211, 254, 1) 66%, rgba(252, 211, 254, 1) 100%);
     height: 0.8em;
     margin-right:1em;
-    width:7em;
+    width:15em;
 }
 .event-card-footer h2 {
     color: var(--primary-100);
@@ -657,6 +656,18 @@ form button[type="submit"] {
     font-size: 14px;
 }
 
+.event-paging {
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -95%);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
 
 /*Invoice*/
 .invoice-container {
