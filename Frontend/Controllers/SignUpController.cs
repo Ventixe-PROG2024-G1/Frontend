@@ -1,20 +1,24 @@
 ﻿using Frontend.Models.Responses;
 using Frontend.Models.SignUp;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
 namespace Frontend.Controllers
 {
-    public class SignUpController(HttpClient httpClient) : Controller
+    public class SignUpController(HttpClient httpClient, IConfiguration configuration) : Controller
     {
         private readonly HttpClient _httpClient = httpClient;
+        private readonly IConfiguration _configuration = configuration;
 
         private readonly string _accountServiceUrl = "https://ventixe-account-provider.azurewebsites.net/api/account";
         private readonly string _verificationServiceUrl = "https://ventixe-verification-provider.azurewebsites.net/api/verification";
         private readonly string _profileServiceUrl = "https://ventixe-profile-provider.azurewebsites.net/api/profile";
         private readonly string _imageServiceUrl = "https://azurefunctionimage.azurewebsites.net/api/images";
+
+        private readonly string _apiKey = configuration.GetValue<string>("SecretKeys:AuthenticationKey")!;
 
         #region Step 1 - Set Email
 
@@ -192,7 +196,10 @@ namespace Frontend.Controllers
 
         public async Task<T?> GetRequest<T>(string url)
         {
-            var response = await _httpClient.GetAsync(url);
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            request.Headers.Add("X-Api-Key", _apiKey);
+
+            var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode) return default;
 
@@ -211,7 +218,14 @@ namespace Frontend.Controllers
         {
             var json = JsonSerializer.Serialize(requestData);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync(url, content);
+
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = content
+            };
+            request.Headers.Add("X-Api-Key", _apiKey);
+
+            var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode) return default;
 
@@ -234,7 +248,13 @@ namespace Frontend.Controllers
 
             content.Add(streamContent, "file", fileName);
 
-            var response = await _httpClient.PostAsync(url, content);
+            var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = content
+            };
+            request.Headers.Add("X-Api-Key", _apiKey);
+
+            var response = await _httpClient.SendAsync(request);
 
             if (!response.IsSuccessStatusCode) return default;
 

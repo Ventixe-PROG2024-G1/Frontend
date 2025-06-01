@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const categorySelect = document.getElementById('category-select');
     categorySelect.innerHTML = '';
 
+    document.getElementById('booking-segmented-control').addEventListener('change', (e) => {
+        if (e.target.name === 'status-segment') {
+            updateBookingQuery('Status', e.target.value);
+        }
+    });
+
     fetch('/Booking/GetAllEventCategories')
         .then(res => res.ok ? res.json() : Promise.reject(res.status))
         .then(data => {
