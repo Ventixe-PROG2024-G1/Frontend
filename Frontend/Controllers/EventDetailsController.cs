@@ -1,23 +1,27 @@
 ﻿using Frontend.Models.Booking;
 using Frontend.Models.Event.Responses;
+using Frontend.Models.Event.ViewModels;
 using Frontend.Models.EventDetails;
 using Frontend.Services;
 using Frontend.Stores;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text;
 using System.Text.Json;
 
 namespace Frontend.Controllers;
 
-[Authorize]
+//[Authorize]
 [Route("[controller]")]
-public class EventDetailsController(IHttpClientFactory httpFactory, IConfiguration config, IEventApiService eventService, ITicketService ticketService) : Controller
+public class EventDetailsController(IHttpClientFactory httpFactory, IConfiguration config, IEventApiService eventService, ITicketService ticketService, IImageApiService imageApiService) : Controller
 {
     private readonly HttpClient _httpClient = httpFactory.CreateClient();
     private readonly IConfiguration _config = config;
     private readonly IEventApiService _eventService = eventService;
     private readonly ITicketService _ticketService = ticketService;
+    private readonly IImageApiService _imageApiService = imageApiService;
+    
 
     [Route("{eventId}")]
     public async Task<IActionResult> Index(string eventId)
@@ -32,6 +36,14 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
         var eventData = await _eventService.GetEventByIdAsync(Guid.Parse(eventId));
         var tickets = await _ticketService.GetAllTicketsAsync();
         var filteredTickets = tickets.Where(x => x.EventId == eventData.EventId).ToList();
+        //AI gen
+        string? thumbnailUrl = null;
+        if (eventData.EventImageId != null && eventData.EventImageId != Guid.Empty)
+        {
+            var image = await _imageApiService.GetImageMetaDataAsync(eventData.EventImageId.Value);
+            thumbnailUrl = image?.ImageUrl; 
+        }
+        //
         foreach (var ticket in tickets)  // för att logga vad som tas upp
         {
             Console.WriteLine($"Ticket EventId: {ticket.EventId}, Price: {ticket.Price}");
@@ -43,6 +55,13 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
             Event = eventData,
             BookingForm = new AddBookingFormView { EventId = eventId }, // prefill event id if needed
             Tickets = filteredTickets,
+            EventDetails = new EventViewModel
+            {
+                EventId = eventData.EventId,
+                EventName = eventData.EventName,
+                ThumbnailUrl = thumbnailUrl,
+                CategoryName = eventData.Category?.CategoryName,
+            }
         };
 
         return View(vm);

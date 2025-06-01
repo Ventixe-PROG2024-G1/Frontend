@@ -19,9 +19,9 @@
     <div class="event-main-content">
         <div class="event-preview-card">
             <div class="event-image">
-                <img src="/images/Event-Banner.jpg" alt="Event Banner">
+                <img src=@Model.EventDetails.ThumbnailUrl alt="Event Banner">
                 <div class="event-tags">
-                    <span class="tag">🎵 Music</span>
+                    <span class="tag"><span class="tag">@Model.EventDetails.CategoryName</span></span>
                     <span class="status active">🟣 Active</span>
                 </div>
             </div>
@@ -29,14 +29,23 @@
                 <h1 class="event-title">@Model.Event.EventName</h1>
                 <p class="event-datetime">@Model.Event.EventStartDate.</p>
                 <p class="event-location">@Model.EventLocation</p>
-
                 <div class="event-info-bar">
-                    <span>👥 Tickets  sold of/ 30,000</span>
+                    <span>👥 Tickets sold of/ 30,000</span>
                     @{
-                        var lowestPrice = @Model.Tickets.Min(x => x.Price);
+                        decimal? lowestPrice = null;
+                        if (Model.Tickets != null && Model.Tickets.Any())
+                        {
+                            lowestPrice = Model.Tickets.Min(x => x.Price);
+                        }
                     }
-                    <span>🎫 Starts from <strong>$@lowestPrice.</strong></span>
+                    <span>
+                        🎫 Starts from
+                        <strong>
+                            @(lowestPrice.HasValue ? $"${lowestPrice.Value}" : "N/A")
+                        </strong>
+                    </span>
                 </div>
+              
 
                 <div class="event-description">
                     <h2>About Event</h2>
