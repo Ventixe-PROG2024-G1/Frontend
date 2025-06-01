@@ -6,6 +6,7 @@ using Frontend.Services;
 using Frontend.Stores;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text;
 using System.Text.Json;
 
@@ -20,6 +21,7 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
     private readonly IEventApiService _eventService = eventService;
     private readonly ITicketService _ticketService = ticketService;
     private readonly IImageApiService _imageApiService = imageApiService;
+    
 
     [Route("{eventId}")]
     public async Task<IActionResult> Index(string eventId)
@@ -58,6 +60,7 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
                 EventId = eventData.EventId,
                 EventName = eventData.EventName,
                 ThumbnailUrl = thumbnailUrl,
+                CategoryName = eventData.Category?.CategoryName,
             }
         };
 
