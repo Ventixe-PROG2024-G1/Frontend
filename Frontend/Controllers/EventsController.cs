@@ -2,6 +2,7 @@
 using Frontend.Models.Event.Requests;
 using Frontend.Models.Event.Responses;
 using Frontend.Models.Event.ViewModels;
+using Frontend.Models.Ticket;
 using Frontend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,14 +13,16 @@ namespace Frontend.Controllers;
 
 [Route("[controller]")]
 //[Authorize]
-public class EventsController(IEventApiService eventApiService, ICategoryApiService categoryApiService, IStatusApiService statusApiService, IImageApiService imageApiService, IConfiguration config) : Controller
+public class EventsController(IEventApiService eventApiService, ICategoryApiService categoryApiService, IStatusApiService statusApiService, IImageApiService imageApiService, ITicketService ticketService, IConfiguration config) : Controller
 {
     private readonly IEventApiService _eventApiService = eventApiService;
     private readonly ICategoryApiService _categoryApiService = categoryApiService;
     private readonly IStatusApiService _statusApiService = statusApiService;
     private readonly IImageApiService _imageApiService = imageApiService;
+    private readonly ITicketService _ticketService = ticketService;
     private readonly IConfiguration _config = config;
     private const int AdjustedPageSize = 12;
+    private const int DefaultEventCapacityPlaceholder = 500;
 
     public async Task<IActionResult> Index([FromQuery] EventListQueryParameters queryParams)
     {
@@ -155,6 +158,8 @@ public class EventsController(IEventApiService eventApiService, ICategoryApiServ
             return Enumerable.Empty<EventViewModel>();
         }
 
+        var allTickets = await _ticketService.GetAllTicketsAsync() ?? Enumerable.Empty<TicketViewModel>();
+
         var mappingTasks = eventDtos.Select(async eventDto =>
         {
             string? imageUrl = eventDto.ImageUrl;
@@ -163,7 +168,11 @@ public class EventsController(IEventApiService eventApiService, ICategoryApiServ
                 var imageMetaData = await _imageApiService.GetImageMetaDataAsync(eventDto.EventImageId.Value);
                 imageUrl = imageMetaData?.ImageUrl;
             }
-            return MapToEventViewModel(eventDto, imageUrl);
+            var eventTickets = allTickets.Where(t => t.EventId == eventDto.EventId);
+            int currentAttendees = eventTickets.Sum(t => t.Quantity);
+            decimal eventTicketPrice = eventTickets.FirstOrDefault()?.Price ?? 0m;
+
+            return MapToEventViewModel(eventDto, imageUrl, currentAttendees, eventTicketPrice);
         });
 
         return await Task.WhenAll(mappingTasks);
@@ -171,7 +180,7 @@ public class EventsController(IEventApiService eventApiService, ICategoryApiServ
     #endregion
 
     #region Map to EventViewModel
-    private EventViewModel MapToEventViewModel(EventResponseModel eventDto, string? imageUrl)
+    private EventViewModel MapToEventViewModel(EventResponseModel eventDto, string? imageUrl, int currentAttendees, decimal eventPrice)
     {
         var viewModel = new EventViewModel
         {
@@ -182,7 +191,10 @@ public class EventsController(IEventApiService eventApiService, ICategoryApiServ
             Location = eventDto.LocationId.HasValue ? $"Plats ID: {eventDto.LocationId.Value.ToString().Substring(0, Math.Min(4, eventDto.LocationId.Value.ToString().Length))}..." : "Plats ej angiven",
             EventStartDate = eventDto.EventStartDate ?? DateTime.MinValue,
             StatusName = eventDto.Status,
-            ShortDescription = GetShortDescription(eventDto.Description)
+            ShortDescription = GetShortDescription(eventDto.Description),
+            CurrentAttendees = currentAttendees,
+            MaxAttendees = DefaultEventCapacityPlaceholder,
+            Price = eventPrice
         };
 
         if (eventDto.EventStartDate.HasValue)
