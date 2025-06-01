@@ -17,6 +17,7 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
     private readonly HttpClient _httpClient = httpFactory.CreateClient();
     private readonly IConfiguration _config = config;
     private readonly IEventApiService _eventService = eventService;
+    private readonly ITicketService _ticketService = ticketService;
 
     [Route("{eventId}")]
     public async Task<IActionResult> Index(string eventId)
@@ -29,11 +30,19 @@ public class EventDetailsController(IHttpClientFactory httpFactory, IConfigurati
         //var response = await _httpClient.SendAsync(request);
 
         var eventData = await _eventService.GetEventByIdAsync(Guid.Parse(eventId));
+        var tickets = await _ticketService.GetAllTicketsAsync();
+        var filteredTickets = tickets.Where(x => x.EventId == eventData.EventId).ToList();
+        foreach (var ticket in tickets)  // för att logga vad som tas upp
+        {
+            Console.WriteLine($"Ticket EventId: {ticket.EventId}, Price: {ticket.Price}");
+        }
+        Console.WriteLine($"EventData.EventId: {eventData.EventId}");
 
         var vm = new EventDetailsPageView
         {
             Event = eventData,
-            BookingForm = new AddBookingFormView { EventId = eventId } // prefill event id if needed
+            BookingForm = new AddBookingFormView { EventId = eventId }, // prefill event id if needed
+            Tickets = filteredTickets,
         };
 
         return View(vm);

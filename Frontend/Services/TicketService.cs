@@ -21,15 +21,19 @@ public class TicketService(HttpClient httpClient, IConfiguration config) : ITick
     {
         var request = new HttpRequestMessage(HttpMethod.Get, "api/tickets");
         request.Headers.Add("X-API-KEY", _apiKey);
-
         var response = await _httpClient.SendAsync(request);
 
         if (response.IsSuccessStatusCode)
         {
-            var json = await response.Content.ReadAsStringAsync(); // <- här får du hela svaret som text
-            Console.WriteLine("TICKET API RAW RESPONSE: " + json);
+            var json = await response.Content.ReadAsStringAsync(); 
+            
+            
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
 
-            var tickets = JsonSerializer.Deserialize<List<TicketViewModel>>(json);
+            var tickets = JsonSerializer.Deserialize<List<TicketViewModel>>(json, options);
             return tickets ?? new List<TicketViewModel>();
         }
 
