@@ -83,16 +83,17 @@
                 </ul>
             </div>
         </div>
-        @if (dummyMerch.Any())
+        @if (Model.Merch != null && Model.Merch.Any())
         {
             <div class="event-merch-box">
                 <h2>Official Merchandise</h2>
                 <div class="merch-grid">
-                    @foreach (var item in dummyMerch)
+                    @foreach (var item in Model.Merch)
                     {
                         <div class="merch-item">
-                            <img src="@item.ImageUrl" alt="@item.Name">
-                            <p class="merch-price">$item.Price</p>
+                            <img src="@Model.EventDetails.ThumbnailUrl"/>  <!--Han inte med att koppla på en bild via imageservicen -->
+                            <p>@item.Name</p>
+                            <p class="merch-price">Price: $@item.Price</p>
                         </div>
                     }
                 </div>
