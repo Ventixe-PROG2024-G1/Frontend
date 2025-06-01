@@ -1524,4 +1524,183 @@ form button[type="submit"] {
             flex-direction: row;
         }
     }
+.event-details-page {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+/* Vänster kolumn */
+.event-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Höger kolumn */
+.event-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Gemensam kortstil */
+.event-preview-card,
+.event-info-card,
+.event-terms-box,
+.event-merch-box,
+.event-partners-box,
+.event-packages-box {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Eventbild */
+.event-image {
+    border-radius: 2rem;
+    overflow: hidden;
+    position: relative;
+}
+
+    .event-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+/* Tags */
+.event-tags {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tag,
+.status.active {
+    background-color: var(--primary-100);
+    color: white;
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+}
+
+.status.active {
+    background-color: #7b3fe4;
+}
+
+/* Metadata */
+.event-title {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--primary-100);
+}
+
+.event-datetime,
+.event-location {
+    margin: 0.3rem 0;
+    color: #666;
+}
+
+.event-info-bar {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    font-weight: 600;
+}
+
+/* Beskrivning */
+.event-description h2 {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    color: var(--secondary-100);
+}
+
+/* Terms */
+.event-terms-box {
+    max-height: 250px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.terms-content {
+    overflow-y: auto;
+    max-height: 180px;
+    padding-right: 0.5rem;
+    color: #444;
+}
+
+/* Seat Plan */
+.seatplan-wrapper .seatplan-content {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.seatplan-content .seatplan-img {
+    flex: 1;
+    max-width: 50%;
+    border-radius: 0.5rem;
+}
+
+.seatplan-content .tier-list {
+    flex: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #333;
+}
+
+.tier-list li {
+    padding: 0.3rem 0;
+    line-height: 1.4;
+}
+
+/* Packages */
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.package-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    background-color: #fafafa;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+    .package-card h3 {
+        margin: 0 0 0.5rem 0;
+        color: var(--primary-100);
+        font-size: 1.1rem;
+    }
+
+.name-col,
+.category-col,
+.name-col,
+.price-col,
+.qty-col,
+.voucher-col,
+.invoice-desktop-col {
+    display: table-cell;
+}
+
+.ticket-col,
+.invoice-mobile-col {
+    display: none;
+}
+
+.bookingstatus-container {
+    flex-direction: row;
+}
+
 

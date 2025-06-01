@@ -1,12 +1,12 @@
 ﻿using Frontend.Models.Booking;
 using Frontend.Stores;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace Frontend.Controllers;
 
+[Authorize]
 [Route("[controller]")]
 public class BookingController(IHttpClientFactory httpFactory, IConfiguration config) : Controller
 {
@@ -37,12 +37,12 @@ public class BookingController(IHttpClientFactory httpFactory, IConfiguration co
     [HttpGet("GetTableData")]
     public async Task<IActionResult> GetTableData([FromQuery] BookingQueryParams queryParams)
     {
-        /*
-        if (UserStore.CurrentUser?.Role != "Admin")
-            queryParams.UserId = UserStore.CurrentUser?.Id;
-        */
-
-        Debug.WriteLine(UserStore.CurrentUser);
+        if (UserStore.CurrentUser == null || UserStore.CurrentUser.Role == null || UserStore.CurrentUser.Id == null)
+            queryParams.UserId = "None"; // Load no bookings if no user or admin is logged in.
+        else if (UserStore.CurrentUser.Role == "Admin")
+            queryParams.UserId = null; // Null value loads all bookings for all users.
+        else
+            queryParams.UserId = UserStore.CurrentUser.Id; // Load the bookings for the current none admin user.
 
         var queryString = ToQueryString(queryParams);
         var url = $"{_config["RestServices:BookingService"]}/api/bookings/query?{queryString}";

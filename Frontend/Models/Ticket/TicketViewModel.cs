@@ -4,7 +4,9 @@ namespace Frontend.Models.Ticket;
 
 public class TicketViewModel
 {
+    [JsonPropertyName("id")]
     public Guid Id { get; set; }
+    [JsonPropertyName("price")]
     public decimal Price { get; set; }
     [JsonPropertyName("quantity")]
     public int Quantity { get; set; }
@@ -13,5 +15,6 @@ public class TicketViewModel
     [JsonPropertyName("tiers")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public TicketTier Tier { get; set; }
+    [JsonPropertyName("eventId")]
     public Guid EventId { get; set; }
 }

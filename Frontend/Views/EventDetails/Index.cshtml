@@ -1,12 +1,156 @@
 ﻿@using Frontend.Models.EventDetails
 @model EventDetailsPageView
+@{
+    var dummyMerch = new List<dynamic> {
+        new { ImageUrl = "/images/sample.png", Name = "T-Shirt", Price = 20 }
+    };
 
+    var dummyPartners = new List<dynamic> {
+        new { LogoUrl = "/images/partner-logo.svg", Name = "Spotify" }
+    };
+}
 @{
     ViewData["Title"] = Model.Event?.EventName ?? "EventDetails";
 }
 
 <h1 id="booking-modal-open">@ViewData["Title"]</h1>
+<div class="event-details-page">
+    <!-- Vänster kolumn -->
+    <div class="event-main-content">
+        <div class="event-preview-card">
+            <div class="event-image">
+                <img src=@Model.EventDetails.ThumbnailUrl alt="Event Banner">
+                <div class="event-tags">
+                    <span class="tag"><span class="tag">@Model.EventDetails.CategoryName</span></span>
+                    <span class="status active">🟣 Active</span>
+                </div>
+            </div>
+            <div class="event-meta">
+                <h1 class="event-title">@Model.Event.EventName</h1>
+                <p class="event-datetime">@Model.Event.EventStartDate.</p>
+                <p class="event-location">@Model.EventLocation</p>
+                <div class="event-info-bar">
+                    <span>👥 Tickets sold of/ 30,000</span>
+                    @{
+                        decimal? lowestPrice = null;
+                        if (Model.Tickets != null && Model.Tickets.Any())
+                        {
+                            lowestPrice = Model.Tickets.Min(x => x.Price);
+                        }
+                    }
+                    <span>
+                        🎫 Starts from
+                        <strong>
+                            @(lowestPrice.HasValue ? $"${lowestPrice.Value}" : "N/A")
+                        </strong>
+                    </span>
+                </div>
+              
 
+                <div class="event-description">
+                    <h2>About Event</h2>
+                    <p>@Model.Event.Description</p>
+                </div>
+            </div>
+        </div>
+        <div class="event-terms-box">
+            <h2>Terms & Conditions</h2>
+            <div class="terms-content">
+                <h3>1. Ticket Purchase and Entry</h3>
+                <ul>
+                    <li>All attendees must possess a valid ticket for entry.</li>
+                    <li>Tickets are non-refundable and non-transferable unless specified by the event organizer.</li>
+                    <li>Attendees must present a valid government-issued ID along with their ticket at the gate.</li>
+                </ul>
+
+                <h3>2. Security and Safety</h3>
+                <ul>
+                    <li>Attendees are subject to security checks, including bag inspections, upon entry.</li>
+                    <li>Prohibited items include weapons, drugs, alcohol, fireworks, and other hazardous materials.</li>
+                    <li>The event organizer reserves the right to deny entry to individuals deemed a security risk.</li>
+                </ul>
+
+                <h3>3. Code of Conduct</h3>
+                <ul>
+                    <li>Attendees are expected to behave responsibly and respectfully toward others.</li>
+                    <li>Any disruptive behavior, harassment, or illegal activity will result in immediate removal from the event without refund.</li>
+                </ul>
+
+                <h3>4. Event Schedule and Changes</h3>
+                <ul>
+                    <li>The event schedule is subject to change without prior notice.</li>
+                    <li>The event organizer is not responsible for delays or cancellations caused by weather, technical issues, or unforeseen circumstances.</li>
+                </ul>
+            </div>
+        </div>
+        @if (dummyMerch.Any())
+        {
+            <div class="event-merch-box">
+                <h2>Official Merchandise</h2>
+                <div class="merch-grid">
+                    @foreach (var item in dummyMerch)
+                    {
+                        <div class="merch-item">
+                            <img src="@item.ImageUrl" alt="@item.Name">
+                            <p class="merch-price">$item.Price</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        @if (dummyPartners.Any())
+        {
+            <div class="event-partners-box">
+                <h2>Our Partners</h2>
+                <div class="partner-logos">
+                    @foreach (var partner in dummyPartners)
+                    {
+                        <img src="@partner.LogoUrl" alt="@partner.Name">
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <!-- Höger Sidan av vyn -->
+    <div class="event-sidebar">
+        <div class="event-info-card seatplan-wrapper">
+            <h2>Seat Plan</h2>
+            <div class="seatplan-content">
+                <img class="seatplan-img" src="/images/Imge/Venue Map.svg" alt="Seat Plan" />
+                @if (Model.Tickets != null && Model.Tickets.Any())
+                {
+                    <ul class="tier-list">
+                      @foreach (var ticket in Model.Tickets)
+                        {
+                         <li>
+                                <strong>@ticket.Tier:</strong> @ticket.TierDescription –
+                                <span>$@ticket.Price </span>
+                         </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p>No Tickets Avaliable.</p>
+                }
+            </div>
+        </div>
+        <div class="event-packages-box">
+            <h2>Packages</h2>
+            <div class="packages-grid">
+                @foreach (var tier in Model.Tickets)
+                {
+                    <div class="package-card">
+                        <h3>@tier.Tier</h3>
+                        <p><strong>Price:</strong> $@tier.Price</p>
+                        <p><strong>Description:</strong> @tier.TierDescription</p>
+                        
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
 
 
 
