@@ -23,7 +23,7 @@ public class EventsController(IEventApiService eventApiService, ICategoryApiServ
     private readonly ITicketService _ticketService = ticketService;
     private readonly IConfiguration _config = config;
     private const int AdjustedPageSize = 12;
-    private const int DefaultEventCapacityPlaceholder = 50;
+    private const int DefaultEventCapacityPlaceholder = 500;
 
     public async Task<IActionResult> Index([FromQuery] EventListQueryParameters queryParams)
     {
