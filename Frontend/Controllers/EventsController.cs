@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 namespace Frontend.Controllers;
 
 [Route("[controller]")]
-//[Authorize]
+[Authorize]
 public class EventsController(IEventApiService eventApiService, ICategoryApiService categoryApiService, IStatusApiService statusApiService, IImageApiService imageApiService, ITicketService ticketService, IConfiguration config) : Controller
 {
     private readonly IEventApiService _eventApiService = eventApiService;
