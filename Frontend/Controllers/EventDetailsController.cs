@@ -12,7 +12,7 @@ namespace Frontend.Controllers;
 
 [Authorize]
 [Route("[controller]")]
-public class EventDetailsController(IHttpClientFactory httpFactory, IConfiguration config, IEventApiService eventService) : Controller
+public class EventDetailsController(IHttpClientFactory httpFactory, IConfiguration config, IEventApiService eventService, ITicketService ticketService) : Controller
 {
     private readonly HttpClient _httpClient = httpFactory.CreateClient();
     private readonly IConfiguration _config = config;
